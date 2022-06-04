@@ -281,9 +281,14 @@ Children
 * 🔥 `me().children.hidden = true`
 
 Append / Prepend elements.
+* 🔥 `me().prepend(el_new)`
 * 🔥 `me().appendChild(el_new)`
 * 🔥 `me().insertBefore(el_new, el.firstChild)`
 * 🔥 `me().insertAdjacentHTML("beforebegin", el_new)`
+
+Text / HTML Content
+* 🔥 `me().innerHTML = "<p>hello world</p>"`
+* 🔥 `me().innerText = "hello world"`
 
 ## 🔌 Extending Surreal
 
