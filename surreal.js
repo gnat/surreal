@@ -271,10 +271,10 @@ $.sugars['trace']       = (name) => { return $.trace($._e, name) }
 // 📦 Plugin: Effects
 var $effects = {
 	// Fade out and remove element.
-	// Equivalent to jQuery fade_out(), but actually removes the element!
+	// Equivalent to jQuery fadeOut(), but actually removes the element!
 	fadeOut(e, fn=false, ms=1000) {
 		thing = e
-		if ($.isNodeList(e)) e.forEach(_ => { fade_out(_, fn, ms) })
+		if ($.isNodeList(e)) e.forEach(_ => { fadeOut(_, fn, ms) })
 		if ($.isNode(e)) {
 			(async() => {
 				$.styles(e, 'max-height: 100%; overflow: hidden')
@@ -298,6 +298,7 @@ $.globalsAdd()
 
 console.log("Loaded Surreal.")
 
+// **********************************************************
 // Global conveniences, helpers.
 function sleep(ms, e) {
 	return new Promise(resolve => setTimeout(() => { resolve(e) }, ms))
@@ -322,15 +323,4 @@ function first(e) {
 }
 function last(e) {
 	return $.isNode(e) ? $.me(parentNode) : null
-}
-
-function getip() {
-	var xhttp = new XMLHttpRequest();
-	xhttp.onreadystatechange = function() {
-		if (xhttp.readyState == 4 && xhttp.status == 200) {
-			console.log(JSON.parse(xhttp.responseText).ip);
-		}
-	};
-	xhttp.open("GET", "https://api.ipify.org?format=json", true);
-	xhttp.send();
 }
