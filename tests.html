@@ -3,14 +3,23 @@
 	<head>
 		<title>Quick and Dirty Testing for Surreal</title>
 		<meta charset="utf-8" />
-		<script src="../surreal.js" ></script>
+		<script src="surreal.js" ></script>
+		<style>
+			.active {
+				background: red;
+			}
+		</style>
 	</head>
 	<body>
 		Please check the dev tools for errors.
-		<div>I fade out and remove myself.
+		<div>Click to fade out and remove me.
 			<script>
-				// Keepin it simple! Locality of Behavior.
 				me().on("click", ev => { me(ev).fadeOut() })
+			</script>
+		</div>
+		<div class="yeet veet">I should be red.
+			<script>
+				any(".yeet.veet").classAdd('.active')
 			</script>
 		</div>
 	</body>
