@@ -336,6 +336,7 @@ async function tick() {
 
 const rAF = typeof requestAnimationFrame !== 'undefined' && requestAnimationFrame
 const rIC = typeof requestIdleCallback !== 'undefined' && requestIdleCallback
+const createElement = document.createElement.bind(document)
 
 function getip() {
 	var xhttp = new XMLHttpRequest();

@@ -3,23 +3,94 @@
 	<head>
 		<title>Quick and Dirty Testing for Surreal</title>
 		<meta charset="utf-8" />
-		<script src="../surreal.js" ></script>
+		<link rel="stylesheet" href="reset.css" />
+		<script src="../surreal.js"></script>
 		<style>
 			.active {
 				background: red;
+				transition: background 3s;
+			}
+			.inactive {
+				background: grey;
+				transition: background 3s;
 			}
 		</style>
 	</head>
 	<body>
-		Please check the dev tools for errors.
-		<div>Click to fade out and remove me.
+		<h1>Please check the dev tools to ensure no errors occurred.</h1>
+		<button>Click me to fade out and remove.
 			<script>
 				me().on("click", ev => { me(ev).fadeOut() })
 			</script>
-		</div>
+		</button>
 		<div class="yeet veet">I should be red.
 			<script>
 				any(".yeet.veet").classAdd('.active')
+			</script>
+		</div>
+		<div id="random">I should turn grey after 2 seconds.
+			<script>
+				(async ()=>{
+					me("#random").classAdd('active')
+					await sleep(2000)
+					me("#random").classAdd('inactive')
+				})()
+			</script>
+		</div>
+		<div>I should be animated funky using events.
+			<script>
+				// Now you're thinking with events!
+				me().on("ping", async ev => {
+					me(ev).styles({"background":"hotpink", "color":"purple"})
+					await sleep(2000)
+					me(ev).trigger("pong")
+				})
+				me().on("pong", async ev => {
+					me(ev).styles({"background":"blue", "color":"green"})
+					await sleep(2000)
+					me(ev).trigger("ping")
+				})
+				me().styles({"transition":"background 2s"}).trigger("pong")
+			</script>
+		</div>
+		<div>I should be animated funky using timeline / async.
+			<script>
+				// Now you're thinking with async!
+				(async (el = me()) => {
+					me(el).styles({"transition": "background 2s"})
+					me(el).styles({"background":"#770000", "color":"#007700"})
+					await sleep(2000)
+					me(el).styles({"background":"#777700", "color":"#000077"})
+					await sleep(2000)
+					me(el).styles({"background":"#770077", "color":"#007700"})
+					await sleep(2000)
+					me(el).styles({"background":"#007700", "color":"#770077"})
+					await sleep(2000)
+					var el_new = createElement("div")
+					el_new.innerText = "🔥🔥🔥🔥🔥🔥"
+					me(el).appendChild(el_new)
+					me(el).innerHTML = me(el).innerHTML + " -- Done!"
+				})()
+			</script>
+		</div>
+		<div>I should be surrounded by diamonds after a few seconds.
+			<script>
+				// Now you're thinking with async!
+				(async (el = me()) => {
+					var el_new = createElement("div")
+					el_new.innerText = "💎💎💎💎💎💎"
+					me(el).prepend(el_new)
+					me(el_new).styles({"transition":"opacity 2s", "opacity":"0"})
+					await sleep(1000)
+					me(el_new).styles({"opacity":"1"})
+					await sleep(2000)
+					var el_new = createElement("div")
+					me(el_new).styles({"transition":"opacity 2s", "opacity":"0"})
+					el_new.innerText = "💎💎💎💎💎💎 More diamonds!"
+					me(el).appendChild(el_new)
+					await sleep(1000)
+					me(el_new).styles({"opacity":"1"})
+				})()
 			</script>
 		</div>
 	</body>

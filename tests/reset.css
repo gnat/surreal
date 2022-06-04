@@ -1,0 +1,27 @@
+/* Use a nice reset. */
+html,body,p,ol,ul,li,dl,dt,dd,blockquote,figure,fieldset,legend,textarea,pre,iframe,hr,h1,h2,h3,h4,h5,h6,label {
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+}
+button,input,select,textarea {
+	margin: 0;
+	font: inherit;
+}
+html {
+	font-size: 10px;
+}
+body {
+	font-size: 1.8rem; /* 1.8 rem = 18px */
+	background: #222;
+	color: #BBB;
+}
+button {
+	border-radius: 1rem;
+	border: none;
+	background: #444;
+	color: #BBB;
+	cursor: pointer;
+	margin: 1.6rem 2rem;
+	padding: 1.6rem 2rem;
+}
