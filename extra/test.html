@@ -3,9 +3,15 @@
 	<head>
 		<title>Quick and Dirty Testing for Surreal</title>
 		<meta charset="utf-8" />
-		<script src="/js/surreal/surreal.js" ></script>
+		<script src="../surreal.js" ></script>
 	</head>
 	<body>
 		Please check the dev tools for errors.
+		<div>I fade out and remove myself.
+			<script>
+				// Keepin it simple! Locality of Behavior.
+				me().on("click", ev => { me(ev).fadeOut() })
+			</script>
+		</div>
 	</body>
 </html>

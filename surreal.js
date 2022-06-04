@@ -295,31 +295,26 @@ $ = {...$, ...$utility}
 var $effects = {
 	// Fade out and remove element.
 	// Equivalent to jQuery fade_out(), but actually removes the element!
-	fade_out(e, fn=false, ms=1000) {
+	fadeOut(e, fn=false, ms=1000) {
 		thing = e
 		if ($.isNodeList(e)) e.forEach(_ => { fade_out(_, fn, ms) })
 		if ($.isNode(e)) {
-
 			(async() => {
 				$.styles(e, 'max-height: 100%; overflow: hidden')
 				$.styles(e, `transition: all ${ms}ms ease-out`)
-
-				console.log("1")
-
 				await tick()
 				$.styles(e, 'max-height: 0%; padding: 0; opacity: 0')
-				console.log("5")
 				await sleep(ms, e)
-
 				if (fn === 'function') fn()
 				$.remove(thing)
-				console.log("6")
 			})()
 		}
 	},
 	$effects
 }
 $ = {...$, ...$effects}
+$.sugars['fadeOut']  = (fn, ms) => { return $.fadeOut($._e, fn=false, ms=1000) }
+$.sugars['fade_out'] = $.sugars['fadeOut']
 
 // Full convenience.
 $.globalsAdd()
