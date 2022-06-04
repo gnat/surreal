@@ -253,7 +253,7 @@ var $debug = {
 	},
 	// Date and time.
 	print(e, name) {
-		console.log("LOLOLOLLOLOLOLLOLOLOLLOLOLOL"+e)
+		console.log("Test"+e)
 		console.dir(e)
 		return e
 	},
@@ -267,29 +267,6 @@ $.sugars['debugEvent']  = (name) => { return $.debugEvent($._e, event_name=null)
 $.sugars['debug_event'] = $.sugars['debugEvent']
 $.sugars['print']       = (name) => { return $.print($._e, name) }
 $.sugars['trace']       = (name) => { return $.trace($._e, name) }
-
-// 📦 Plugin: Uilities
-var $utility = {
-	// Date and time.
-	now() {
-		return Date.now()
-	},
-	parent(e) {
-		return $.isNode(e) ? $.me(parentNode) : null
-	},
-	first(e) {
-
-		return $.isNode(e) ? $.me()[this.length - 1] : null
-	},
-	last(e) {
-		return $.isNode(e) ? $.me(parentNode) : null
-	},
-
-}
-$ = {...$, ...$utility}
-//$.sugars['now'] = (name) => { return $.now($._e, name) }
-//$.sugars['trace'] = (name) => { return $.trace($._e, name) }
-
 
 // 📦 Plugin: Effects
 var $effects = {
@@ -349,3 +326,17 @@ function getip() {
 	xhttp.send();
 }
 
+// Date and time.
+function now() {
+	return Date.now()
+}
+function parent(e) {
+	return $.isNode(e) ? $.me(parentNode) : null
+}
+function first(e) {
+
+	return $.isNode(e) ? $.me()[this.length - 1] : null
+}
+function last(e) {
+	return $.isNode(e) ? $.me(parentNode) : null
+}
