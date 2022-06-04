@@ -298,33 +298,16 @@ $.globalsAdd()
 
 console.log("Loaded Surreal.")
 
-
-
-
-const snakeCase = str => str.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`)
-
-//function sleep(ms) { return new Promise(  (resolve) => { setTimeout(resolve, ms) }) }
+// Global conveniences, helpers.
 function sleep(ms, e) {
 	return new Promise(resolve => setTimeout(() => { resolve(e) }, ms))
 }
 async function tick() {
 	await new Promise(resolve => { requestAnimationFrame(resolve) })
 }
-
 const rAF = typeof requestAnimationFrame !== 'undefined' && requestAnimationFrame
 const rIC = typeof requestIdleCallback !== 'undefined' && requestIdleCallback
 const createElement = document.createElement.bind(document)
-
-function getip() {
-	var xhttp = new XMLHttpRequest();
-	xhttp.onreadystatechange = function() {
-		if (xhttp.readyState == 4 && xhttp.status == 200) {
-			console.log(JSON.parse(xhttp.responseText).ip);
-		}
-	};
-	xhttp.open("GET", "https://api.ipify.org?format=json", true);
-	xhttp.send();
-}
 
 // Date and time.
 function now() {
@@ -339,4 +322,15 @@ function first(e) {
 }
 function last(e) {
 	return $.isNode(e) ? $.me(parentNode) : null
+}
+
+function getip() {
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (xhttp.readyState == 4 && xhttp.status == 200) {
+			console.log(JSON.parse(xhttp.responseText).ip);
+		}
+	};
+	xhttp.open("GET", "https://api.ipify.org?format=json", true);
+	xhttp.send();
 }
