@@ -265,6 +265,9 @@ Looking for [DOM Selectors](#selectors)?
   * 🔥 `halt(event)`
   * Great to prevent default browser behavior: such as displaying an image vs letting JS handle it.
   * Wrapper for [preventDefault](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault)
+* 🌐 `createElement`
+  * 🔥 `el_new = createElement("div"); me().prepend(el_new)`
+  * Alias of `document.createElement`
 
 ### <a name="no-surreal"></a>🔮 No Surreal Needed
 Some patterns are already as short as you can get in vanilla JS!
@@ -278,9 +281,14 @@ Children
 * 🔥 `me().children.hidden = true`
 
 Append / Prepend elements.
+* 🔥 `me().prepend(el_new)`
 * 🔥 `me().appendChild(el_new)`
 * 🔥 `me().insertBefore(el_new, el.firstChild)`
 * 🔥 `me().insertAdjacentHTML("beforebegin", el_new)`
+
+Text / HTML Content
+* 🔥 `me().innerHTML = "<p>hello world</p>"`
+* 🔥 `me().innerText = "hello world"`
 
 ## 🔌 Extending Surreal
 
