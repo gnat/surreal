@@ -169,22 +169,24 @@ Great? See: [Quick Start](#quick-start) and [Reference](#reference) and [No Surr
 </div>
 ```
 ```html
+<div>I change color every second.
 <script>
-  // Globally.
-  (async ()=>{
-    any("button").styles({ "transition": "background 1s" })
+  // Run on load.
+  (async (el = me())=>{
+    me(el).styles({ "transition": "background 1s" })
     await sleep(1000)
-    any("button").styles({ "background": "red" })
+    me(el).styles({ "background": "red" })
     await sleep(1000)
-    any("button").styles({ "background": "green" })
+    me(el).styles({ "background": "green" })
     await sleep(1000)
-    any("button").styles({ "background": "blue" })
+    me(el).styles({ "background": "blue" })
     await sleep(1000)
-    any("button").styles({ "background": "none" })
+    me(el).styles({ "background": "none" })
     await sleep(1000)
-    any("button").remove()
+    me(el).remove()
   })()
 </script>
+</div>
 ```
 ```html
 <script>
