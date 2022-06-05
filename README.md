@@ -63,7 +63,7 @@ Surreal is a dependency-free, browser-oriented javascript library. This means th
 
 Download `surreal.js` and add it to the appropriate directory in your project and include it where necessary with a <script> tag:
 ```html
-<script src="/path/to/surreal.js"></script>
+<script src="surreal.js"></script>
 ```
 
 ## 🔥 Usage Overview
