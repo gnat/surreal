@@ -16,6 +16,7 @@ body {
 	background: #222;
 	color: #BBB;
 }
+/* Custom for showcase. */
 button {
 	border-radius: 1rem;
 	border: none;
@@ -24,4 +25,32 @@ button {
 	cursor: pointer;
 	margin: 1.6rem 2rem;
 	padding: 1.6rem 2rem;
+}
+.active {
+	background: red;
+	transition: background 3s;
+}
+.inactive {
+	background: grey;
+	transition: background 3s;
+}
+div {
+	margin: 1rem;
+	padding: 1rem;
+	border-radius: 1rem;
+}
+button {
+	font-size: 2rem;
+	cursor: pointer;
+	color: white;
+	padding: 12px 42px;
+	background: hsl(345deg 100% 47%);
+	border-radius: 12px;
+	border: none;
+	border-bottom: 0.5rem solid hsl(340deg 100% 32%);
+}
+button:active {
+	transform: translateY(0.2rem);
+	border: none;
+	border-bottom: 0.5rem solid transparent;
 }
