@@ -1,0 +1,30 @@
+{
+  "name": "surreal",
+  "version": "0.6.6",
+  "description": "Surreal",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gnat/surreal.git"
+  },
+  "main": "dist/index.js",
+  "module": "src/index.js",
+  "scripts": {
+    "test": "ava -v tests"
+  },
+  "author": "gnat",
+  "keywords": [
+    "javascript",
+    "utility",
+    "jquery",
+    "jquery-like",
+    "es6"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gnat/surreal/issues"
+  },
+  "devDependencies": {
+    "ava": "^1.4.1",
+    "jsdom": "^19.0.0"
+  }
+}
