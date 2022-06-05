@@ -315,3 +315,11 @@ If applicable, make your function compatible with both single elements and array
     Refer to an existing function to see how.
 
 Make an [issue](https://github.com/gnat/surreal/issues) or [pull request](https://github.com/gnat/surreal/pulls) if you think people would like to use it! If it's useful enough we may want it in the core!
+
+## 🌘 Future
+* Automated browser testing perhaps with:
+  * [Fava](https://github.com/fabiospampinato/fava). See: https://github.com/avajs/ava/issues/24#issuecomment-885949036
+  * [Ava](https://github.com/avajs/ava/blob/main/docs/recipes/browser-testing.md)
+  * [jsdom](https://github.com/jsdom/jsdom)
+* More `playground.html` goodies.
+* Maybe minification at some point. Really liking dev/production all in one file, though.
