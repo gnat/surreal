@@ -17,9 +17,9 @@
 				me().on("click", ev => { me(ev).fadeOut() })
 			</script>
 		</button>
-		<div class="yeet veet">I should be red.
+		<div class="yeet noot">I should be red.
 			<script>
-				any(".yeet.veet").classAdd('.active')
+				any(".yeet.noot").classAdd('.active')
 			</script>
 		</div>
 		<div id="random">I should turn grey after 2 seconds.
@@ -60,10 +60,13 @@
 					await sleep(2000)
 					me(el).styles({"background":"#007700", "color":"#770077"})
 					await sleep(2000)
+
 					var el_new = createElement("div")
+					me(el_new).styles({"transition":"all 2s", "opacity":"0", "height":"0%"})
 					el_new.innerText = "🔥🔥🔥🔥🔥🔥"
 					me(el).appendChild(el_new)
-					me(el).innerHTML = me(el).innerHTML + " -- Done!"
+					await sleep(1000)
+					me(el_new).styles({"opacity":"1", "height":"fit-content"})
 				})()
 			</script>
 		</div>
@@ -74,12 +77,13 @@
 					var el_new = createElement("div")
 					el_new.innerText = "💎💎💎💎💎💎"
 					me(el).prepend(el_new)
-					me(el_new).styles({"transition":"opacity 2s", "opacity":"0"})
+					me(el_new).styles({"transition":"all 2s", "opacity":"0"})
 					await sleep(1000)
 					me(el_new).styles({"opacity":"1"})
 					await sleep(2000)
+
 					var el_new = createElement("div")
-					me(el_new).styles({"transition":"opacity 2s", "opacity":"0"})
+					me(el_new).styles({"transition":"all 2s", "opacity":"0"})
 					el_new.innerText = "💎💎💎💎💎💎 More diamonds!"
 					me(el).appendChild(el_new)
 					await sleep(1000)

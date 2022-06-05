@@ -8,8 +8,8 @@ button,input,select,textarea {
 	margin: 0;
 	font: inherit;
 }
-html {
-	font-size: 10px;
+html{
+	font-size: 10px !important;
 }
 body {
 	font-size: 1.8rem; /* 1.8 rem = 18px */
@@ -28,7 +28,7 @@ body {
 	background: grey;
 	transition: background 3s;
 }
-div {
+body > div {
 	margin: 1rem;
 	padding: 1rem;
 	border-radius: 1rem;
@@ -42,11 +42,10 @@ button {
 	background: hsl(345deg 100% 47%);
 	border-bottom: 0.5rem solid hsl(345deg 100% 28%);
 	border-radius: 12px;
+	text-shadow: 0 2px #222222AA;
 }
 button:active {
 	transform: translateY(0.2rem);
-	border: none;
-	border-bottom: 0.5rem solid transparent;
 }
 button.blue {
 	background: hsl(200deg 100% 47%);
