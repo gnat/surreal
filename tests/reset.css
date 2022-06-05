@@ -8,16 +8,17 @@ button,input,select,textarea {
 	margin: 0;
 	font: inherit;
 }
-html, body{
+html {
+	text-size-adjust: none; /* Fixes chrome on mobile. */
 	font-size: 10px; /* 1.8 rem = 18px */
 }
-body {
-	background: #222;
-	color: #CCC;
-}
+
 /* Custom for showcase. */
 body {
+	font-size: 2rem;
 	padding: 1rem;
+	background: #222;
+	color: #CCC;
 }
 .active {
 	background: hsl(345deg 100% 47%);
@@ -34,9 +35,8 @@ body > div {
 	border-radius: 1rem;
 }
 button {
-	font-size: 2rem;
 	cursor: pointer;
-	color: white;
+	color: #fff;
 	padding: 2rem 3rem;
 	margin: 2rem;
 	border: none;
