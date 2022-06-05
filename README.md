@@ -2,7 +2,8 @@
 (Art by [shahabalizadeh](https://www.deviantart.com/shahabalizadeh))
 
 # Surreal - Hyper minimalist jQuery alternative
-![Builds](https://github.com/gnat/surreal/actions/workflows/node.js.yml/badge.svg)
+![Releases](https://github.com/gnat/surreal/actions/workflows/release.yml/badge.svg)
+![Builds](https://github.com/gnat/surreal/actions/workflows/ci.yml/badge.svg)
 [![License](https://img.shields.io/badge/license-MIT%20License-blue.svg)](https://opensource.org/licenses/MIT)
 
 ## 💚 Why does this exist?
