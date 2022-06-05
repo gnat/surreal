@@ -18,10 +18,6 @@ If you agree with any of the following, you may appreciate this micro library:
 * Enjoyed using jQuery selector syntax.
 * Are cautiously aware of the cargo cult. ✈️
 
-## ✨ Quick Look
-
-See a quick working example of Surreal in action! Jump into the [Showcase](https://gnat.github.io/surreal/showcase.html)! 🔍️ Then [view source](https://github.com/gnat/surreal/blob/main/showcase.html).
-
 ## ✨ What does it bring to the table?
 
 * 🔗 Call chaining.
@@ -46,6 +42,11 @@ Do surreal things with [Locality of Behavior](https://htmx.org/essays/locality-o
   </script>
 </label>
 ```
+
+## 👁️ Live Example
+
+Get a taste- see the [Showcase](https://gnat.github.io/surreal/showcase.html)! Then [view source](https://github.com/gnat/surreal/blob/main/showcase.html).
+
 
 ## 🤔 Why choose `me()` and `any()` over `$` and `$$`
 * No ambiguity unlike jQuery's approach of `$` for both single elements and Arrays. Less need for sanity checks.
