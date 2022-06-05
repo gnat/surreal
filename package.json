@@ -9,7 +9,7 @@
   "main": "dist/surreal.min.js",
   "module": "src/index.js",
   "scripts": {
-    "build": "microbundle --no-sourcemap -o ./dist/surreal.js surreal.js",
+    "build": "microbundle --no-sourcemap -o ./dist/surreal.min.js surreal.js",
     "test": "ava -v tests"
   },
   "author": "gnat",
