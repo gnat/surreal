@@ -20,7 +20,7 @@ If you agree with any of the following, you may appreciate this micro library:
 
 ## ✨ Quick Look
 
-See a quick working example of Surreal in action! Jump into the [Showcase](https://gnat.github.io/surreal/index.html)! 🔍️ Then [view source](https://github.com/gnat/surreal/blob/main/index.html).
+See a quick working example of Surreal in action! Jump into the [Showcase](https://gnat.github.io/surreal/showcase.html)! 🔍️ Then [view source](https://github.com/gnat/surreal/blob/main/showcase.html).
 
 ## ✨ What does it bring to the table?
 
