@@ -61,7 +61,7 @@ Do surreal things with [Locality of Behavior](https://htmx.org/essays/locality-o
 
 Surreal is a dependency-free, browser-oriented javascript library. This means that using it is as simple as adding a `<script>` tag to your document head. No need for complicated build steps or systems.
 
-Download `surreal.js` and add it to the appropriate directory in your project and include it where necessary with a <script> tag:
+[Download surreal.js](https://github.com/gnat/surreal/archive/refs/heads/main.zip) and add it to the appropriate directory in your project and include it where necessary with a <script> tag:
 ```html
 <script src="surreal.js"></script>
 ```
