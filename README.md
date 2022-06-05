@@ -4,25 +4,23 @@
 # Surreal - Hyper minimalist jQuery alternative
 [![License](https://img.shields.io/badge/license-MIT%20License-blue.svg)](https://opensource.org/licenses/MIT)
 
-## 💚 Why does this exist? For devs who love ergonomics!
+## 💚 Why does this exist?
 
-If you agree with any of the following, you may appreciate this micro library:
+For devs who love ergonomics!
 
-* Love staying as close as possible to Vanilla JS.
+If you agree with any of the following, you may appreciate Surreal:
+
+* Love staying as close to Vanilla JS.
 * Hate typing `document.querySelector` over.. and over..
 * Hate typing `addEventListener` over.. and over..
-* Really wish `document.querySelectorAll` had array methods on it..
+* Really wish `document.querySelectorAll` had Array functions..
 * Really wish `this` would work in child `<script>` tags.
 * Love having **no build step** to speak of.
 * Love fewer layers, and a snappy UI.
 * Enjoyed using jQuery selector syntax.
-* Are cautiously aware of the cargo cult. ✈️
+* Are aware of the cargo cult. ✈️
 
-## ✨ Quick Look
-
-See a quick working example of Surreal in action! Jump into the [Showcase](https://gnat.github.io/surreal/showcase.html)! 🔍️ Then [view source](https://github.com/gnat/surreal/blob/main/showcase.html).
-
-## ✨ What does it bring to the table?
+## ✨ What advantages does it bring to the table?
 
 * 🔗 Call chaining.
 * ♻️ Seamlessly handle an individual element  **OR** arrays of elements.
@@ -47,6 +45,17 @@ Do surreal things with [Locality of Behavior](https://htmx.org/essays/locality-o
 </label>
 ```
 
+## 👁️ Live Example
+
+Get a taste- see the [Showcase](https://gnat.github.io/surreal/showcase.html)! Then [view source](https://github.com/gnat/surreal/blob/main/showcase.html).
+
+## 🎁 Installation
+
+Surreal is a dependency-free, browser-oriented javascript library. This means that using it is as simple as adding a `<script>` tag to your document head. No need for complicated build steps or systems. [Download Surreal](https://github.com/gnat/surreal/archive/refs/heads/main.zip) and drag `surreal.js` into the appropriate directory of your project:
+```html
+<script src="surreal.js"></script>
+```
+
 ## 🤔 Why choose `me()` and `any()` over `$` and `$$`
 * No ambiguity unlike jQuery's approach of `$` for both single elements and Arrays. Less need for sanity checks.
 * Readability. English-like and self documenting.
@@ -60,15 +69,6 @@ Do surreal things with [Locality of Behavior](https://htmx.org/essays/locality-o
 * [Bliss.js](https://blissfuljs.com/) for a focus on single elements and extensibility.
 * [Hyperscript](https://hyperscript.org) for Locality of Behavior and awesome ergonomics.
 * Shout out to [Umbrella](https://umbrellajs.com/), [Cash](https://github.com/fabiospampinato/cash), [Zepto](https://zeptojs.com/)- Not quite as ergonomic or extensible.
-
-## 🎁 Installation
-
-Surreal is a dependency-free, browser-oriented javascript library. This means that using it is as simple as adding a `<script>` tag to your document head. No need for complicated build steps or systems.
-
-[Download surreal.js](https://github.com/gnat/surreal/archive/refs/heads/main.zip) and add it to the appropriate directory in your project and include it where necessary with a <script> tag:
-```html
-<script src="surreal.js"></script>
-```
 
 ## 🔥 Usage Overview
 
@@ -93,23 +93,23 @@ Convert between a direct single element and an Array of elements using `any(me()
 * Events: `event.target` will be used.
 * Themselves: `me()`,`any()`
 * `start=` parameter provides a starting point to select from, default is `document`.
-  * 🔥 `any('button', start='header').classAdd('red')`
+  * `any('button', start='header').classAdd('red')`
 
 ### ⚙️ DOM Functions
 
 * ♻️ All can use either single elements or arrays of elements transparently!
-* 🔗 Chaining off `me()` and `any()` and most other functions supported.
+* 🔗 Chaining off `me()` and `any()` and many others supported.
 * 🌐 Global conveniences can be turned off if desired by removing `globalsAdd()`
-* 😎 `globalsAdd()` will automatically warn about any clobbering issues.
+  * `globalsAdd()` will automatically warn about any clobbering issues.
 
 #### 🟢 Style A (🔗 Chaining)
 
 * 🔥 `me().classAdd('red')` 😎 *RECOMMENDED STYLE*
-* No convenience globals: 🔥 `$.me().classAdd('red')`
+* No convenience globals: `$.me().classAdd('red')`
 
 #### 🟠 Style B (Classic)
 * 🔥 `classAdd(me(), 'red')`
-* No convenience globals: 🔥 `$.classAdd($.me(), 'red')`
+* No convenience globals: `$.classAdd($.me(), 'red')`
 
 Great? See: [Quick Start](#quick-start) and [Reference](#reference) and [No Surreal Needed](#no-surreal)
 
@@ -265,7 +265,7 @@ Looking for [DOM Selectors](#selectors)?
 Some patterns are already as short as you can get in vanilla JS!
 
 Logging
-* 🌐🔥 `console.log()` `console.warn()` `console.error()`
+* 🌐 `console.log()` `console.warn()` `console.error()`
 * Event logging: 🔥 `ev.monitorEvents(me())` See: [Chrome Blog](https://developer.chrome.com/blog/quickly-monitor-events-from-the-console-panel-2/)
 
 Children
@@ -279,8 +279,8 @@ Append / Prepend elements.
 * 🔥 `me().insertAdjacentHTML("beforebegin", el_new)`
 
 Text / HTML Content
-* 🔥 `me().innerHTML = "<p>hello world</p>"`
-* 🔥 `me().innerText = "hello world"`
+* `me().innerHTML = "<p>hello world</p>"`
+* `me().innerText = "hello world"`
 
  ## 💎 Conventions & Tips
 
@@ -295,7 +295,7 @@ Text / HTML Content
 
 ## 🔌 Extending Surreal
 
-First off, if it's important to you, we highly recommend just adding your custom functions to the core of your copy of Surreal. It's designed small so you can do that. But we also have a plugin system for less core-like contributions:
+First off, we do recommend just adding to your Surreal core. Surreal is designed to be small, auditable and understandable. But we also have a plugin system for less core-like contributions:
 
 1. Add your function to Surreal
  ```javascript
@@ -324,5 +324,5 @@ Make an [issue](https://github.com/gnat/surreal/issues) or [pull request](https:
   * [Fava](https://github.com/fabiospampinato/fava). See: https://github.com/avajs/ava/issues/24#issuecomment-885949036
   * [Ava](https://github.com/avajs/ava/blob/main/docs/recipes/browser-testing.md)
   * [jsdom](https://github.com/jsdom/jsdom)
-* More `playground.html` goodies.
-* Maybe minification at some point. Really liking dev/production all in one file, though.
+* More `showcase.html` goodies.
+* Minification at some point. Really liking dev/production all in one file, though.
