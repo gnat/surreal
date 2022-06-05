@@ -98,9 +98,9 @@ Convert between a direct single element and an Array of elements using `any(me()
 ### ⚙️ DOM Functions
 
 * ♻️ All can use either single elements or arrays of elements transparently!
-* 🔗 Chaining off `me()` and `any()` and most other functions supported.
+* 🔗 Chaining off `me()` and `any()` and many others supported.
 * 🌐 Global conveniences can be turned off if desired by removing `globalsAdd()`
-* 😎 `globalsAdd()` will automatically warn about any clobbering issues.
+  * 😎 `globalsAdd()` will automatically warn about any clobbering issues.
 
 #### 🟢 Style A (🔗 Chaining)
 
