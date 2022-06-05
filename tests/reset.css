@@ -14,14 +14,14 @@ html{
 body {
 	font-size: 1.8rem; /* 1.8 rem = 18px */
 	background: #222;
-	color: #BBB;
+	color: #CCC;
 }
 /* Custom for showcase. */
 body {
 	padding: 1rem;
 }
 .active {
-	background: red;
+	background: hsl(345deg 100% 47%);
 	transition: background 3s;
 }
 .inactive {
@@ -29,6 +29,7 @@ body {
 	transition: background 3s;
 }
 body > div {
+	color: #222;
 	margin: 1rem;
 	padding: 1rem;
 	border-radius: 1rem;
@@ -37,7 +38,8 @@ button {
 	font-size: 2rem;
 	cursor: pointer;
 	color: white;
-	padding: 12px 42px;
+	padding: 2rem 3rem;
+	margin: 2rem;
 	border: none;
 	background: hsl(345deg 100% 47%);
 	border-bottom: 0.5rem solid hsl(345deg 100% 28%);

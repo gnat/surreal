@@ -7,14 +7,14 @@
 		<script src="surreal.js"></script>
 	</head>
 	<body>
+		<button>👁️ Click me to fade out and remove.
+			<script>
+				me().on("click", ev => { me(ev).fadeOut() })
+			</script>
+		</button>
 		<button class="blue">😺 Visit the source code for this page.
 			<script>
 				me().on("click", ev => { window.location.href ="https://github.com/gnat/surreal/blob/main/showcase.html" })
-			</script>
-		</button>
-		<button>Click me to fade out and remove.
-			<script>
-				me().on("click", ev => { me(ev).fadeOut() })
 			</script>
 		</button>
 		<div class="yeet noot">I should be red.
@@ -40,7 +40,7 @@
 					me(ev).trigger("pong")
 				})
 				me().on("pong", async ev => {
-					me(ev).styles({"background":"blue", "color":"green"})
+					me(ev).styles({"background":"blue", "color":"#002200"})
 					await sleep(2000)
 					me(ev).trigger("ping")
 				})
@@ -52,13 +52,13 @@
 				// Now you're thinking with async!
 				(async (el = me()) => {
 					me(el).styles({"transition": "all 2s"})
-					me(el).styles({"background":"#770000", "color":"#007700"})
+					me(el).styles({"background":"#0030F7", "color":"#002200"})
 					await sleep(2000)
-					me(el).styles({"background":"#777700", "color":"#000077"})
+					me(el).styles({"background":"#006BFF", "color":"#000033"})
 					await sleep(2000)
-					me(el).styles({"background":"#770077", "color":"#007700"})
+					me(el).styles({"background":"#00A1FF", "color":"#005500"})
 					await sleep(2000)
-					me(el).styles({"background":"#007700", "color":"#770077"})
+					me(el).styles({"background":"#00C08C", "color":"#660033"})
 					await sleep(2000)
 
 					var el_new = createElement("div")
@@ -74,6 +74,7 @@
 			<script>
 				// Now you're thinking with async!
 				(async (el = me()) => {
+					me(el).styles({"transition":"all 2s", "color":"#ccc"})
 					var el_new = createElement("div")
 					el_new.innerText = "💎💎💎💎💎💎"
 					me(el).prepend(el_new)
