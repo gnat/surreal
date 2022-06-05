@@ -4,9 +4,11 @@
 # Surreal - Hyper minimalist jQuery alternative
 [![License](https://img.shields.io/badge/license-MIT%20License-blue.svg)](https://opensource.org/licenses/MIT)
 
-## 💚 Why does this exist? For devs who love ergonomics!
+## 💚 Why does this exist?
 
-If you agree with any of the following, you may appreciate this micro library:
+For devs who love ergonomics!
+
+If you agree with any of the following, you may appreciate Surreal:
 
 * Love staying as close as possible to Vanilla JS.
 * Hate typing `document.querySelector` over.. and over..
@@ -18,7 +20,7 @@ If you agree with any of the following, you may appreciate this micro library:
 * Enjoyed using jQuery selector syntax.
 * Are cautiously aware of the cargo cult. ✈️
 
-## ✨ What does it bring to the table?
+## ✨ What advantages does it bring to the table?
 
 * 🔗 Call chaining.
 * ♻️ Seamlessly handle an individual element  **OR** arrays of elements.
@@ -47,6 +49,12 @@ Do surreal things with [Locality of Behavior](https://htmx.org/essays/locality-o
 
 Get a taste- see the [Showcase](https://gnat.github.io/surreal/showcase.html)! Then [view source](https://github.com/gnat/surreal/blob/main/showcase.html).
 
+## 🎁 Installation
+
+Surreal is a dependency-free, browser-oriented javascript library. This means that using it is as simple as adding a `<script>` tag to your document head. No need for complicated build steps or systems. [Download surreal.js](https://github.com/gnat/surreal/archive/refs/heads/main.zip) drag `surreal.js` into the appropriate directory of your project and include it with `<script>`:
+```html
+<script src="surreal.js"></script>
+```
 
 ## 🤔 Why choose `me()` and `any()` over `$` and `$$`
 * No ambiguity unlike jQuery's approach of `$` for both single elements and Arrays. Less need for sanity checks.
@@ -61,15 +69,6 @@ Get a taste- see the [Showcase](https://gnat.github.io/surreal/showcase.html)! T
 * [Bliss.js](https://blissfuljs.com/) for a focus on single elements and extensibility.
 * [Hyperscript](https://hyperscript.org) for Locality of Behavior and awesome ergonomics.
 * Shout out to [Umbrella](https://umbrellajs.com/), [Cash](https://github.com/fabiospampinato/cash), [Zepto](https://zeptojs.com/)- Not quite as ergonomic or extensible.
-
-## 🎁 Installation
-
-Surreal is a dependency-free, browser-oriented javascript library. This means that using it is as simple as adding a `<script>` tag to your document head. No need for complicated build steps or systems.
-
-[Download surreal.js](https://github.com/gnat/surreal/archive/refs/heads/main.zip) and add it to the appropriate directory in your project and include it where necessary with a <script> tag:
-```html
-<script src="surreal.js"></script>
-```
 
 ## 🔥 Usage Overview
 
