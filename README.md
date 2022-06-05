@@ -324,5 +324,5 @@ Make an [issue](https://github.com/gnat/surreal/issues) or [pull request](https:
   * [Fava](https://github.com/fabiospampinato/fava). See: https://github.com/avajs/ava/issues/24#issuecomment-885949036
   * [Ava](https://github.com/avajs/ava/blob/main/docs/recipes/browser-testing.md)
   * [jsdom](https://github.com/jsdom/jsdom)
-* More `playground.html` goodies.
-* Maybe minification at some point. Really liking dev/production all in one file, though.
+* More `showcase.html` goodies.
+* Minification at some point. Really liking dev/production all in one file, though.
