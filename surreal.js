@@ -1,9 +1,9 @@
 // Welcome to Surreal
 // Documentation: https://github.com/gnat/surreal
 // Locality of Behavior (LoB): https://htmx.org/essays/locality-of-behaviour/
-var $ = {
-	$: this,
-	sugars: {}, // Extra syntax sugar from plugins.
+var $ = { // You can use a different name than "$", but you must change the reference in any plugins you use!
+	$: this, // Convenience for core internals.
+	sugars: {}, // Extra syntax sugar for plugins.
 
 	// Table of contents and convenient call chaining sugar. For a familiar "jQuery like" syntax. 🙂
 	// Check before adding new: https://youmightnotneedjquery.com/
@@ -126,7 +126,6 @@ var $ = {
 			return e
 		}
 		if (typeof value === 'object') { // Format: { fontFamily: 'sans-serif', backgroundColor: '#000' }
-			console.log(value)
 			if ($.isNodeList(e)) e.forEach(_ => { styles(_, value) })
 			if ($.isNode(e)) { Object.assign(e.style, value)  }
 			return e
@@ -210,12 +209,13 @@ var $ = {
 		return e
 	},
 
-	// Call $.globalsAdd() somewhere if you want all Surreal functions in global scope.
+	// Puts Surreal functions except for "restricted" in global scope.
 	globalsAdd() {
 		console.log(`Surreal: adding convenience globals to window`)
 		restricted = ['$', 'sugar']
 		for (const [key, value] of Object.entries(this)) {
 			if (!restricted.includes(key)) window[key] != 'undefined' ? window[key] = value : console.warn(`Surreal: "${key}()" already exists on window. Skipping to prevent overwrite.`)
+			window.document[key] = value
 		}
 	},
 
@@ -243,31 +243,6 @@ var $ = {
 	},
 }
 
-
-// 📦 Plugin: Debug
-var $debug = {
-	debugEvent(e, event_name=null) {
-		console.warn(`Surreal: ${e} is not an Event.`)
-		e.monitorEvents(e, event_name)
-		return e
-	},
-	// Date and time.
-	print(e, name) {
-		console.log("Test"+e)
-		console.dir(e)
-		return e
-	},
-	trace(e, name) {
-		console.dir("WAT"+e)
-		return e
-	},
-}
-$ = {...$, ...$debug}
-$.sugars['debugEvent']  = (name) => { return $.debugEvent($._e, event_name=null) }
-$.sugars['debug_event'] = $.sugars['debugEvent']
-$.sugars['print']       = (name) => { return $.print($._e, name) }
-$.sugars['trace']       = (name) => { return $.trace($._e, name) }
-
 // 📦 Plugin: Effects
 var $effects = {
 	// Fade out and remove element.
@@ -293,34 +268,17 @@ $ = {...$, ...$effects}
 $.sugars['fadeOut']  = (fn, ms) => { return $.fadeOut($._e, fn=false, ms=1000) }
 $.sugars['fade_out'] = $.sugars['fadeOut']
 
-// Full convenience.
-$.globalsAdd()
+$.globalsAdd() // Full convenience.
 
 console.log("Loaded Surreal.")
 
-// **********************************************************
-// Global conveniences, helpers.
+// 🌐 Global conveniences, helpers.
+const createElement = document.createElement.bind(document)
+const rAF = typeof requestAnimationFrame !== 'undefined' && requestAnimationFrame
+const rIC = typeof requestIdleCallback !== 'undefined' && requestIdleCallback
 function sleep(ms, e) {
 	return new Promise(resolve => setTimeout(() => { resolve(e) }, ms))
 }
 async function tick() {
 	await new Promise(resolve => { requestAnimationFrame(resolve) })
-}
-const rAF = typeof requestAnimationFrame !== 'undefined' && requestAnimationFrame
-const rIC = typeof requestIdleCallback !== 'undefined' && requestIdleCallback
-const createElement = document.createElement.bind(document)
-
-// Date and time.
-function now() {
-	return Date.now()
-}
-function parent(e) {
-	return $.isNode(e) ? $.me(parentNode) : null
-}
-function first(e) {
-
-	return $.isNode(e) ? $.me()[this.length - 1] : null
-}
-function last(e) {
-	return $.isNode(e) ? $.me(parentNode) : null
 }
