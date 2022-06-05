@@ -47,7 +47,6 @@ Do surreal things with [Locality of Behavior](https://htmx.org/essays/locality-o
 * No ambiguity unlike jQuery's approach of `$` for both single elements and Arrays. Less need for sanity checks.
 * Readability. English-like and self documenting.
 * Same verbbage as [Hyperscript](https://hyperscript.org) making this an excellent transitional library.
-* Frees up `$` for legacy libraries.
 * It can be far less wordy to work with elements directly instead of an Array.
 
 ## 📚️ Inspired by
