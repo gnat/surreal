@@ -3,6 +3,7 @@
 	<head>
 		<title>Quick and Dirty Testing for Surreal</title>
 		<meta charset="utf-8" />
+		<meta http-equiv="cache-control" content="no-cache" />
 		<link rel="stylesheet" href="tests/reset.css" />
 		<script src="surreal.js"></script>
 	</head>
@@ -75,6 +76,7 @@
 				// Now you're thinking with async!
 				(async (el = me()) => {
 					me(el).styles({"transition":"all 2s", "color":"#ccc"})
+
 					var el_new = createElement("div")
 					el_new.innerText = "💎💎💎💎💎💎"
 					me(el).prepend(el_new)
@@ -85,7 +87,7 @@
 
 					var el_new = createElement("div")
 					me(el_new).styles({"transition":"all 2s", "opacity":"0"})
-					el_new.innerText = "💎💎💎💎💎💎 More diamonds!"
+					el_new.innerText = "💎💎💎💎💎💎"
 					me(el).appendChild(el_new)
 					await sleep(1000)
 					me(el_new).styles({"opacity":"1"})
