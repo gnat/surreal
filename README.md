@@ -18,6 +18,10 @@ If you agree with any of the following, you may appreciate this micro library:
 * Enjoyed using jQuery selector syntax.
 * Are cautiously aware of the cargo cult. ✈️
 
+## ✨ Quick Look
+
+See a quick working example of Surreal in action! Jump into the [Showcase](https://gnat.github.io/surreal/index.html)! 🔍️ Then [view source](https://github.com/gnat/surreal/blob/main/index.html).
+
 ## ✨ What does it bring to the table?
 
 * 🔗 Call chaining.
