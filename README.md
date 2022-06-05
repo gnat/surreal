@@ -113,17 +113,6 @@ Convert between a direct single element and an Array of elements using `any(me()
 
 Great? See: [Quick Start](#quick-start) and [Reference](#reference) and [No Surreal Needed](#no-surreal)
 
-## 💎 Conventions & Tips
-
-* `_` = are fine for temporary or unused variables. Keep it short and sweet!
-* `e`, `el`, `elt` = element
-* `e`, `ev`, `evt` = event
-* `f`, `fn` = function
-* Developer ergonomics and simplicity wins.
-* Find the layer where the change needs to touch the least places.
-* Animations are done with `me().styles(...)` with CSS transitions. Use `await sleep(...)` for timelining.
-* Modals and dropdowns can be done in pure HTML / CSS now.
-
 ## <a name="quick-start"></a>🔥 Quick Start
 
 
@@ -292,6 +281,17 @@ Append / Prepend elements.
 Text / HTML Content
 * 🔥 `me().innerHTML = "<p>hello world</p>"`
 * 🔥 `me().innerText = "hello world"`
+
+ ## 💎 Conventions & Tips
+
+* `_` = are fine for temporary or unused variables. Keep it short and sweet!
+* `e`, `el`, `elt` = element
+* `e`, `ev`, `evt` = event
+* `f`, `fn` = function
+* Developer ergonomics and simplicity wins.
+* Find the layer where the change needs to touch the least places.
+* Animations are done with `me().styles(...)` with CSS transitions. Use `await sleep(...)` for timelining.
+* Modals and dropdowns can be done in pure HTML / CSS now.
 
 ## 🔌 Extending Surreal
 
