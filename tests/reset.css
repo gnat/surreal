@@ -17,14 +17,8 @@ body {
 	color: #BBB;
 }
 /* Custom for showcase. */
-button {
-	border-radius: 1rem;
-	border: none;
-	background: #444;
-	color: #BBB;
-	cursor: pointer;
-	margin: 1.6rem 2rem;
-	padding: 1.6rem 2rem;
+body {
+	padding: 1rem;
 }
 .active {
 	background: red;
@@ -44,13 +38,18 @@ button {
 	cursor: pointer;
 	color: white;
 	padding: 12px 42px;
-	background: hsl(345deg 100% 47%);
-	border-radius: 12px;
 	border: none;
-	border-bottom: 0.5rem solid hsl(340deg 100% 32%);
+	background: hsl(345deg 100% 47%);
+	border-bottom: 0.5rem solid hsl(345deg 100% 32%);
+	border-radius: 12px;
 }
 button:active {
 	transform: translateY(0.2rem);
 	border: none;
 	border-bottom: 0.5rem solid transparent;
+}
+button.blue {
+	background: hsl(200deg 100% 47%);
+	border: none;
+	border-bottom: 0.5rem solid hsl(200deg 100% 32%);
 }
