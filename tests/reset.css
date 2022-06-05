@@ -40,7 +40,7 @@ button {
 	padding: 12px 42px;
 	border: none;
 	background: hsl(345deg 100% 47%);
-	border-bottom: 0.5rem solid hsl(345deg 100% 32%);
+	border-bottom: 0.5rem solid hsl(345deg 100% 28%);
 	border-radius: 12px;
 }
 button:active {
@@ -51,5 +51,5 @@ button:active {
 button.blue {
 	background: hsl(200deg 100% 47%);
 	border: none;
-	border-bottom: 0.5rem solid hsl(200deg 100% 32%);
+	border-bottom: 0.5rem solid hsl(200deg 100% 28%);
 }
