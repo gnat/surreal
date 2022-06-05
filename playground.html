@@ -14,6 +14,26 @@
 				background: grey;
 				transition: background 3s;
 			}
+			div {
+				margin: 1rem;
+				padding: 1rem;
+				border-radius: 1rem;
+			}
+			button {
+				font-size: 2rem;
+				cursor: pointer;
+				color: white;
+				padding: 12px 42px;
+				background: hsl(345deg 100% 47%);
+				border-radius: 12px;
+				border: none;
+				border-bottom: 0.5rem solid hsl(340deg 100% 32%);
+			}
+			button:active {
+				transform: translateY(0.2rem);
+				border: none;
+				border-bottom: 0.5rem solid transparent;
+			}
 		</style>
 	</head>
 	<body>
@@ -50,14 +70,14 @@
 					await sleep(2000)
 					me(ev).trigger("ping")
 				})
-				me().styles({"transition":"background 2s"}).trigger("pong")
+				me().styles({"transition":"all 2s"}).trigger("pong")
 			</script>
 		</div>
 		<div>I should be animated funky using timeline / async.
 			<script>
 				// Now you're thinking with async!
 				(async (el = me()) => {
-					me(el).styles({"transition": "background 2s"})
+					me(el).styles({"transition": "all 2s"})
 					me(el).styles({"background":"#770000", "color":"#007700"})
 					await sleep(2000)
 					me(el).styles({"background":"#777700", "color":"#000077"})
