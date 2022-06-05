@@ -6,18 +6,29 @@
     "type": "git",
     "url": "https://github.com/gnat/surreal.git"
   },
-  "main": "dist/index.js",
+  "main": "dist/surreal.min.js",
   "module": "src/index.js",
   "scripts": {
+    "build": "microbundle --no-sourcemap -o ./dist/surreal.js surreal.js",
     "test": "ava -v tests"
   },
   "author": "gnat",
   "keywords": [
-    "javascript",
-    "utility",
     "jquery",
     "jquery-like",
-    "es6"
+    "jquery-alternative",
+    "jquery-replacement",
+    "javascript",
+    "utility",
+    "hyperscript",
+    "dom",
+    "dom-manipulation",
+    "lob",
+    "locality-of-behavior",
+    "htmx",
+    "selector",
+    "queryselectorall",
+    "queryselector"
   ],
   "license": "MIT",
   "bugs": {
@@ -25,6 +36,7 @@
   },
   "devDependencies": {
     "ava": "^1.4.1",
-    "jsdom": "^19.0.0"
+    "jsdom": "^19.0.0",
+    "microbundle": "^0.15.0"
   }
 }
