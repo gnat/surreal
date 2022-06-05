@@ -93,7 +93,7 @@ Convert between a direct single element and an Array of elements using `any(me()
 * Events: `event.target` will be used.
 * Themselves: `me()`,`any()`
 * `start=` parameter provides a starting point to select from, default is `document`.
-  * 🔥 `any('button', start='header').classAdd('red')`
+  * `any('button', start='header').classAdd('red')`
 
 ### ⚙️ DOM Functions
 
@@ -105,11 +105,11 @@ Convert between a direct single element and an Array of elements using `any(me()
 #### 🟢 Style A (🔗 Chaining)
 
 * 🔥 `me().classAdd('red')` 😎 *RECOMMENDED STYLE*
-* No convenience globals: 🔥 `$.me().classAdd('red')`
+* No convenience globals: `$.me().classAdd('red')`
 
 #### 🟠 Style B (Classic)
 * 🔥 `classAdd(me(), 'red')`
-* No convenience globals: 🔥 `$.classAdd($.me(), 'red')`
+* No convenience globals: `$.classAdd($.me(), 'red')`
 
 Great? See: [Quick Start](#quick-start) and [Reference](#reference) and [No Surreal Needed](#no-surreal)
 
@@ -265,7 +265,7 @@ Looking for [DOM Selectors](#selectors)?
 Some patterns are already as short as you can get in vanilla JS!
 
 Logging
-* 🌐🔥 `console.log()` `console.warn()` `console.error()`
+* 🌐 `console.log()` `console.warn()` `console.error()`
 * Event logging: 🔥 `ev.monitorEvents(me())` See: [Chrome Blog](https://developer.chrome.com/blog/quickly-monitor-events-from-the-console-panel-2/)
 
 Children
@@ -279,8 +279,8 @@ Append / Prepend elements.
 * 🔥 `me().insertAdjacentHTML("beforebegin", el_new)`
 
 Text / HTML Content
-* 🔥 `me().innerHTML = "<p>hello world</p>"`
-* 🔥 `me().innerText = "hello world"`
+* `me().innerHTML = "<p>hello world</p>"`
+* `me().innerText = "hello world"`
 
  ## 💎 Conventions & Tips
 
