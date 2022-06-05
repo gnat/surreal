@@ -8,11 +8,10 @@ button,input,select,textarea {
 	margin: 0;
 	font: inherit;
 }
-html{
-	font-size: 10px !important;
+html, body{
+	font-size: 10px; /* 1.8 rem = 18px */
 }
 body {
-	font-size: 1.8rem; /* 1.8 rem = 18px */
 	background: #222;
 	color: #CCC;
 }
