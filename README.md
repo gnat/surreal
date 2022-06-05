@@ -295,7 +295,7 @@ Text / HTML Content
 
 ## 🔌 Extending Surreal
 
-First off, if it's important to you, we highly recommend just adding your custom functions to the core of your copy of Surreal. It's designed small so you can do that. But we also have a plugin system for less core-like contributions:
+First off, we do recommend just adding to your Surreal core. Surreal is designed to be small, auditable and understandable. But we also have a plugin system for less core-like contributions:
 
 1. Add your function to Surreal
  ```javascript
