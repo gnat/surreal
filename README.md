@@ -53,7 +53,7 @@ Get a taste- see the [Showcase](https://gnat.github.io/surreal/showcase.html)! T
 
 ## 🎁 Installation
 
-Surreal is a dependency-free, browser-oriented javascript library. This means that using it is as simple as adding a `<script>` tag to your document head. No need for complicated build steps or systems. [Download Surreal](https://github.com/gnat/surreal/archive/refs/heads/main.zip) and drag `surreal.js` into the appropriate directory of your project:
+Surreal is a dependency-free, browser-oriented javascript library. [Download Surreal](https://github.com/gnat/surreal/archive/refs/heads/main.zip) and drag `surreal.js` into the appropriate directory of your project. Using it is as simple as adding a `<script>` tag to your document head. No need for complicated build steps or systems.
 ```html
 <script src="surreal.js"></script>
 ```
