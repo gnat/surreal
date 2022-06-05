@@ -2,11 +2,11 @@
 (Art by [shahabalizadeh](https://www.deviantart.com/shahabalizadeh))
 
 # Surreal - Hyper minimalist jQuery alternative
-![Releases](https://github.com/gnat/surreal/actions/workflows/release.yml/badge.svg)
-![Builds](https://github.com/gnat/surreal/actions/workflows/ci.yml/badge.svg)
-[![License](https://img.shields.io/badge/license-MIT%20License-blue.svg)](https://opensource.org/licenses/MIT)
+![Builds](https://img.shields.io/github/workflow/status/gnat/surreal/ci?label=ci&style=for-the-badge&color=%237d91ce)
+![Builds](https://img.shields.io/github/workflow/status/gnat/surreal/release?label=Mini&style=for-the-badge&color=%237d91ce)
+![License](https://img.shields.io/github/license/gnat/surreal?style=for-the-badge&color=%234400e5)
 
-## 💚 Why does this exist?
+## 💙 Why does this exist?
 
 For devs who love ergonomics!
 
