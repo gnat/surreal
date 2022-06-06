@@ -10,11 +10,9 @@ button,input,select,textarea {
 }
 
 :root {
-	text-size-adjust: none;
-	-webkit-text-size-adjust: none;
-	-moz-text-size-adjust: none;
-	font-size: calc(10em / 16); /* = 10px if default font size is 16px */
+	font-size: 62.5%; /* = 10px if default font size is 16px */
 }
+
 /* Custom for showcase. */
 body {
 	font-size: 2rem;
