@@ -10,6 +10,7 @@ button,input,select,textarea {
 }
 html {
 	text-size-adjust: none; /* Fixes chrome on mobile. */
+	-webkit-text-size-adjust: none;
 	font-size: 10px; /* 1.8 rem = 18px */
 }
 
