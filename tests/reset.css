@@ -10,6 +10,8 @@ button,input,select,textarea {
 }
 
 :root {
+	text-size-adjust: none; /* Fixes chrome on mobile. */
+	-webkit-text-size-adjust: none; /* Fixes safari on mobile. */
 	font-size: calc(10em / 16); /* = 10px if default font size is 16px */
 }
 /* Custom for showcase. */

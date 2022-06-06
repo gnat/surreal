@@ -5,8 +5,8 @@
 		<meta charset="utf-8" />
 		<meta http-equiv="cache-control" content="no-cache" />
 		<!-- NOTE: You can remove "?1" it is only for cache-busting on github. -->
-		<link rel="stylesheet" href="tests/reset.css?3" />
-		<script src="surreal.js?3"></script>
+		<link rel="stylesheet" href="tests/reset.css?4" />
+		<script src="surreal.js?4"></script>
 	</head>
 	<body>
 		<button>👁️ Click me to fade out and remove.
@@ -79,7 +79,7 @@
 					me(el).styles({"transition":"all 2s", "color":"#ccc"})
 
 					var el_new = createElement("div")
-					el_new.innerText = "💎💎💎💎"
+					el_new.innerText = "💎💎"
 					me(el).prepend(el_new)
 					me(el_new).styles({"transition":"all 2s", "opacity":"0"})
 					await sleep(1000)
@@ -88,7 +88,7 @@
 
 					var el_new = createElement("div")
 					me(el_new).styles({"transition":"all 2s", "opacity":"0"})
-					el_new.innerText = "💎💎💎💎"
+					el_new.innerText = "💎💎"
 					me(el).appendChild(el_new)
 					await sleep(1000)
 					me(el_new).styles({"opacity":"1"})
