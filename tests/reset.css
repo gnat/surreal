@@ -9,8 +9,11 @@ button,input,select,textarea {
 	font: inherit;
 }
 
-:root {
-	font-size: 62.5%; /* = 10px if default font size is 16px */
+html {
+	font-size: 10px; /* 1.8 rem = 18px */
+	text-size-adjust: none; /* Fixes chrome on mobile. */
+	-webkit-text-size-adjust: none; /* Fixes safari on mobile. */
+	-moz-text-size-adjust: none; /* Firefox works fine, but for consistency. */
 }
 
 /* Custom for showcase. */
