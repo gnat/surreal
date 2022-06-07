@@ -267,7 +267,8 @@ Looking for [DOM Selectors](#selectors)?
   * Alias of `document.createElement`
 * 🌐 `onloadAdd` ❤️‍🔥 `onload_add`
   * 🔥 `onloadAdd(_ => { alert("loaded!"); })`
-  * Chains functions onto `window.onload`
+  * Execute after the DOM is ready. Similar to jquery `ready()`
+  * Queues functions onto `window.onload`
   * Why? So you don't overwrite `window.onload`, also predictable sequential loading!
 
 ### <a name="no-surreal"></a>🔮 No Surreal Needed
