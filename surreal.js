@@ -283,10 +283,7 @@ function sleep(ms, e) {
 async function tick() {
 	await new Promise(resolve => { requestAnimationFrame(resolve) })
 }
-// Loading helper.
-// Instead of window.onload(), add your functions with:
-// onload(() => { alert("yo"); })
-// Why? So you don't overwrite window.onload. And predictable sequential loading!
+// Loading helper. Why? So you don't overwrite window.onload. And predictable sequential loading!
 function onloadAdd(f) {
 	// window.onload was not set yet.
 	if (typeof window.onload != 'function') {
