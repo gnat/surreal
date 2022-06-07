@@ -262,9 +262,13 @@ Looking for [DOM Selectors](#selectors)?
   * 🔥 `halt(event)`
   * Great to prevent default browser behavior: such as displaying an image vs letting JS handle it.
   * Wrapper for [preventDefault](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault)
-* 🌐 `createElement`
+* 🌐 `createElement` ❤️‍🔥 `create_element`
   * 🔥 `el_new = createElement("div"); me().prepend(el_new)`
   * Alias of `document.createElement`
+* 🌐 `onloadAdd` ❤️‍🔥 `onload_add`
+  * 🔥 `onloadAdd(() => { alert("loaded!"); })`
+  * Chains functions onto `window.onload`
+  * Why? So you don't overwrite `window.onload`, also predictable sequential loading!
 
 ### <a name="no-surreal"></a>🔮 No Surreal Needed
 Some patterns are already as short as you can get in vanilla JS!
