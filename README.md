@@ -266,7 +266,7 @@ Looking for [DOM Selectors](#selectors)?
   * 🔥 `el_new = createElement("div"); me().prepend(el_new)`
   * Alias of `document.createElement`
 * 🌐 `onloadAdd` ❤️‍🔥 `onload_add`
-  * 🔥 `onloadAdd(() => { alert("loaded!"); })`
+  * 🔥 `onloadAdd(_ => { alert("loaded!"); })`
   * Chains functions onto `window.onload`
   * Why? So you don't overwrite `window.onload`, also predictable sequential loading!
 
