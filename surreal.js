@@ -272,8 +272,9 @@ $.globalsAdd() // Full convenience.
 
 console.log("Loaded Surreal.")
 
-// 🌐 Global conveniences, helpers.
+// 🌐 Optional global helpers.
 const createElement = document.createElement.bind(document)
+const create_element = createElement
 const rAF = typeof requestAnimationFrame !== 'undefined' && requestAnimationFrame
 const rIC = typeof requestIdleCallback !== 'undefined' && requestIdleCallback
 function sleep(ms, e) {
@@ -282,3 +283,21 @@ function sleep(ms, e) {
 async function tick() {
 	await new Promise(resolve => { requestAnimationFrame(resolve) })
 }
+// Loading helper.
+// Instead of window.onload(), add your functions with:
+// onload(() => { alert("yo"); })
+// Why? So you don't overwrite window.onload. And predictable sequential loading!
+function onloadAdd(f) {
+	// window.onload was not set yet.
+	if (typeof window.onload != 'function') {
+		window.onload = f
+		return
+	}
+	// If onload already is set, queue them together. This creates a sequential call chain as we add more functions.
+	let onload_old = window.onload
+	window.onload = () => {
+		onload_old()
+		f()
+	}
+}
+const onload_add = onloadAdd
