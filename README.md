@@ -217,6 +217,8 @@ Looking for [DOM Selectors](#selectors)?
   * 🔥 `any('button').remove()`
 * 🔗 `classAdd` ❤️‍🔥 `class_add`
   * 🔥 `me().classAdd('active')`
+  * Leading `.` is optional for all class functions, to prevent typical syntax errors with `me()` and `any()`.
+    * `me().classAdd('active')` and `me().classAdd('.active')` are equivalent.
 * 🔗 `classRemove` ❤️‍🔥 `class_remove`
   * 🔥 `me().classRemove('active')`
 * 🔗 `classToggle` ❤️‍🔥 `class_toggle`
