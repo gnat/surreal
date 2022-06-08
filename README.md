@@ -224,8 +224,9 @@ Looking for [DOM Selectors](#selectors)?
 * 🔗 `classToggle` ❤️‍🔥 `class_toggle`
   * 🔥 `me().classToggle('active')`
 * 🔗 `styles`
-  * 🔥 `me().styles('color: red')`
-  * 🔥 `me().styles({ 'color':'red', 'background':'blue' })`
+  * 🔥 `me().styles('color: red')` Add style.
+  * 🔥 `me().styles({ 'color':'red', 'background':'blue' })` Add multiple styles.
+  * 🔥 `me().styles({ 'background':null })` Remove style.
 * 🔗 `attribute` ❤️‍🔥 `attributes` ❤️‍🔥 `attr`
   * Get: 🔥 `me().attribute('data-x')`
     * Only for single elements. For many elements, wrap this in `any(...).run(...)` or `any(...).forEach(...)`.
