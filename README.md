@@ -229,7 +229,7 @@ Looking for [DOM Selectors](#selectors)?
   * 🔥 `me().styles({ 'background':null })` Remove style.
 * 🔗 `attribute` ❤️‍🔥 `attributes` ❤️‍🔥 `attr`
   * Get: 🔥 `me().attribute('data-x')`
-    * Get is only for single elements. For many, wrap this in `any(...).run(...)` or `any(...).forEach(...)`.
+    * Get is only for single elements. For many, wrap the call in `any(...).run(...)` or `any(...).forEach(...)`.
   * Set: 🔥 `me().attribute('data-x', true)`
   * Set multiple: 🔥 `me().attribute({ 'data-x':'yes', 'data-y':'no' })`
   * Remove: 🔥 `me().attribute('data-x', null)`
