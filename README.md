@@ -286,9 +286,6 @@ You can build your own effects easily with `me().styles({...})` then timelining 
   * 🔥 `me().fadeOut()`
   * 🔥 `me().fadeOut(ev => { dosomething() }, 3000)` Over 3 seconds then call function.
 
-
-More effects coming soon! [Can't wait](#plugins)?
-
 ### <a name="no-surreal"></a>🔮 No Surreal Needed
 Some patterns are already as short as you can get in vanilla JS!
 
@@ -323,7 +320,7 @@ Text / HTML Content
 
 ## <a name="plugins"></a>🔌 Extending Surreal
 
-First off, we do recommend just adding to your Surreal core. Surreal is designed to be small, auditable and understandable. But we also have a plugin system for less core-like contributions:
+First off, you can certainly just add to your Surreal core. Surreal is designed to be small, auditable and understandable. But we also have a plugin system for less core-like features if you prefer:
 
 1. Add your function to Surreal
  ```javascript
