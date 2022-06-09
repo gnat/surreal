@@ -206,6 +206,7 @@ Looking for [DOM Selectors](#selectors)?
 * 🌐 Global convenience helper.
 * 🔥 Runnable example.
 * ❤️‍🔥 Alias.
+* 🔌 Built-in Plugin
 ### 👁️ At a glance
 
 * 🔗 `run`
@@ -274,6 +275,17 @@ Looking for [DOM Selectors](#selectors)?
   * Queues functions onto `window.onload`
   * Why? So you don't overwrite `window.onload`, also predictable sequential loading!
 
+### <a name="plugin-included"></a>🔌 Built-in Plugins
+
+Effects
+* 🔗 `fadeOut` ❤️‍🔥 `fade_out`
+  * Fade out and remove element.
+  * 🔥 `me().fadeOut()`
+  * 🔥 `me().fadeOut(ev => { dosomething() }, 3000)` Over 3 seconds then call function.
+  
+
+More effects coming soon! [Can't wait](#plugins)?
+
 ### <a name="no-surreal"></a>🔮 No Surreal Needed
 Some patterns are already as short as you can get in vanilla JS!
 
@@ -306,7 +318,7 @@ Text / HTML Content
 * Animations are done with `me().styles(...)` with CSS transitions. Use `await sleep(...)` for timelining.
 * Modals and dropdowns can be done in pure HTML / CSS now.
 
-## 🔌 Extending Surreal
+## <a name="plugins"></a>🔌 Extending Surreal
 
 First off, we do recommend just adding to your Surreal core. Surreal is designed to be small, auditable and understandable. But we also have a plugin system for less core-like contributions:
 
