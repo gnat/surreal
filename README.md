@@ -135,6 +135,7 @@ Great? See: [Quick Start](#quick-start) and [Reference](#reference) and [No Surr
 * Attributes
   * `me().attribute('active', true)`
 
+<a name="timelines"></a>
 #### Timeline animations without any libraries.
 ```html
 
@@ -277,12 +278,14 @@ Looking for [DOM Selectors](#selectors)?
 
 ### <a name="plugin-included"></a>🔌 Built-in Plugins
 
-Effects
+#### Effects
+You can build your own effects easily with `me().styles({...})` then timelining [CSS transitions using `await` or callbacks](#timelines), but we ship the most common effects for ergonomics:
+
 * 🔗 `fadeOut` ❤️‍🔥 `fade_out`
   * Fade out and remove element.
   * 🔥 `me().fadeOut()`
   * 🔥 `me().fadeOut(ev => { dosomething() }, 3000)` Over 3 seconds then call function.
-  
+
 
 More effects coming soon! [Can't wait](#plugins)?
 
