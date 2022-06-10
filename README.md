@@ -135,6 +135,7 @@ Great? See: [Quick Start](#quick-start) and [Reference](#reference) and [No Surr
 * Attributes
   * `me().attribute('active', true)`
 
+<a name="timelines"></a>
 #### Timeline animations without any libraries.
 ```html
 
@@ -206,6 +207,7 @@ Looking for [DOM Selectors](#selectors)?
 * 🌐 Global convenience helper.
 * 🔥 Runnable example.
 * ❤️‍🔥 Alias.
+* 🔌 Built-in Plugin
 ### 👁️ At a glance
 
 * 🔗 `run`
@@ -217,16 +219,19 @@ Looking for [DOM Selectors](#selectors)?
   * 🔥 `any('button').remove()`
 * 🔗 `classAdd` ❤️‍🔥 `class_add`
   * 🔥 `me().classAdd('active')`
+  * Leading `.` is optional for all class functions, to prevent typical syntax errors with `me()` and `any()`.
+    * `me().classAdd('active')` and `me().classAdd('.active')` are equivalent.
 * 🔗 `classRemove` ❤️‍🔥 `class_remove`
   * 🔥 `me().classRemove('active')`
 * 🔗 `classToggle` ❤️‍🔥 `class_toggle`
   * 🔥 `me().classToggle('active')`
 * 🔗 `styles`
-  * 🔥 `me().styles('color: red')`
-  * 🔥 `me().styles({ 'color':'red', 'background':'blue' })`
+  * 🔥 `me().styles('color: red')` Add style.
+  * 🔥 `me().styles({ 'color':'red', 'background':'blue' })` Add multiple styles.
+  * 🔥 `me().styles({ 'background':null })` Remove style.
 * 🔗 `attribute` ❤️‍🔥 `attributes` ❤️‍🔥 `attr`
   * Get: 🔥 `me().attribute('data-x')`
-    * Only for single elements. For many elements, wrap this in `any(...).run(...)` or `any(...).forEach(...)`.
+    * Get is only for single elements. For many, wrap the call in `any(...).run(...)` or `any(...).forEach(...)`.
   * Set: 🔥 `me().attribute('data-x', true)`
   * Set multiple: 🔥 `me().attribute({ 'data-x':'yes', 'data-y':'no' })`
   * Remove: 🔥 `me().attribute('data-x', null)`
@@ -271,6 +276,16 @@ Looking for [DOM Selectors](#selectors)?
   * Queues functions onto `window.onload`
   * Why? So you don't overwrite `window.onload`, also predictable sequential loading!
 
+### <a name="plugin-included"></a>🔌 Built-in Plugins
+
+#### Effects
+You can build your own effects easily with `me().styles({...})` then timelining [CSS transitions using `await` or callbacks](#timelines), but we ship the most common effects for ergonomics:
+
+* 🔗 `fadeOut` ❤️‍🔥 `fade_out`
+  * Fade out and remove element.
+  * 🔥 `me().fadeOut()`
+  * 🔥 `me().fadeOut(ev => { dosomething() }, 3000)` Over 3 seconds then call function.
+
 ### <a name="no-surreal"></a>🔮 No Surreal Needed
 Some patterns are already as short as you can get in vanilla JS!
 
@@ -303,9 +318,9 @@ Text / HTML Content
 * Animations are done with `me().styles(...)` with CSS transitions. Use `await sleep(...)` for timelining.
 * Modals and dropdowns can be done in pure HTML / CSS now.
 
-## 🔌 Extending Surreal
+## <a name="plugins"></a>🔌 Extending Surreal
 
-First off, we do recommend just adding to your Surreal core. Surreal is designed to be small, auditable and understandable. But we also have a plugin system for less core-like contributions:
+First off, you can certainly just add to your Surreal core. Surreal is designed to be small, auditable and understandable. But we also have a plugin system for less core-like features if you prefer:
 
 1. Add your function to Surreal
  ```javascript
