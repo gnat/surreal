@@ -169,8 +169,7 @@ var $ = { // You can use a different name than "$", but you must change the refe
 
 	// Halt event / prevent default.
 	halt(e) {
-		if ($.isNodeList(e)) e.forEach(_ => { halt(_) })
-		if ($.isNode(e)) {
+		if (e instanceof Event) {
 			if (!e.preventDefault) {
 				e.returnValue = false
 			} else {
