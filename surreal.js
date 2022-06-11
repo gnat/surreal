@@ -257,7 +257,19 @@ var $effects = {
 				$.styles(e, 'max-height: 0%; padding: 0; opacity: 0')
 				await sleep(ms, e)
 				if (fn === 'function') fn()
-				$.remove(thing)
+				$.remove(thing)							
+			})()
+		}
+	},
+	fadeIn(e, fn=false, ms=1000) {
+		thing = e
+		if($.isNodeList(e)) e.forEach(_ => { this.fadeIn(_, fn, ms) })
+		if($.isNode(e)) {
+			(async() => {
+				$.styles(e, 'max-height: 100%; overflow: hidden')
+				$.styles(e, `transition: all ${ms}ms ease-in`)
+				await tick()
+				$.styles(e, 'max-height: 100%; opacity: 1')				
 			})()
 		}
 	},
@@ -265,7 +277,10 @@ var $effects = {
 }
 $ = {...$, ...$effects}
 $.sugars['fadeOut']  = (fn, ms) => { return $.fadeOut($._e, fn=false, ms=1000) }
-$.sugars['fade_out'] = $.sugars['fadeOut']
+$.sugars['fadeIn']  = (fn, ms) => { return $.fadeIn($._e, fn=false, ms=1000) }
+$.sugars['fade_out', 'fade_in'] = $.sugars['fadeOut', 'fadeIn']
+
+
 
 $.globalsAdd() // Full convenience.
 
