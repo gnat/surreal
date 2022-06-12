@@ -248,6 +248,7 @@ var $effects = {
 	// Equivalent to jQuery fadeOut(), but actually removes the element!
 	fadeOut(e, fn=false, ms=1000) {
 		thing = e
+			
 		if ($.isNodeList(e)) e.forEach(_ => { fadeOut(_, fn, ms) })
 		if ($.isNode(e)) {
 			(async() => {
@@ -263,13 +264,16 @@ var $effects = {
 	},
 	fadeIn(e, fn=false, ms=1000) {
 		thing = e
-		if($.isNodeList(e)) e.forEach(_ => { this.fadeIn(_, fn, ms) })
+		console.log(thing)
+		if($.isNodeList(e)) e.forEach(_ => { fadeIn(_, fn, ms) })
 		if($.isNode(e)) {
 			(async() => {
 				$.styles(e, 'max-height: 100%; overflow: hidden')
 				$.styles(e, `transition: all ${ms}ms ease-in`)
 				await tick()
-				$.styles(e, 'max-height: 100%; opacity: 1')				
+				$.styles(e, 'max-height: 100%; opacity: 1')
+				await sleep(ms, e)
+				if (fn === 'function') fn()									
 			})()
 		}
 	},
