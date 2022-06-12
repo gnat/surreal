@@ -56,3 +56,9 @@ button.blue {
 	border: none;
 	border-bottom: 0.5rem solid hsl(200deg 100% 28%);
 }
+
+button.invisible {
+	opacity: 0.2;	
+	background: hsl(147, 60%, 50%);
+	border-bottom: 0.5rem solid hsl(147 80% 28%);
+}
