@@ -258,7 +258,7 @@ var $effects = {
 				$.styles(e, 'max-height: 0%; padding: 0; opacity: 0')
 				await sleep(ms, e)
 				if (fn === 'function') fn()
-				$.remove(thing)							
+				$.remove(thing)
 			})()
 		}
 	},
@@ -272,7 +272,7 @@ var $effects = {
 				await tick()
 				$.styles(e, 'max-height: 100%; opacity: 1')
 				await sleep(ms, e)
-				if (fn === 'function') fn()								
+				if (fn === 'function') fn()
 			})()
 		}
 	},

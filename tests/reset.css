@@ -58,8 +58,7 @@ button.blue {
 }
 
 button.invisible {
-	opacity: 0.2;
-	padding: 2rem 3rem;
-	background: hsl(147, 80%, 50%);
+	opacity: 0.2;	
+	background: hsl(147, 60%, 50%);
 	border-bottom: 0.5rem solid hsl(147 80% 28%);
 }
