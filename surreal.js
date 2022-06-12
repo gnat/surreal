@@ -263,8 +263,7 @@ var $effects = {
 		}
 	},
 	fadeIn(e, fn=false, ms=1000) {
-		thing = e
-		console.log(thing)
+		thing = e		
 		if($.isNodeList(e)) e.forEach(_ => { fadeIn(_, fn, ms) })
 		if($.isNode(e)) {
 			(async() => {
@@ -273,7 +272,7 @@ var $effects = {
 				await tick()
 				$.styles(e, 'max-height: 100%; opacity: 1')
 				await sleep(ms, e)
-				if (fn === 'function') fn()									
+				if (fn === 'function') fn()								
 			})()
 		}
 	},
@@ -283,8 +282,6 @@ $ = {...$, ...$effects}
 $.sugars['fadeOut']  = (fn, ms) => { return $.fadeOut($._e, fn=false, ms=1000) }
 $.sugars['fadeIn']  = (fn, ms) => { return $.fadeIn($._e, fn=false, ms=1000) }
 $.sugars['fade_out', 'fade_in'] = $.sugars['fadeOut', 'fadeIn']
-
-
 
 $.globalsAdd() // Full convenience.
 
