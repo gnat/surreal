@@ -283,8 +283,15 @@ You can build your own effects easily with `me().styles({...})` then timelining 
 
 * 🔗 `fadeOut` ❤️‍🔥 `fade_out`
   * Fade out and remove element.
+  * Keep element with `remove=false`.
   * 🔥 `me().fadeOut()`
-  * 🔥 `me().fadeOut(ev => { dosomething() }, 3000)` Over 3 seconds then call function.
+  * 🔥 `me().fadeOut(ev => { alert("Faded out!") }, 3000)` Over 3 seconds then call function.
+
+* 🔗 `fadeIn` ❤️‍🔥 `fade_in`
+  * Fade in existing element which has `opacity: 0`
+  * 🔥 `me().fadeIn()`
+  * 🔥 `me().fadeIn(ev => { alert("Faded in!") }, 3000)` Over 3 seconds then call function.
+
 
 ### <a name="no-surreal"></a>🔮 No Surreal Needed
 Some patterns are already as short as you can get in vanilla JS!
