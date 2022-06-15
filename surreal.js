@@ -246,7 +246,7 @@ var $ = { // You can use a different name than "$", but you must change the refe
 var $effects = {
 	// Fade out and remove element.
 	// Equivalent to jQuery fadeOut(), but actually removes the element!
-	fadeOut(e, fn=false, ms=1000) {
+	fadeOut(e, fn=false, ms=1000, remove=true) {
 		thing = e
 			
 		if ($.isNodeList(e)) e.forEach(_ => { fadeOut(_, fn, ms) })
@@ -258,7 +258,7 @@ var $effects = {
 				$.styles(e, 'max-height: 0%; padding: 0; opacity: 0')
 				await sleep(ms, e)
 				if (fn === 'function') fn()
-				$.remove(thing)
+				if (remove) $.remove(thing) // Remove element after animation is completed?
 			})()
 		}
 	},
