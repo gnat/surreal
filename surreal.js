@@ -276,20 +276,6 @@ var $effects = {
 			})()
 		}
 	},
-	fadeIn(e, fn=false, ms=1000) {
-		thing = e		
-		if($.isNodeList(e)) e.forEach(_ => { fadeIn(_, fn, ms) })
-		if($.isNode(e)) {
-			(async() => {
-				$.styles(e, 'max-height: 100%; overflow: hidden')
-				$.styles(e, `transition: all ${ms}ms ease-in`)
-				await tick()
-				$.styles(e, 'max-height: 100%; opacity: 1')
-				await sleep(ms, e)
-				if (fn === 'function') fn()
-			})()
-		}
-	},
 	$effects
 }
 $ = {...$, ...$effects}
