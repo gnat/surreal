@@ -298,7 +298,7 @@ Some patterns are already as short as you can get in vanilla JS!
 
 Logging
 * 🌐 `console.log()` `console.warn()` `console.error()`
-* Event logging: 🔥 `ev.monitorEvents(me())` See: [Chrome Blog](https://developer.chrome.com/blog/quickly-monitor-events-from-the-console-panel-2/)
+* Event logging: 🔥 `monitorEvents(me())` See: [Chrome Blog](https://developer.chrome.com/blog/quickly-monitor-events-from-the-console-panel-2/)
 
 Text / HTML Content
 * 🔥 `me().textContent = "hello world"`
