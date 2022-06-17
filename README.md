@@ -300,6 +300,12 @@ Logging
 * 🌐 `console.log()` `console.warn()` `console.error()`
 * Event logging: 🔥 `ev.monitorEvents(me())` See: [Chrome Blog](https://developer.chrome.com/blog/quickly-monitor-events-from-the-console-panel-2/)
 
+Text / HTML Content
+* 🔥 `me().textContent = "hello world"`
+  * XSS Safe! See: [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent)
+* 🔥 `me().innerHTML = "<p>hello world</p>"`
+* 🔥 `me().innerText = "hello world"`
+
 Children
 * 🔥 `me().children`
 * 🔥 `me().children.hidden = true`
@@ -309,10 +315,6 @@ Append / Prepend elements.
 * 🔥 `me().appendChild(el_new)`
 * 🔥 `me().insertBefore(el_new, el.firstChild)`
 * 🔥 `me().insertAdjacentHTML("beforebegin", el_new)`
-
-Text / HTML Content
-* `me().innerHTML = "<p>hello world</p>"`
-* `me().innerText = "hello world"`
 
  ## 💎 Conventions & Tips
 
