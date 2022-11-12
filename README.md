@@ -13,16 +13,16 @@
 
 For devs who love ergonomics!
 
-If you agree with any of the following, you may appreciate Surreal:
+If you agree with any of the following, you will appreciate Surreal:
 
-* Love staying as close to Vanilla JS.
+* Want to stay close to Vanilla JS.
 * Hate typing `document.querySelector` over.. and over..
 * Hate typing `addEventListener` over.. and over..
 * Really wish `document.querySelectorAll` had Array functions..
 * Really wish `this` would work in child `<script>` tags.
-* Love having **no build step** to speak of.
-* Love fewer layers, and a snappy UI.
+* Want it dependency-free with **no build step**.
 * Enjoyed using jQuery selector syntax.
+* Want fewer layers, less complexity, crazy speed.
 * Are aware of the cargo cult. ✈️
 
 ## ✨ What advantages does it bring to the table?
@@ -65,10 +65,10 @@ Surreal is a dependency-free, browser-oriented javascript library with zero buil
 ```
 
 ## 🤔 Why choose `me()` and `any()` over `$` and `$$`
-* No ambiguity unlike jQuery's approach of `$` for both single elements and Arrays. Less need for sanity checks.
-* Readability. English-like and self documenting.
+* Zero ambiguity; unlike jQuery where `$` returns different things depending on context. Less need for sanity checks.
+* Readability. Reads like English and is self describing.
 * Same verbbage as [Hyperscript](https://hyperscript.org) making this an excellent transitional library.
-* It can be far less wordy to work with elements directly instead of an Array.
+* Super convenience of working with elements directly instead of an Array all of the time.
 
 ## 📚️ Inspired by
 
