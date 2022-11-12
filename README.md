@@ -24,6 +24,7 @@ If you agree with any of the following, you will appreciate Surreal:
 * Enjoyed using jQuery selector syntax.
 * Want fewer layers, less complexity, crazy speed.
 * [Zero depedencies to do async animations, timelining, tweens with CSS](#-quick-start)
+* Pairs well with [htmx](https://htmx.org)
 * Are aware of the cargo cult. ✈️
 
 ## ✨ What advantages does it bring to the table?
