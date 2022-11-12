@@ -23,6 +23,7 @@ If you agree with any of the following, you will appreciate Surreal:
 * Want it dependency-free with **no build step**.
 * Enjoyed using jQuery selector syntax.
 * Want fewer layers, less complexity, crazy speed.
+* [Zero depedencies to do async animations, timelining, tweens with CSS](#-quick-start)
 * Are aware of the cargo cult. ✈️
 
 ## ✨ What advantages does it bring to the table?
