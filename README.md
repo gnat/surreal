@@ -27,7 +27,7 @@ If you agree with any of the following, you may appreciate Surreal:
 
 ## ✨ What advantages does it bring to the table?
 
-* 🔗 Call chaining.
+* 🔗 Call chaining, jQuery style.
 * ⚡️ [Locality of Behavior (LoB)](https://htmx.org/essays/locality-of-behaviour/) is fully supported. `me()` can be used inside `<script>` tags to get the current element without a unique identifier -- no **class**, no **id** needed!
   * Far more flexible version of `this`
 * ♻️ Seamlessly use individual elements **OR** arrays of elements.
@@ -80,7 +80,7 @@ Surreal is a dependency-free, browser-oriented javascript library. [Download Sur
 
 ### <a name="selectors"></a>🔍️ DOM Selection
 
-You want **one** element directly.
+Select **one** element directly.
 * `me(...)`
   * `me()` Get the current element.
      * Provides [Locality of Behavior](https://htmx.org/essays/locality-of-behaviour/) in `<script>` without a unique identifier (no **class**, no **id**).
@@ -88,7 +88,7 @@ You want **one** element directly.
   * `me("button")` If more than one match, get only the first one.
 
 
-You want **one or more** elements as an Array.
+Select **one or more** elements as an Array.
 * `any(...)`
 
 Convert between a direct single element and an Array of elements using `any(me())`, `me(any(".thing"))`
@@ -108,9 +108,9 @@ Convert between a direct single element and an Array of elements using `any(me()
 * 🌐 Global conveniences can be turned off if desired by removing `globalsAdd()`
   * `globalsAdd()` will automatically warn about any clobbering issues.
 
-#### 🟢 Style A (🔗 Chaining)
+#### 🟢 Style A (🔗 Chaining 😎 *RECOMMENDED STYLE*)
 
-* 🔥 `me().classAdd('red')` 😎 *RECOMMENDED STYLE*
+* 🔥 `me().classAdd('red')`
 * No convenience globals: `$.me().classAdd('red')`
 
 #### 🟠 Style B (Classic)
