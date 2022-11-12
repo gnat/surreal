@@ -28,15 +28,16 @@ If you agree with any of the following, you may appreciate Surreal:
 ## ✨ What advantages does it bring to the table?
 
 * 🔗 Call chaining.
-* ♻️ Seamlessly handle an individual element  **OR** arrays of elements.
-  * **Surreal** functions operate agnostically on `HTMLElement` or `NodeList` (or `Array` of `HTMLElement`).
-  * For your own functions, select one element directly: `me()` or many elements: `any()`
-    * Both `me()` and `any()` can chain with any **Surreal** function.
-  * Elements from `me()` can be accessed directly as a single element (a better `querySelector()` or `$`)
-  * Elements from `any()` can use any of these: `forEach` / `filter` / `map` / `reduce` (a better `querySelectorAll()` or `$$`)
-* ❤️‍🔥 Choose `camelCase` (standard, jQuery) **OR** `snake_case` (Python, Rust, PHP, Ruby, SQL, *CSS*, templates).
+* ⚡️ [Locality of Behavior (LoB)](https://htmx.org/essays/locality-of-behaviour/) is fully supported. `me()` can be used inside `<script>` tags to get the current element without a unique identifier -- no **class**, no **id** needed!
+  * Far more flexible version of `this`
+* ♻️ Seamlessly use individual elements **OR** arrays of elements.
+  * **Surreal** functions operate agnostically on all of: 1. `HTMLElement` 2. `NodeList` 3. `Array` of `HTMLElement`
+  * For your own code, get one element directly: `me()` or get many elements: `any()`
+    * `me()` or `any()` can chain with any **Surreal** function.
+  * Elements from `me()` can be accessed directly as a single element (a better `querySelector()` or `$()`)
+  * Elements from `any()` can use any of these: `forEach` / `filter` / `map` / `reduce` (a better `querySelectorAll()` or `$$()`)
+* ❤️‍🔥 Choose `camelCase` (Javascript, jQuery) **OR** `snake_case` (Python, Rust, PHP, Ruby, SQL, *CSS*, templates).
   * No more forcing of styles you may not want: `class_add` is just an alias of `classAdd`
-* ⚡️ [Locality of Behavior (LoB)](https://htmx.org/essays/locality-of-behaviour/) is fully supported. `me()` can be used inside `<script>` tags to get the current element without a unique identifier -- no **class**, no **id** needed! We drastically upgraded your `this`!
 
 Do surreal things with [Locality of Behavior](https://htmx.org/essays/locality-of-behaviour/) like:
 ```html
