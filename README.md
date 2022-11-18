@@ -33,8 +33,8 @@ If you agree with any of the following, you will appreciate Surreal:
 * ⚡️ [Locality of Behavior (LoB)](https://htmx.org/essays/locality-of-behaviour/) is fully supported. `me()` can be used inside `<script>` tags to get the current element without a unique identifier -- no **class**, no **id** needed!
   * Far more flexible version of `this`
 * ♻️ Seamlessly use individual elements **OR** arrays of elements.
-  * *Surreal* works on any: 1. `HTMLElement` 2. `NodeList` 3. `Array` of `HTMLElement`
-  * For your own code, get one element directly: `me()` or get many elements: `any()`
+  * **Surreal** functions work on any: 1. `HTMLElement` 2. `NodeList` 3. `Array` of `HTMLElement`
+  * For your code, get one element directly: `me()` or get many elements: `any()`
     * `me()` or `any()` can chain with any **Surreal** function.
   * Elements from `me()` can be accessed directly as a single element (a better `querySelector()` or `$()`)
   * Elements from `any()` can use any of these: `forEach` / `filter` / `map` / `reduce` (a better `querySelectorAll()` or `$$()`)
