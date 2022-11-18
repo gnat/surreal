@@ -33,11 +33,11 @@ If you agree with any of the following, you will appreciate Surreal:
 * ⚡️ [Locality of Behavior (LoB)](https://htmx.org/essays/locality-of-behaviour/) is fully supported. `me()` can be used inside `<script>` tags to get the current element without a unique identifier -- no **class**, no **id** needed!
   * Far more flexible version of `this`
 * ♻️ Seamlessly use individual elements **OR** arrays of elements.
-  * **Surreal** functions work on any: 1. `HTMLElement` 2. `NodeList` 3. `Array` of `HTMLElement`
-  * For your code, get one element directly: `me()` or get many elements: `any()`
-    * `me()` or `any()` can chain with any **Surreal** function.
-  * Elements from `me()` can be accessed directly as a single element (a better `querySelector()` or `$()`)
-  * Elements from `any()` can use any of these: `forEach` / `filter` / `map` / `reduce` (a better `querySelectorAll()` or `$$()`)
+  * **Surreal** functions work with any: 1. `HTMLElement` 2. `NodeList` 3. `Array` of `HTMLElement`
+  * For other code, get one element: `me()` or many elements: `any()`
+    * `me()` or `any()` results can chain with any **Surreal** function.
+  * `me()` elements can be used directly as a single element (like `querySelector()`)
+  * `any()` elements can be used with: `for` / `forEach` / `filter` / `map` / `reduce` (like `querySelectorAll()` or `$()`)
 * ❤️‍🔥 Choose `camelCase` (Javascript, jQuery) **OR** `snake_case` (Python, Rust, PHP, Ruby, SQL, *CSS*, templates).
   * No more forcing of styles you may not want: `class_add` is just an alias of `classAdd`
 
