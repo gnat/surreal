@@ -35,9 +35,9 @@ If you agree with any of the following, you will appreciate Surreal:
 * ♻️ Seamlessly use individual elements **OR** arrays of elements.
   * **Surreal** functions work with any: 1. `HTMLElement` 2. `NodeList` 3. `Array` of `HTMLElement`
   * For other code, get one element: `me()` or many elements: `any()`
-    * `me()` or `any()` results can chain with any **Surreal** function.
-  * `me()` elements can be used directly as a single element (like `querySelector()`)
-  * `any()` elements can be used with: `for` / `forEach` / `filter` / `map` / `reduce` (like `querySelectorAll()` or `$()`)
+    * `me()` or `any()` can chain with any **Surreal** function.
+  * `me()` can be used directly as a single element (like `querySelector()`)
+  * `any()` can be used with: `for` / `forEach` / `filter` / `map` / `reduce` (like `querySelectorAll()` or `$()`)
 * ❤️‍🔥 Choose `camelCase` (Javascript, jQuery) **OR** `snake_case` (Python, Rust, PHP, Ruby, SQL, *CSS*, templates).
   * No more forcing of styles you may not want: `class_add` is just an alias of `classAdd`
 
