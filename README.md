@@ -37,7 +37,7 @@ If you agree with any of the following, you will appreciate Surreal:
   * For other code, get one element: `me()` or many elements: `any()`
     * `me()` or `any()` can chain with any **Surreal** function.
   * `me()` can be used directly as a single element (like `querySelector()`)
-  * `any()` can be used with: `for` / `forEach` / `filter` / `map` / `reduce` (like `querySelectorAll()` or `$()`)
+  * `any()` can be used with: `for` / `forEach` / `filter` / `map` (like `querySelectorAll()` or `$()`)
 * ❤️‍🔥 Choose `camelCase` (Javascript, jQuery) **OR** `snake_case` (Python, Rust, PHP, Ruby, SQL, *CSS*, templates).
   * No more forcing of styles you may not want: `class_add` is just an alias of `classAdd`
 
