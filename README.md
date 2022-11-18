@@ -66,8 +66,8 @@ Surreal is a dependency-free, browser-oriented javascript library with zero buil
 <script src="surreal.js"></script>
 ```
 
-## 🤔 Why choose `me()` and `any()` over `$` and `$$`
-* Zero ambiguity; unlike jQuery where `$` returns different things depending on context. Less need for sanity checks.
+## 🤔 Why choose `me()` and `any()` over `$()` and `$$()`
+* Zero ambiguity; unlike jQuery where `$()` returns different things depending on context. Less need for sanity checks.
 * Readability. Reads like English and is self describing.
 * Same verbbage as [Hyperscript](https://hyperscript.org) making this an excellent transitional library.
 * Super convenience of working with elements directly instead of an Array all of the time.
