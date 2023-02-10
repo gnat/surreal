@@ -334,7 +334,7 @@ Append / Prepend elements.
 
 ## <a name="plugins"></a>🔌 Extending Surreal
 
-First off, you can certainly just add to your Surreal core. Surreal is designed to be small, auditable and understandable. But we also have a plugin system for less core-like features if you prefer:
+Surreal is designed to be small enough to be modified for a particular use-case; but we also have a plugin system if you prefer to retain the ability to merge with new versions.
 
 1. Add your function to Surreal
  ```javascript
@@ -346,22 +346,21 @@ First off, you can certainly just add to your Surreal core. Surreal is designed 
  }
  $ = {...$, ...$thing}
  ```
-2. Add your function to Surreal sugar() if it is chainable.
+2. Is your function chainable? Add it to Surreal sugar()
  ```javascript
  $.sugars['test'] = (name) => { return $.test($._e, name) }
  ```
-3. Automatically will be added as a global convenience with globalsAdd()
-    If this should not be allowed, please add it to the restricted list in globalsAdd()
+3. Your function will automatically will be added globally by `globalsAdd()`
+    If you do not want this (ex: Naming clash), add it to the restricted list in `globalsAdd()`
 
-If applicable, make your function compatible with both single elements and arrays.
-    Refer to an existing function to see how.
+Should your function work with both single elements and arrays of elements? Refer to an existing function to see how to make this work.
 
 Make an [issue](https://github.com/gnat/surreal/issues) or [pull request](https://github.com/gnat/surreal/pulls) if you think people would like to use it! If it's useful enough we may want it in the core!
 
 ## 🌘 Future
+* Always more `showcase.html` goodies!
 * Automated browser testing perhaps with:
   * [Fava](https://github.com/fabiospampinato/fava). See: https://github.com/avajs/ava/issues/24#issuecomment-885949036
   * [Ava](https://github.com/avajs/ava/blob/main/docs/recipes/browser-testing.md)
   * [jsdom](https://github.com/jsdom/jsdom)
     * [jsdom notes](https://github.com/jsdom/jsdom#executing-scripts)
-* More `showcase.html` goodies.
