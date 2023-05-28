@@ -33,14 +33,14 @@ If you agree with any of the following, you may appreciate Surreal:
 * ⚡️ [Locality of Behavior (LoB)](https://htmx.org/essays/locality-of-behaviour/) Use `me()` inside `<script>` to get an element without a unique id.
   * No **.class** or **#id** needed!
   * `this` but better.
-* ♻️ Seamlessly use individual elements **OR** arrays of elements.
-  * Works with any of: `HTMLElement`, `NodeList`, `Array` of `HTMLElement`
-  * For other code, get one element: `me()` or many elements: `any()`
+* ♻️ Seamlessly use individual elements and/or arrays of elements.
+  * Use any of: `me()`, `any()`, `HTMLElement`, `NodeList`, `Array` of `HTMLElement`
+  * Explicitly get one element: `me()` or many elements: `any()`
     * `me()` or `any()` can chain with any Surreal function.
-  * `me()` can be used directly as a single element (like `querySelector()`)
-  * `any()` can be used with: `for` / `forEach` / `filter` / `map` (like `querySelectorAll()` or `$()`)
-* 🌗 Use `camelCase` (Javascript, jQuery) **OR** `snake_case` (Python, Rust, PHP, Ruby, SQL, *CSS*, templates).
-  * No forced styles: `class_add` is just an alias of `classAdd`
+      * `me()` can be used directly as a single element (like `querySelector()`)
+      * `any()` can be used with: `for` / `forEach` / `filter` / `map` (like `querySelectorAll()` or `$()`)
+* 🌗 No forced style: `class_add` is just an alias of `classAdd`
+  * Use `camelCase` (Javascript) or `snake_case` (Python, Rust, PHP, Ruby, SQL, *CSS*).
 
 Do surreal things with [Locality of Behavior](https://htmx.org/essays/locality-of-behaviour/) like:
 ```html
