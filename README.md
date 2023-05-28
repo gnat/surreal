@@ -116,7 +116,7 @@ Select **one or more** elements as an Array.
 * 🔥 `me().classAdd('red')`
   * Alternative, no conveniences: `$.me().classAdd('red')`
 
-#### 🟠 Style B (Classic, like [Bliss.js](https://blissfuljs.com/))
+#### 🟠 Style B
 * 🔥 `classAdd(me(), 'red')`
   * Alternative, no conveniences: `$.classAdd($.me(), 'red')`
 
