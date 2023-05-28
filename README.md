@@ -84,47 +84,45 @@ Surreal is a dependency-free, browser-oriented javascript library with zero buil
 
 ### <a name="selectors"></a>🔍️ DOM Selection
 
-Select **one** element directly.
+Select **one** element.
 * `me(...)`
-  * `me()` Get the current element.
-     * Provides [Locality of Behavior](https://htmx.org/essays/locality-of-behaviour/) in `<script>` without a unique identifier (no **class**, no **id**).
-  * `me(body)` Get only one element.
-  * `me("button")` If more than one match, get only the first one.
-
+  * `me()` The current element.
+     * [Locality of Behavior](https://htmx.org/essays/locality-of-behaviour/) in `<script>` without an explicit **.class** or **#id**
+  * `me(body)` Get only one element (`<body>` tag, in this case).
+  * `me("button")` Gets only the first `<button>`. To get all of them use `any()`
 
 Select **one or more** elements as an Array.
 * `any(...)`
-
-Convert between a direct single element and an Array of elements using `any(me())`, `me(any(".thing"))`
+  * You can convert between a single element and an Array of elements using `any(me())`, `me(any(".thing"))`
 
 ### `...` can be any of:
 * CSS selector string: `"#header"`, `"button"`, `".red_label"`, `"body > .block"`
 * Variables: `body`, `elt`, `some_element`
 * Events: `event.target` will be used.
-* Themselves: `me()`,`any()`
+* Surreal selectors: `me()`,`any()`
 * `start=` parameter provides a starting point to select from, default is `document`.
   * `any('button', start='header').classAdd('red')`
 
 ### ⚙️ DOM Functions
 
-* ♻️ All can use either single elements or arrays of elements transparently!
-* 🔗 Chaining off `me()` and `any()` and many others supported.
-* 🌐 Global conveniences can be turned off if desired by removing `globalsAdd()`
+* ♻️ Use one element or arrays of elements transparently!
+* 🔗 Start a chain using `me()` and `any()`
+* 🌐 Global conveniences help you write smaller code.
   * `globalsAdd()` will automatically warn about any clobbering issues.
+  * If you prefer no conveniences, just delete `globalsAdd()`
 
 #### 🟢 Style A (🔗 Chaining 😎 *RECOMMENDED STYLE*)
 
 * 🔥 `me().classAdd('red')`
-* No convenience globals: `$.me().classAdd('red')`
+  * Alternative, no conveniences: `$.me().classAdd('red')`
 
 #### 🟠 Style B (Classic)
 * 🔥 `classAdd(me(), 'red')`
-* No convenience globals: `$.classAdd($.me(), 'red')`
+  * Alternative, no conveniences: `$.classAdd($.me(), 'red')`
 
 See: [Quick Start](#quick-start) and [Reference](#reference) and [No Surreal Needed](#no-surreal)
 
 ## <a name="quick-start"></a>🔥 Quick Start
-
 
 * Add a class
   * `me().classAdd('red')`
