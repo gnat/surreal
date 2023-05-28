@@ -21,9 +21,9 @@ If you agree with any of the following, you will appreciate Surreal:
 * Really wish `document.querySelectorAll` had Array functions..
 * Really wish `this` would work in child `<script>` tags.
 * Want it dependency-free with **no build step**.
+* [Zero depedencies to do async animations, timelining, tweens](#-quick-start)
 * Enjoyed using jQuery selector syntax.
 * Want fewer layers, less complexity, crazy speed.
-* [Zero depedencies to do async animations, timelining, tweens with CSS](#-quick-start)
 * Pairs well with [htmx](https://htmx.org)
 * Are aware of the cargo cult. ✈️
 
@@ -211,7 +211,6 @@ Looking for [DOM Selectors](#selectors)?
 * 🔗 Chainable off `me()` and `any()`
 * 🌐 Global convenience helper.
 * 🔥 Runnable example.
-* ❤️‍🔥 Alias.
 * 🔌 Built-in Plugin
 ### 👁️ At a glance
 
@@ -222,19 +221,19 @@ Looking for [DOM Selectors](#selectors)?
 * 🔗 `remove`
   * 🔥 `me().remove()`
   * 🔥 `any('button').remove()`
-* 🔗 `classAdd` ❤️‍🔥 `class_add`
+* 🔗 `classAdd` or `class_add`
   * 🔥 `me().classAdd('active')`
   * Leading `.` is optional for all class functions, to prevent typical syntax errors with `me()` and `any()`.
     * `me().classAdd('active')` and `me().classAdd('.active')` are equivalent.
-* 🔗 `classRemove` ❤️‍🔥 `class_remove`
+* 🔗 `classRemove` or `class_remove`
   * 🔥 `me().classRemove('active')`
-* 🔗 `classToggle` ❤️‍🔥 `class_toggle`
+* 🔗 `classToggle` or `class_toggle`
   * 🔥 `me().classToggle('active')`
 * 🔗 `styles`
   * 🔥 `me().styles('color: red')` Add style.
   * 🔥 `me().styles({ 'color':'red', 'background':'blue' })` Add multiple styles.
   * 🔥 `me().styles({ 'background':null })` Remove style.
-* 🔗 `attribute` ❤️‍🔥 `attributes` ❤️‍🔥 `attr`
+* 🔗 `attribute` or `attributes` or `attr`
   * Get: 🔥 `me().attribute('data-x')`
     * Get is only for single elements. For many, wrap the call in `any(...).run(...)` or `any(...).forEach(...)`.
   * Set: 🔥 `me().attribute('data-x', true)`
@@ -272,10 +271,10 @@ Looking for [DOM Selectors](#selectors)?
   * 🔥 `halt(event)`
   * Great to prevent default browser behavior: such as displaying an image vs letting JS handle it.
   * Wrapper for [preventDefault](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault)
-* 🌐 `createElement` ❤️‍🔥 `create_element`
+* 🌐 `createElement` or `create_element`
   * 🔥 `el_new = createElement("div"); me().prepend(el_new)`
   * Alias of `document.createElement`
-* 🌐 `onloadAdd` ❤️‍🔥 `onload_add`
+* 🌐 `onloadAdd` or `onload_add`
   * 🔥 `onloadAdd(_ => { alert("loaded!"); })`
   * Execute after the DOM is ready. Similar to jquery `ready()`
   * Queues functions onto `window.onload`
@@ -286,13 +285,13 @@ Looking for [DOM Selectors](#selectors)?
 #### Effects
 You can build your own effects easily with `me().styles({...})` then timelining [CSS transitions using `await` or callbacks](#timelines), but we ship the most common effects for ergonomics:
 
-* 🔗 `fadeOut` ❤️‍🔥 `fade_out`
+* 🔗 `fadeOut` or `fade_out`
   * Fade out and remove element.
   * Keep element with `remove=false`.
   * 🔥 `me().fadeOut()`
   * 🔥 `me().fadeOut(ev => { alert("Faded out!") }, 3000)` Over 3 seconds then call function.
 
-* 🔗 `fadeIn` ❤️‍🔥 `fade_in`
+* 🔗 `fadeIn` or `fade_in`
   * Fade in existing element which has `opacity: 0`
   * 🔥 `me().fadeIn()`
   * 🔥 `me().fadeIn(ev => { alert("Faded in!") }, 3000)` Over 3 seconds then call function.
@@ -330,7 +329,7 @@ Append / Prepend elements.
 * Developer ergonomics and simplicity wins.
 * Find the layer where the change needs to touch the least places.
 * Animations are done with `me().styles(...)` with CSS transitions. Use `await sleep(...)` for timelining.
-* Modals and dropdowns can be done in pure HTML / CSS now.
+* Dropdowns can be done in pure HTML / CSS.
 
 ## <a name="plugins"></a>🔌 Extending Surreal
 
