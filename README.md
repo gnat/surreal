@@ -68,9 +68,9 @@ Surreal is a dependency-free, browser-oriented javascript library with zero buil
 ```
 
 ## 🤔 Why choose `me()` and `any()` over `$()` and `$$()`
-* Less ambiguity; unlike jQuery where `$()` returns different things depending on context. Less need for sanity checks.
-* Readability. Reads more like English and is self describing.
-* Convenience of working with elements directly instead of an Array all of the time.
+* Fewer needed sanity checks: unlike jQuery where `$()` returns different things depending on context.
+* Readability. Reads more like English, can be self describing.
+* Convenience of using elements directly instead of an "Array of elements" all the time.
 
 ## 📚️ Inspired by
 
