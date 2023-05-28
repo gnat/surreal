@@ -9,20 +9,20 @@
 <a href="https://github.com/gnat/surreal/releases"><img src="https://img.shields.io/github/workflow/status/gnat/surreal/release?label=Mini&style=for-the-badge&color=%237d91ce" alt="Mini build badge" /></a>
 <a href="https://github.com/gnat/surreal/blob/main/LICENSE"><img src="https://img.shields.io/github/license/gnat/surreal?style=for-the-badge&color=%234400e5" alt="License badge" /></a>-->
 
-## 💙 Why does this exist?
+## Why does this exist?
 
 For devs who love ergonomics!
 
-If you agree with any of the following, you will appreciate Surreal:
+If you agree with any of the following, you may appreciate Surreal:
 
 * Want to stay close to Vanilla JS.
 * Hate typing `document.querySelector` over.. and over..
 * Hate typing `addEventListener` over.. and over..
 * Really wish `document.querySelectorAll` had Array functions..
 * Really wish `this` would work in child `<script>` tags.
+* Enjoyed using jQuery selector syntax.
 * Want it dependency-free with **no build step**.
 * [Zero depedencies to do async animations, timelining, tweens](#-quick-start)
-* Enjoyed using jQuery selector syntax.
 * Want fewer layers, less complexity, crazy speed.
 * Pairs well with [htmx](https://htmx.org)
 * Are aware of the cargo cult. ✈️
@@ -67,10 +67,9 @@ Surreal is a dependency-free, browser-oriented javascript library with zero buil
 ```
 
 ## 🤔 Why choose `me()` and `any()` over `$()` and `$$()`
-* Zero ambiguity; unlike jQuery where `$()` returns different things depending on context. Less need for sanity checks.
-* Readability. Reads like English and is self describing.
-* Same verbbage as [Hyperscript](https://hyperscript.org) making this an excellent transitional library.
-* Super convenience of working with elements directly instead of an Array all of the time.
+* Less ambiguity; unlike jQuery where `$()` returns different things depending on context. Less need for sanity checks.
+* Readability. Reads more like English and is self describing.
+* Convenience of working with elements directly instead of an Array all of the time.
 
 ## 📚️ Inspired by
 
@@ -121,7 +120,7 @@ Convert between a direct single element and an Array of elements using `any(me()
 * 🔥 `classAdd(me(), 'red')`
 * No convenience globals: `$.classAdd($.me(), 'red')`
 
-Great? See: [Quick Start](#quick-start) and [Reference](#reference) and [No Surreal Needed](#no-surreal)
+See: [Quick Start](#quick-start) and [Reference](#reference) and [No Surreal Needed](#no-surreal)
 
 ## <a name="quick-start"></a>🔥 Quick Start
 
@@ -283,7 +282,7 @@ Looking for [DOM Selectors](#selectors)?
 ### <a name="plugin-included"></a>🔌 Built-in Plugins
 
 #### Effects
-You can build your own effects easily with `me().styles({...})` then timelining [CSS transitions using `await` or callbacks](#timelines), but we ship the most common effects for ergonomics:
+Build your own effects with `me().styles({...})` then timelining with [CSS transitions using `await` or callbacks](#timelines). We ship some common effects:
 
 * 🔗 `fadeOut` or `fade_out`
   * Fade out and remove element.
@@ -298,7 +297,8 @@ You can build your own effects easily with `me().styles({...})` then timelining 
 
 
 ### <a name="no-surreal"></a>🔮 No Surreal Needed
-Some patterns are already as short as you can get in vanilla JS!
+
+More often than not, Vanilla JS is the easiest way!
 
 Logging
 * 🌐 `console.log()` `console.warn()` `console.error()`
@@ -322,7 +322,7 @@ Append / Prepend elements.
 
  ## 💎 Conventions & Tips
 
-* `_` = are fine for temporary or unused variables. Keep it short and sweet!
+* `_` = for temporary or unused variables. Keep it short and sweet!
 * `e`, `el`, `elt` = element
 * `e`, `ev`, `evt` = event
 * `f`, `fn` = function
@@ -333,7 +333,7 @@ Append / Prepend elements.
 
 ## <a name="plugins"></a>🔌 Extending Surreal
 
-Surreal is designed to be small enough to be modified for a particular use-case; but we also have a plugin system if you prefer to retain the ability to merge with new versions.
+Surreal is tiny enough to be modified for a particular use-case; but there is a system if you prefer to effortlessly merge with new versions.
 
 1. Add your function to Surreal
  ```javascript
