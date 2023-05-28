@@ -30,8 +30,8 @@ If you agree with any of the following, you may appreciate Surreal:
 ## ✨ What advantages does it bring to the table?
 
 * 🔗 Call chaining, jQuery style.
-* ⚡️ [Locality of Behavior (LoB)](https://htmx.org/essays/locality-of-behaviour/) Use `me()` inside `<script>` tags to get the element without a unique identifier.
-  * No **.class**, no **#id** needed!
+* ⚡️ [Locality of Behavior (LoB)](https://htmx.org/essays/locality-of-behaviour/) Use `me()` inside `<script>` to get an element without a unique id.
+  * No **.class** or **#id** needed!
   * `this` but better.
 * ♻️ Seamlessly use individual elements **OR** arrays of elements.
   * Works with any of: `HTMLElement`, `NodeList`, `Array` of `HTMLElement`
