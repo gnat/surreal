@@ -30,16 +30,17 @@ If you agree with any of the following, you may appreciate Surreal:
 ## ✨ What advantages does it bring to the table?
 
 * 🔗 Call chaining, jQuery style.
-* ⚡️ [Locality of Behavior (LoB)](https://htmx.org/essays/locality-of-behaviour/) is fully supported. `me()` can be used inside `<script>` tags to get the current element without a unique identifier -- no **class**, no **id** needed!
-  * Far more flexible version of `this`
+* ⚡️ [Locality of Behavior (LoB)](https://htmx.org/essays/locality-of-behaviour/) Use `me()` inside `<script>` tags to get the element without a unique identifier.
+  * No **.class**, no **#id** needed!
+  * `this` but better.
 * ♻️ Seamlessly use individual elements **OR** arrays of elements.
-  * **Surreal** functions work with any: 1. `HTMLElement` 2. `NodeList` 3. `Array` of `HTMLElement`
+  * Works with any of: `HTMLElement`, `NodeList`, `Array` of `HTMLElement`
   * For other code, get one element: `me()` or many elements: `any()`
-    * `me()` or `any()` can chain with any **Surreal** function.
+    * `me()` or `any()` can chain with any Surreal function.
   * `me()` can be used directly as a single element (like `querySelector()`)
   * `any()` can be used with: `for` / `forEach` / `filter` / `map` (like `querySelectorAll()` or `$()`)
-* ❤️‍🔥 Use `camelCase` (Javascript, jQuery) **OR** `snake_case` (Python, Rust, PHP, Ruby, SQL, *CSS*, templates).
-  * No more forcing of styles you may not want: `class_add` is just an alias of `classAdd`
+* 🌗 Use `camelCase` (Javascript, jQuery) **OR** `snake_case` (Python, Rust, PHP, Ruby, SQL, *CSS*, templates).
+  * No forced styles: `class_add` is just an alias of `classAdd`
 
 Do surreal things with [Locality of Behavior](https://htmx.org/essays/locality-of-behaviour/) like:
 ```html
@@ -61,7 +62,7 @@ Get a taste- see the [Showcase](https://gnat.github.io/surreal/showcase.html)! T
 
 Surreal is a dependency-free, browser-oriented javascript library with zero build steps.
 
-[Download Surreal](https://github.com/gnat/surreal/archive/refs/heads/main.zip) and drag `surreal.js` into the appropriate directory of your project. Add `<script>` to your `<head>`.
+[Download Surreal](https://github.com/gnat/surreal/archive/refs/heads/main.zip) and drag `surreal.js` into a directory of your project. Add `<script>` to your `<head>`.
 ```html
 <script src="surreal.js"></script>
 ```
