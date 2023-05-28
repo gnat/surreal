@@ -22,7 +22,7 @@ If you agree with any of the following, you may appreciate Surreal:
 * Really wish `this` would work in child `<script>` tags.
 * Enjoyed using jQuery selector syntax.
 * No build step. Dependency-free.
-* [Animation, timelines, tweens, using async without 3rd party libraries](#-quick-start)
+* [Animation, timelines, tweens, without 3rd party libraries](#-quick-start)
 * Pairs well with [htmx](https://htmx.org)
 * Want fewer layers, less complexity. Are aware of the cargo cult. ✈️
 
