@@ -88,7 +88,7 @@ Select **one** element.
 * `me(...)`
   * `me()` The current element.
      * [Locality of Behavior](https://htmx.org/essays/locality-of-behaviour/) in `<script>` without an explicit **.class** or **#id**
-  * `me(body)` Get only one element (`<body>` tag, in this case).
+  * `me(body)` Get only one element. The `<body>`, in this case.
   * `me("button")` Gets only the first `<button>`. To get all of them use `any()`
 
 Select **one or more** elements as an Array.
