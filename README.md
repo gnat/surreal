@@ -21,11 +21,10 @@ If you agree with any of the following, you may appreciate Surreal:
 * Really wish `document.querySelectorAll` had Array functions..
 * Really wish `this` would work in child `<script>` tags.
 * Enjoyed using jQuery selector syntax.
-* Want it dependency-free with **no build step**.
-* [Zero depedencies to do async animations, timelining, tweens](#-quick-start)
-* Want fewer layers, less complexity, crazy speed.
+* No build step. Dependency-free.
+* [Animation, timelines, tweens, using async without 3rd party libraries](#-quick-start)
 * Pairs well with [htmx](https://htmx.org)
-* Are aware of the cargo cult. ✈️
+* Want fewer layers, less complexity. Are aware of the cargo cult. ✈️
 
 ## ✨ What advantages does it bring to the table?
 
