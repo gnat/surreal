@@ -83,19 +83,18 @@ Surreal is a dependency-free, browser-oriented javascript library with zero buil
 
 ### <a name="selectors"></a>🔍️ DOM Selection
 
-Select **one** element.
-* `me(...)`
+* Select **one** element: `me(...)`
   * `me()` The current element.
      * [Locality of Behavior](https://htmx.org/essays/locality-of-behaviour/) in `<script>` without an explicit **.class** or **#id**
   * `me("body")` Gets `<body>`
-  * `me("button")` Gets the first `<button>`. To get all of them use `any()`
+  * `me(".button")` Gets the first `<div class="button">...</div>`. To get all of them use `any()`
 
-Select **one or more** elements as an Array.
-* `any(...)`
-  * You can convert between a single element and an Array of elements using `any(me())`, `me(any(".thing"))`
+* Select **one or more** elements (as an array): `any(...)`
+  * `any(".button")` Gets all matching elements, example: `<div class="button">...</div>`
+  * Optionally convert between arrays of elements and single elements using `any(me())`, `me(any(".something"))`
 
 ### `...` can be any of:
-* CSS selector string: `"#header"`, `"button"`, `".red_label"`, `"body > .block"`
+* CSS selector: `".button"`, `"#header"`, `"h1"`, `"body > .block"`
 * Variables: `body`, `elt`, `some_element`
 * Events: `event.target` will be used.
 * Surreal selectors: `me()`,`any()`
@@ -104,20 +103,16 @@ Select **one or more** elements as an Array.
 
 ### ⚙️ DOM Functions
 
-* ♻️ Use one element or arrays of elements transparently!
 * 🔗 Start a chain using `me()` and `any()`
-* 🌐 Global conveniences help you write smaller code.
-  * `globalsAdd()` will automatically warn about any clobbering issues.
-  * If you prefer no conveniences, just delete `globalsAdd()`
-
-#### 🟢 Style A (🔗 Chaining)
-
-* `me().classAdd('red')` (⭐ *RECOMMENDED STYLE*)
-  * Alternative, no conveniences: `$.me().classAdd('red')`
-
-#### 🟠 Style B
-* `classAdd(me(), 'red')`
-  * Alternative, no conveniences: `$.classAdd($.me(), 'red')`
+  * 🟢 Style A (🔗 Chaining)
+    * `me().classAdd('red')` (⭐ *RECOMMENDED STYLE*)
+      * Alternative, no conveniences: `$.me().classAdd('red')`
+  * 🟠 Style B
+    * `classAdd(me(), 'red')`
+      * Alternative, no conveniences: `$.classAdd($.me(), 'red')`
+* ♻️ All work on single elements or arrays of elements.
+* 🌐 Global conveniences help you write less code.
+  * `globalsAdd()` will automatically warn about any clobbering issues. If you prefer no conveniences, just delete `globalsAdd()`
 
 See: [Quick Start](#quick-start) and [Reference](#reference) and [No Surreal Needed](#no-surreal)
 
