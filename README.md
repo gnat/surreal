@@ -32,6 +32,7 @@ If you agree with any of the following, you may appreciate Surreal:
 * ⚡️ [Locality of Behavior (LoB)](https://htmx.org/essays/locality-of-behaviour/) Use `me()` inside `<script>` to get an element without a unique id.
   * No **.class** or **#id** needed!
   * `this` but better.
+  * Want LoB in your inline CSS `<style>` tags, too? See the [companion script](https://github.com/gnat/css-scope-inline)
 * ♻️ Seamlessly use individual elements and/or arrays of elements.
   * Use any of: `me()`, `any()`, `HTMLElement`, `NodeList`, `Array` of `HTMLElement`
   * Explicitly get one element: `me()` or many elements: `any()`
