@@ -1,4 +1,4 @@
-# 🗿 Surreal - Hyper minimalist jQuery alternative
+# 🗿 Surreal - micro jQuery alternative for vanilla JS with inline Locality of Behavior
 
 ![cover](https://user-images.githubusercontent.com/24665/171092805-b41286b2-be4a-4aab-9ee6-d604699cc507.png)
 (Art by [shahabalizadeh](https://www.deviantart.com/shahabalizadeh))
@@ -11,36 +11,37 @@
 
 ## Why does this exist?
 
-For devs who love ergonomics!
+For devs who love ergonomics! You may appreciate Surreal if:
 
-If you agree with any of the following, you may appreciate Surreal:
-
-* Want to stay close to Vanilla JS.
+* You want to stay as close as possible to Vanilla JS.
 * Hate typing `document.querySelector` over.. and over..
 * Hate typing `addEventListener` over.. and over..
 * Really wish `document.querySelectorAll` had Array functions..
-* Really wish `this` would work in child `<script>` tags.
+* Really wish `this` would work in any inline `<script>` tag
 * Enjoyed using jQuery selector syntax.
-* No build step. Dependency-free.
-* [Animation, timelines, tweens, without 3rd party libraries](#-quick-start)
+* [Animations, timelines, tweens](#-quick-start) with no extra libraries.
+* Only 320 lines. No build step. No dependencies.
 * Pairs well with [htmx](https://htmx.org)
 * Want fewer layers, less complexity. Are aware of the cargo cult. ✈️
 
-## ✨ What advantages does it bring to the table?
+## ✨ What will this add to my vanilla javascript?
 
+* ⚡️ [Locality of Behavior (LoB)](https://htmx.org/essays/locality-of-behaviour/) Use `me()` inside `<script>`
+  * Get an element without creating a unique name: No **.class** or **#id** needed!
+  * `this` but better!
+  * Want to use it in your CSS `<style>` tags, too? See our [companion script](https://github.com/gnat/css-scope-inline)
 * 🔗 Call chaining, jQuery style.
-* ⚡️ [Locality of Behavior (LoB)](https://htmx.org/essays/locality-of-behaviour/) Use `me()` inside `<script>` to get an element without a unique id.
-  * No **.class** or **#id** needed!
-  * `this` but better.
-  * Want LoB in your inline CSS `<style>` tags, too? See the [companion script](https://github.com/gnat/css-scope-inline)
-* ♻️ Seamlessly use individual elements and/or arrays of elements.
-  * Use any of: `me()`, `any()`, `HTMLElement`, `NodeList`, `Array` of `HTMLElement`
-  * Explicitly get one element: `me()` or many elements: `any()`
-    * `me()` or `any()` can chain with any Surreal function.
-      * `me()` can be used directly as a single element (like `querySelector()`)
-      * `any()` can use: `for` / `forEach` / `filter` / `map` (like `querySelectorAll()` or `$()`)
+* ♻️ Functions work seamlessly on one element or arrays of elements!
+  * All functions can use: `me()`, `any()`, `NodeList`, `HTMLElement` (..or arrays of these!)
+  * Get 1 element: `me()`
+  * ..or many elements: `any()`
+  * `me()` or `any()` can chain with any Surreal function.
+    * `me()` can be used directly as a single element (like `querySelector()`)
+    * `any()` can use: `for` / `forEach` / `filter` / `map` (like `querySelectorAll()` or `$()`)
 * 🌗 No forced style: `class_add` is just an alias of `classAdd`
   * Use `camelCase` (Javascript) or `snake_case` (Python, Rust, PHP, Ruby, SQL, *CSS*).
+
+## 👁️ How does it look?
 
 Do surreal things with [Locality of Behavior](https://htmx.org/essays/locality-of-behaviour/) like:
 ```html
@@ -54,18 +55,13 @@ Do surreal things with [Locality of Behavior](https://htmx.org/essays/locality-o
 </label>
 ```
 
-## 👁️ Live Example
-
-Get a taste- see the [Showcase](https://gnat.github.io/surreal/showcase.html)! Then [view source](https://github.com/gnat/surreal/blob/main/showcase.html).
+See the [Live Example](https://gnat.github.io/surreal/showcase.html)! Then [view source](https://github.com/gnat/surreal/blob/main/showcase.html).
 
 ## 🎁 Installation
 
-Surreal is a dependency-free, browser-oriented javascript library with zero build steps.
-
-[Download Surreal](https://github.com/gnat/surreal/archive/refs/heads/main.zip) and drag `surreal.js` into a directory of your project. Add `<script>` to your `<head>`.
-```html
-<script src="surreal.js"></script>
-```
+Surreal is only 320 lines. No build step. No dependencies.
+* [Download Surreal](https://github.com/gnat/surreal/archive/refs/heads/main.zip) and drag `surreal.js` into a directory of your project.
+* Add `<script src="surreal.js"></script>` to your `<head>`.
 
 ## 🤔 Why choose `me()` and `any()` over `$()` and `$$()`
 * Fewer needed sanity checks: unlike jQuery where `$()` returns different things depending on context.
