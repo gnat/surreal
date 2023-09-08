@@ -41,6 +41,12 @@ For devs who love ergonomics! You may appreciate Surreal if:
 * 🌗 No forced style: `class_add` is just an alias of `classAdd`
   * Use `camelCase` (Javascript) or `snake_case` (Python, Rust, PHP, Ruby, SQL, *CSS*).
 
+### 🤔 Why use `me()` / `any()` instead of `$()`
+* 💡 We solve the classic jQuery code bloat problem: Am I getting 1 element or an array of elements?
+  * `me()` is guaranteed to return 1 element (or first found, or none).
+  * `any()` is guaranteed to return an array (or empty array).
+  * No longer any need to check! Write less code! Bonus: Code reads more like self-documenting english.
+
 ## 👁️ How does it look?
 
 Do surreal things with [Locality of Behavior](https://htmx.org/essays/locality-of-behaviour/) like:
@@ -62,11 +68,6 @@ See the [Live Example](https://gnat.github.io/surreal/showcase.html)! Then [view
 Surreal is only 320 lines. No build step. No dependencies.
 * [Download Surreal](https://github.com/gnat/surreal/archive/refs/heads/main.zip) and drag `surreal.js` into a directory of your project.
 * Add `<script src="surreal.js"></script>` to your `<head>`.
-
-## 🤔 Why choose `me()` and `any()` over `$()` and `$$()`
-* Fewer needed sanity checks: unlike jQuery where `$()` returns different things depending on context.
-* Readability. Reads more like English, can be self describing.
-* Convenience of using elements directly instead of an "Array of elements" all the time.
 
 ## 📚️ Inspired by
 
