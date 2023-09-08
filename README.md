@@ -36,7 +36,7 @@ For devs who love ergonomics! You may appreciate Surreal if:
   * Get 1 element: `me()`
   * ..or many elements: `any()`
   * `me()` or `any()` can chain with any Surreal function.
-    * `me()` can be used directly as a single element (like `querySelector()`)
+    * `me()` can be used directly as a single element (like `querySelector()` or `$()`)
     * `any()` can use: `for` / `forEach` / `filter` / `map` (like `querySelectorAll()` or `$()`)
 * 🌗 No forced style: `class_add` is just an alias of `classAdd`
   * Use `camelCase` (Javascript) or `snake_case` (Python, Rust, PHP, Ruby, SQL, *CSS*).
@@ -45,7 +45,7 @@ For devs who love ergonomics! You may appreciate Surreal if:
 * 💡 We solve the classic jQuery code bloat problem: Am I getting 1 element or an array of elements?
   * `me()` is guaranteed to return 1 element (or first found, or none).
   * `any()` is guaranteed to return an array (or empty array).
-  * No longer any need to check! Write less code! Bonus: Code reads more like self-documenting english.
+  * No more checks! Write less code! Bonus: Code reads more like self-documenting english.
 
 ## 👁️ How does it look?
 
