@@ -1,4 +1,4 @@
-# 🗿 Surreal - micro jQuery alternative for vanilla JS with inline Locality of Behavior
+# 🗿 Surreal - mini jQuery alternative for vanilla JS with inline Locality of Behavior
 
 ![cover](https://user-images.githubusercontent.com/24665/171092805-b41286b2-be4a-4aab-9ee6-d604699cc507.png)
 (Art by [shahabalizadeh](https://www.deviantart.com/shahabalizadeh))
@@ -81,34 +81,32 @@ Surreal is only 320 lines. No build step. No dependencies.
 
 ### <a name="selectors"></a>🔍️ DOM Selection
 
-* Select **one** element: `me(...)`
-  * `me()` The current element.
-     * [Locality of Behavior](https://htmx.org/essays/locality-of-behaviour/) in `<script>` without an explicit **.class** or **#id**
+* Select **one** element: `me(SELECTOR)`
+  * **SELECTOR** can be any of:
+    * CSS selector: `".button"`, `"#header"`, `"h1"`, `"body > .block"`
+    * Variables: `body`, `elt`, `some_element`
+    * Events: the `event.target` will be used.
+    * Surreal selectors: `me()`,`any()`
+    * Adding the `, start=` parameter provides a starting point to select from, default is `document`.
+      * Example: `any('button', start='header').classAdd('red')`
+  * `me()` Get current element for [Locality of Behavior](https://htmx.org/essays/locality-of-behaviour/) in `<script>` without an explicit **.class** or **#id**
   * `me("body")` Gets `<body>`
   * `me(".button")` Gets the first `<div class="button">...</div>`. To get all of them use `any()`
-
-* Select **one or more** elements (as an array): `any(...)`
+* Select **one or more** elements as an array: `any(SELECTOR)`
+  * Similar to `me()` but guaranteed to return an array (or empty array). 
   * `any(".button")` Gets all matching elements, example: `<div class="button">...</div>`
-  * Optionally convert between arrays of elements and single elements using `any(me())`, `me(any(".something"))`
-
-### `...` can be any of:
-* CSS selector: `".button"`, `"#header"`, `"h1"`, `"body > .block"`
-* Variables: `body`, `elt`, `some_element`
-* Events: `event.target` will be used.
-* Surreal selectors: `me()`,`any()`
-* `start=` parameter provides a starting point to select from, default is `document`.
-  * `any('button', start='header').classAdd('red')`
-
+  * Feel free to convert between arrays of elements and single elements: `any(me())`, `me(any(".something"))`
+ 
 ### ⚙️ DOM Functions
 
+* ♻️ All functions work on single elements or arrays of elements.
 * 🔗 Start a chain using `me()` and `any()`
-  * 🟢 Style A (🔗 Chaining)
-    * `me().classAdd('red')` (⭐ *RECOMMENDED STYLE*)
+  * 🟢 Style A - 🔗 Chain style
+    * `me().classAdd('red')` (⭐ *RECOMMENDED*)
       * Alternative, no conveniences: `$.me().classAdd('red')`
   * 🟠 Style B
     * `classAdd(me(), 'red')`
       * Alternative, no conveniences: `$.classAdd($.me(), 'red')`
-* ♻️ All work on single elements or arrays of elements.
 * 🌐 Global conveniences help you write less code.
   * `globalsAdd()` will automatically warn about any clobbering issues. If you prefer no conveniences, just delete `globalsAdd()`
 
