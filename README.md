@@ -75,7 +75,7 @@ Surreal is only 320 lines. No build step. No dependencies.
 * [BlingBling.js](https://github.com/argyleink/blingblingjs) for modern minimalism.
 * [Bliss.js](https://blissfuljs.com/) for a focus on single elements and extensibility.
 * [Hyperscript](https://hyperscript.org) for Locality of Behavior and awesome ergonomics.
-* Shout out to [Umbrella](https://umbrellajs.com/), [Cash](https://github.com/fabiospampinato/cash), [Zepto](https://zeptojs.com/)- Not quite as ergonomic or extensible.
+* Shout out to [Umbrella](https://umbrellajs.com/), [Cash](https://github.com/fabiospampinato/cash), [Zepto](https://zeptojs.com/)- Not quite as ergonomic. Requires build step to extend.
 
 ## ➡️ Usage Overview
 
