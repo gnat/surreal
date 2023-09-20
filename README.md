@@ -293,6 +293,10 @@ Logging
 * 🌐 `console.log()` `console.warn()` `console.error()`
 * Event logging: 🏁 `monitorEvents(me())` See: [Chrome Blog](https://developer.chrome.com/blog/quickly-monitor-events-from-the-console-panel-2/)
 
+Benchmarking / Time It!
+* 🏁 `console.time('name')`
+* 🏁 `console.timeEnd('name')`
+
 Text / HTML Content
 * 🏁 `me().textContent = "hello world"`
   * XSS Safe! See: [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent)
