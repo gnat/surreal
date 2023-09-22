@@ -1,0 +1,34 @@
+{{ define "person"}}
+<tr>
+  <td>{{ .Name }}</td>
+  <td>{{ .Email }}</td>
+  <td>
+    <button
+      class="btn btn-danger"
+      hx-get="/contact/{{ .Id }}/edit"
+      hx-trigger="edit"
+    >
+      Edit
+      <script>
+        me().onclick = async (event) => {
+          if (any(".editing")) {
+            const result = await Swal.fire({
+              title: "Already editing",
+              showCancelButton: true,
+              confirmButtonText: "Yep, Edit This Row!",
+              text: "Hey! You are already editing a row! Do you want to cancel that edit and continue?",
+            });
+            if (!result.isConfirmed) {
+              return;
+            }
+            any(".editing").forEach((row) =>
+              row.dispatchEvent(new Event("cancel"))
+            );
+          }
+          event.target.dispatchEvent(new Event("edit"));
+        };
+      </script>
+    </button>
+  </td>
+</tr>
+{{ end }}

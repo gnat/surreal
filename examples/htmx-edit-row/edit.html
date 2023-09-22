@@ -1,0 +1,16 @@
+{{ define "person"}}
+<tr hx-trigger="cancel" class="editing" hx-get="/contact/{{ .Id }}">
+  <td><input name="name" value="{{ .Name }}" /></td>
+  <td><input name="email" value="{{ .Email}}" /></td>
+  <td>
+    <button class="btn btn-danger" hx-get="/contact/{{ .Id }}">Cancel</button>
+    <button
+      class="btn btn-danger"
+      hx-put="/contact/{{ .Id }}"
+      hx-include="closest tr"
+    >
+      Save
+    </button>
+  </td>
+</tr>
+{{ end }}
