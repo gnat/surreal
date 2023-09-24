@@ -71,20 +71,12 @@ Surreal is only 320 lines. No build step. No dependencies.
 
 Or, 🌐 use the CDN: `<script src="https://cdn.jsdelivr.net/gh/gnat/surreal/surreal.js"></script>`
 
-## 📚️ Inspired by
-
-* [jQuery](https://jquery.com/) for the chainable syntax we all love.
-* [BlingBling.js](https://github.com/argyleink/blingblingjs) for modern minimalism.
-* [Bliss.js](https://blissfuljs.com/) for a focus on single elements and extensibility.
-* [Hyperscript](https://hyperscript.org) for Locality of Behavior and awesome ergonomics.
-* Shout out to [Umbrella](https://umbrellajs.com/), [Cash](https://github.com/fabiospampinato/cash), [Zepto](https://zeptojs.com/)- Not quite as ergonomic. Requires build step to extend.
-
 ## ➡️ Usage Overview
 
 ### <a name="selectors"></a>🔍️ DOM Selection
 
-* Select **one** element: `me(SELECTOR)`
-  * **SELECTOR** can be any of:
+* Select **one** element: `me(...)`
+  * Can be any of:
     * CSS selector: `".button"`, `"#header"`, `"h1"`, `"body > .block"`
     * Variables: `body`, `elt`, `some_element`
     * Events: the `event.target` will be used.
@@ -94,7 +86,7 @@ Or, 🌐 use the CDN: `<script src="https://cdn.jsdelivr.net/gh/gnat/surreal/sur
   * `me()` Get current element for [Locality of Behavior](https://htmx.org/essays/locality-of-behaviour/) in `<script>` without an explicit **.class** or **#id**
   * `me("body")` Gets `<body>`
   * `me(".button")` Gets the first `<div class="button">...</div>`. To get all of them use `any()`
-* Select **one or more** elements as an array: `any(SELECTOR)`
+* Select **one or more** elements as an array: `any(...)`
   * Similar to `me()` but guaranteed to return an array (or empty array). 
   * `any(".button")` Gets all matching elements, example: `<div class="button">...</div>`
   * Feel free to convert between arrays of elements and single elements: `any(me())`, `me(any(".something"))`
@@ -351,6 +343,14 @@ Feel free to modify Surreal for a particular project; but you can use this syste
 Refer to an existing function to see how to make your function work with 1 or many elements.
 
 Make an [issue](https://github.com/gnat/surreal/issues) or [pull request](https://github.com/gnat/surreal/pulls) if you think people would like to use it! If it's useful enough we'll want it in core.
+
+## 📚️ Inspired by
+
+* [jQuery](https://jquery.com/) for the chainable syntax we all love.
+* [BlingBling.js](https://github.com/argyleink/blingblingjs) for modern minimalism.
+* [Bliss.js](https://blissfuljs.com/) for a focus on single elements and extensibility.
+* [Hyperscript](https://hyperscript.org) for Locality of Behavior and awesome ergonomics.
+* Shout out to [Umbrella](https://umbrellajs.com/), [Cash](https://github.com/fabiospampinato/cash), [Zepto](https://zeptojs.com/)- Not quite as ergonomic. Requires build step to extend.
 
 ## 🌘 Future
 * Always more `showcase.html` goodies!
