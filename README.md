@@ -63,11 +63,13 @@ Do surreal things with [Locality of Behavior](https://htmx.org/essays/locality-o
 
 See the [Live Example](https://gnat.github.io/surreal/showcase.html)! Then [view source](https://github.com/gnat/surreal/blob/main/showcase.html).
 
-## 🎁 Installation
+## 🎁 Install
 
 Surreal is only 320 lines. No build step. No dependencies.
-* [Download Surreal](https://github.com/gnat/surreal/archive/refs/heads/main.zip) and drag `surreal.js` into a directory of your project.
-* Add `<script src="surreal.js"></script>` to your `<head>`.
+
+[📥 Download](https://raw.githubusercontent.com/gnat/surreal/main/surreal.js) into your project, and add `<script src="surreal.js"></script>` to your `<head>`.
+
+Or, 🌐 use the CDN: `<script src="https://cdn.jsdelivr.net/gh/gnat/surreal/surreal.js"></script>`
 
 ## 📚️ Inspired by
 
