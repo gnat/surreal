@@ -345,6 +345,8 @@ Refer to an existing function to see how to make your function work with 1 or ma
 
 Make an [issue](https://github.com/gnat/surreal/issues) or [pull request](https://github.com/gnat/surreal/pulls) if you think people would like to use it! If it's useful enough we'll want it in core.
 
+### ⭐ Awesome Surreal examples, plugins, and resources: [awesome-surreal](https://github.com/gnat/awesome-surreal) !
+
 ## 📚️ Inspired by
 
 * [jQuery](https://jquery.com/) for the chainable syntax we all love.
