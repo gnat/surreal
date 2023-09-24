@@ -328,7 +328,7 @@ Append / Prepend elements.
 * Animations are done with `me().styles(...)` with CSS transitions. Use `await sleep(...)` for timelining.
 * Dropdowns can be done in pure HTML / CSS.
 
-## <a name="plugins"></a>🔌 Adding to Surreal
+## <a name="plugins"></a>🔌 Adding a function
 
 Feel free to modify Surreal for a particular project; but you can use this system to effortlessly merge functions with new versions.
 
