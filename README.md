@@ -273,7 +273,9 @@ Looking for [DOM Selectors](#selectors)?
 ### <a name="plugin-included"></a>🔌 Built-in Plugins
 
 #### Effects
-Build your own effects with `me().styles({...})` then timelining with [CSS transitions using `await` or callbacks](#timelines). We ship some common effects:
+Build effects with `me().styles({...})` with timelines using [CSS transitioned `await` or callbacks](#timelines).
+
+Common effects included:
 
 * 🔗 `fadeOut` 🔁 `fade_out`
   * Fade out and remove element.
@@ -328,7 +330,7 @@ Append / Prepend elements.
 
 ## <a name="plugins"></a>🔌 Extending Surreal
 
-Surreal is tiny enough to be modified for a particular use-case; but there is a system if you prefer to effortlessly merge with new versions.
+Surreal is tiny enough to be modified for a particular project; but feel free to use plugins to effortlessly merge with new versions.
 
 1. Add your function to Surreal
  ```javascript
