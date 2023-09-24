@@ -38,7 +38,7 @@ For devs who love ergonomics! You may appreciate Surreal if:
   * `me()` or `any()` can chain with any Surreal function.
     * `me()` can be used directly as a single element (like `querySelector()` or `$()`)
     * `any()` can use: `for` / `forEach` / `filter` / `map` (like `querySelectorAll()` or `$()`)
-* 🌗 No forced style: `class_add` is just an alias of `classAdd`
+* 🌗 No forced style. Use: `class_add` or `classAdd` or `add_class` or `addClass`
   * Use `camelCase` (Javascript) or `snake_case` (Python, Rust, PHP, Ruby, SQL, *CSS*).
 
 ### 🤔 Why use `me()` / `any()` instead of `$()`
@@ -200,72 +200,72 @@ Looking for [DOM Selectors](#selectors)?
 ### 🧭 Legend
 * 🔗 Chainable off `me()` and `any()`
 * 🌐 Global convenience helper.
-* 🏁 Runnable example.
+* ▶️ Runnable example.
 * 🔌 Built-in Plugin
 ### 👁️ At a glance
 
 * 🔗 `run`
   * It's `forEach` but less wordy and works on single elements, too!
-  * 🏁 `me().run(el => { alert(el) })`
-  * 🏁 `any('button').run(el => { alert(el) })`
+  * ▶️ `me().run(el => { alert(el) })`
+  * ▶️ `any('button').run(el => { alert(el) })`
 * 🔗 `remove`
-  * 🏁 `me().remove()`
-  * 🏁 `any('button').remove()`
-* 🔗 `classAdd` or `class_add`
-  * 🏁 `me().classAdd('active')`
+  * ▶️ `me().remove()`
+  * ▶️ `any('button').remove()`
+* 🔗 `classAdd` 🔁 `class_add` 🔁 `addClass` 🔁 `add_class`
+  * ▶️ `me().classAdd('active')`
   * Leading `.` is optional for all class functions, to prevent typical syntax errors with `me()` and `any()`.
-    * `me().classAdd('active')` and `me().classAdd('.active')` are equivalent.
-* 🔗 `classRemove` or `class_remove`
-  * 🏁 `me().classRemove('active')`
-* 🔗 `classToggle` or `class_toggle`
-  * 🏁 `me().classToggle('active')`
+    * These are the same: `me().classAdd('active')` 🔁 `me().classAdd('.active')`
+* 🔗 `classRemove` 🔁 `class_remove` 🔁 `removeClass` 🔁 `remove_class`
+  * ▶️ `me().classRemove('active')`
+* 🔗 `classToggle` 🔁 `class_toggle` 🔁 `toggleClass` 🔁 `toggle_class`
+  * ▶️ `me().classToggle('active')`
 * 🔗 `styles`
-  * 🏁 `me().styles('color: red')` Add style.
-  * 🏁 `me().styles({ 'color':'red', 'background':'blue' })` Add multiple styles.
-  * 🏁 `me().styles({ 'background':null })` Remove style.
-* 🔗 `attribute` or `attributes` or `attr`
-  * Get: 🏁 `me().attribute('data-x')`
+  * ▶️ `me().styles('color: red')` Add style.
+  * ▶️ `me().styles({ 'color':'red', 'background':'blue' })` Add multiple styles.
+  * ▶️ `me().styles({ 'background':null })` Remove style.
+* 🔗 `attribute` 🔁 `attributes` 🔁 `attr`
+  * Get: ▶️ `me().attribute('data-x')`
     * Get is only for single elements. For many, wrap the call in `any(...).run(...)` or `any(...).forEach(...)`.
-  * Set: 🏁`me().attribute('data-x', true)`
-  * Set multiple: 🏁 `me().attribute({ 'data-x':'yes', 'data-y':'no' })`
-  * Remove: 🏁 `me().attribute('data-x', null)`
-  * Remove multiple: 🏁 `me().attribute({ 'data-x': null, 'data-y':null })`
+  * Set: ▶️`me().attribute('data-x', true)`
+  * Set multiple: ▶️ `me().attribute({ 'data-x':'yes', 'data-y':'no' })`
+  * Remove: ▶️ `me().attribute('data-x', null)`
+  * Remove multiple: ▶️ `me().attribute({ 'data-x': null, 'data-y':null })`
 * 🔗 `trigger`
-  * 🏁 `me().trigger('hello')`
+  * ▶️ `me().trigger('hello')`
   * Wraps `dispatchEvent`
 * 🔗 `on`
-  * 🏁 `me().on('click', ev => { me(ev).styles('background', 'red') })`
+  * ▶️ `me().on('click', ev => { me(ev).styles('background', 'red') })`
   * Wraps `addEventListener`
 * 🔗 `off`
-  * 🏁 `me().remove('click')`
+  * ▶️ `me().remove('click')`
   * Wraps `removeEventListener`
 * 🔗 `offAll`
-  * 🏁 `me().offAll()`
+  * ▶️ `me().offAll()`
 * 🌐 `sleep`
-  * 🏁 `await sleep(1000, ev => { alert(ev) })`
+  * ▶️ `await sleep(1000, ev => { alert(ev) })`
   * `async` version of `setTimeout`
   * Wonderful for animation timelines.
 * 🌐 `tick`
-  * 🏁 `await tick()`
+  * ▶️ `await tick()`
   * `await` version of `rAF` / `requestAnimationFrame`.
   * Animation tick. Waits 1 frame.
   * Great if you need to wait for events to propagate.
 * 🌐 `rAF`
-  * 🏁 `rAF(e => { return e })`
+  * ▶️ `rAF(e => { return e })`
   * Animation tick.  Fires when 1 frame has passed. Alias of [requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame)
   * Great if you need to wait for events to propagate.
 * 🌐 `rIC`
-  * 🏁 `rIC(e => { return e })`
+  * ▶️ `rIC(e => { return e })`
   * Great time to compute. Fires function when JS is idle. Alias of [requestIdleCallback](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestIdleCallback)
 * 🌐 `halt`
-  * 🏁 `halt(event)`
+  * ▶️ `halt(event)`
   * Great to prevent default browser behavior: such as displaying an image vs letting JS handle it.
   * Wrapper for [preventDefault](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault)
-* 🌐 `createElement` or `create_element`
-  * 🏁 `el_new = createElement("div"); me().prepend(el_new)`
-  * Alias of `document.createElement`
-* 🌐 `onloadAdd` or `onload_add`
-  * 🏁 `onloadAdd(_ => { alert("loaded!"); })`
+* 🌐 `createElement` 🔁 `create_element`
+  * ▶️ `el_new = createElement("div"); me().prepend(el_new)`
+  * Alias of vanilla `document.createElement`
+* 🌐 `onloadAdd` 🔁 `onload_add` 🔁 `addOnload` 🔁 `add_onload`
+  * ▶️ `onloadAdd(_ => { alert("loaded!"); })`
   * Execute after the DOM is ready. Similar to jquery `ready()`
   * Queues functions onto `window.onload`
   * Why? So you don't overwrite `window.onload`, also predictable sequential loading!
@@ -275,16 +275,16 @@ Looking for [DOM Selectors](#selectors)?
 #### Effects
 Build your own effects with `me().styles({...})` then timelining with [CSS transitions using `await` or callbacks](#timelines). We ship some common effects:
 
-* 🔗 `fadeOut` or `fade_out`
+* 🔗 `fadeOut` 🔁 `fade_out`
   * Fade out and remove element.
   * Keep element with `remove=false`.
-  * 🏁 `me().fadeOut()`
-  * 🏁 `me().fadeOut(ev => { alert("Faded out!") }, 3000)` Over 3 seconds then call function.
+  * ▶️ `me().fadeOut()`
+  * ▶️ `me().fadeOut(ev => { alert("Faded out!") }, 3000)` Over 3 seconds then call function.
 
-* 🔗 `fadeIn` or `fade_in`
+* 🔗 `fadeIn` 🔁 `fade_in`
   * Fade in existing element which has `opacity: 0`
-  * 🏁 `me().fadeIn()`
-  * 🏁 `me().fadeIn(ev => { alert("Faded in!") }, 3000)` Over 3 seconds then call function.
+  * ▶️ `me().fadeIn()`
+  * ▶️ `me().fadeIn(ev => { alert("Faded in!") }, 3000)` Over 3 seconds then call function.
 
 
 ### <a name="no-surreal"></a>🔮 No Surreal Needed
@@ -293,27 +293,27 @@ More often than not, Vanilla JS is the easiest way!
 
 Logging
 * 🌐 `console.log()` `console.warn()` `console.error()`
-* Event logging: 🏁 `monitorEvents(me())` See: [Chrome Blog](https://developer.chrome.com/blog/quickly-monitor-events-from-the-console-panel-2/)
+* Event logging: ▶️ `monitorEvents(me())` See: [Chrome Blog](https://developer.chrome.com/blog/quickly-monitor-events-from-the-console-panel-2/)
 
 Benchmarking / Time It!
-* 🏁 `console.time('name')`
-* 🏁 `console.timeEnd('name')`
+* ▶️ `console.time('name')`
+* ▶️ `console.timeEnd('name')`
 
 Text / HTML Content
-* 🏁 `me().textContent = "hello world"`
+* ▶️ `me().textContent = "hello world"`
   * XSS Safe! See: [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent)
-* 🏁 `me().innerHTML = "<p>hello world</p>"`
-* 🏁 `me().innerText = "hello world"`
+* ▶️ `me().innerHTML = "<p>hello world</p>"`
+* ▶️ `me().innerText = "hello world"`
 
 Children
-* 🏁 `me().children`
-* 🏁 `me().children.hidden = true`
+* ▶️ `me().children`
+* ▶️ `me().children.hidden = true`
 
 Append / Prepend elements.
-* 🏁 `me().prepend(el_new)`
-* 🏁 `me().appendChild(el_new)`
-* 🏁 `me().insertBefore(el_new, el.firstChild)`
-* 🏁 `me().insertAdjacentHTML("beforebegin", el_new)`
+* ▶️ `me().prepend(el_new)`
+* ▶️ `me().appendChild(el_new)`
+* ▶️ `me().insertBefore(el_new, el.firstChild)`
+* ▶️ `me().insertAdjacentHTML("beforebegin", el_new)`
 
  ## 💎 Conventions & Tips
 
