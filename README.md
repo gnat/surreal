@@ -71,7 +71,7 @@ Surreal is only 320 lines. No build step. No dependencies.
 
 Or, 🌐 use the CDN: `<script src="https://cdn.jsdelivr.net/gh/gnat/surreal/surreal.js"></script>`
 
-## ➡️ Usage Overview
+## ⚡ Usage
 
 ### <a name="selectors"></a>🔍️ DOM Selection
 
@@ -91,7 +91,7 @@ Or, 🌐 use the CDN: `<script src="https://cdn.jsdelivr.net/gh/gnat/surreal/sur
   * `any(".button")` Gets all matching elements, example: `<div class="button">...</div>`
   * Feel free to convert between arrays of elements and single elements: `any(me())`, `me(any(".something"))`
  
-### ⚙️ DOM Functions
+### 🔥 DOM Functions
 
 * ♻️ All functions work on single elements or arrays of elements.
 * 🔗 Start a chain using `me()` and `any()`
@@ -106,7 +106,7 @@ Or, 🌐 use the CDN: `<script src="https://cdn.jsdelivr.net/gh/gnat/surreal/sur
 
 See: [Quick Start](#quick-start) and [Reference](#reference) and [No Surreal Needed](#no-surreal)
 
-## <a name="quick-start"></a>🔥 Quick Start
+## <a name="quick-start"></a>⚡ Quick Start
 
 * Add a class
   * `me().classAdd('red')`
@@ -264,7 +264,7 @@ Looking for [DOM Selectors](#selectors)?
 
 ### <a name="plugin-included"></a>🔌 Built-in Plugins
 
-#### Effects
+### Effects
 Build effects with `me().styles({...})` with timelines using [CSS transitioned `await` or callbacks](#timelines).
 
 Common effects included:
@@ -281,7 +281,7 @@ Common effects included:
   * ▶️ `me().fadeIn(ev => { alert("Faded in!") }, 3000)` Over 3 seconds then call function.
 
 
-### <a name="no-surreal"></a>🔮 No Surreal Needed
+## <a name="no-surreal"></a>🔮 No Surreal Needed
 
 More often than not, Vanilla JS is the easiest way!
 
