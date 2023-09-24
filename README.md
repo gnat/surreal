@@ -322,7 +322,7 @@ Append / Prepend elements.
 
 ## <a name="plugins"></a>🔌 Adding a function
 
-Feel free to modify Surreal for a particular project; but you can use this system to effortlessly merge functions with new versions.
+Feel free to modify Surreal for a particular project any way you like- but you can use this system to effortlessly merge functions with new versions.
 
 1. Add your function
  ```javascript
