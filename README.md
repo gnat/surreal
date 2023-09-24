@@ -187,8 +187,9 @@ any('button')?.forEach(...)
 any('button')?.map(...)
 ```
 
-## <a name="reference"></a>👁️ Function Reference
+## <a name="reference"></a>👁️ Functions
 Looking for [DOM Selectors](#selectors)?
+Looking for stuff [we recommend doing in vanilla JS](#no-surreal)?
 ### 🧭 Legend
 * 🔗 Chainable off `me()` and `any()`
 * 🌐 Global convenience helper.
