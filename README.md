@@ -328,11 +328,11 @@ Append / Prepend elements.
 * Animations are done with `me().styles(...)` with CSS transitions. Use `await sleep(...)` for timelining.
 * Dropdowns can be done in pure HTML / CSS.
 
-## <a name="plugins"></a>🔌 Extending Surreal
+## <a name="plugins"></a>🔌 Adding to Surreal
 
-Surreal is tiny enough to be modified for a particular project; but feel free to use plugins to effortlessly merge with new versions.
+Feel free to modify Surreal for a particular project; but you can use this system to effortlessly merge functions with new versions.
 
-1. Add your function to Surreal
+1. Add your function
  ```javascript
  var $thing = {
    test(e, name) {
@@ -342,16 +342,15 @@ Surreal is tiny enough to be modified for a particular project; but feel free to
  }
  $ = {...$, ...$thing}
  ```
-2. Is your function chainable? Add it to Surreal sugar()
+2. Is your function chainable? Add to `sugar()`
  ```javascript
  $.sugars['test'] = (name) => { return $.test($._e, name) }
  ```
-3. Your function will automatically will be added globally by `globalsAdd()`
-    If you do not want this (ex: Naming clash), add it to the restricted list in `globalsAdd()`
+3. Your function will be added globally by `globalsAdd()` If you do not want this (ex: name clash), add it to the restricted list.
 
-Should your function work with both single elements and arrays of elements? Refer to an existing function to see how to make this work.
+Refer to an existing function to see how to make your function work with 1 or many elements.
 
-Make an [issue](https://github.com/gnat/surreal/issues) or [pull request](https://github.com/gnat/surreal/pulls) if you think people would like to use it! If it's useful enough we may want it in the core!
+Make an [issue](https://github.com/gnat/surreal/issues) or [pull request](https://github.com/gnat/surreal/pulls) if you think people would like to use it! If it's useful enough we'll want it in core.
 
 ## 🌘 Future
 * Always more `showcase.html` goodies!
