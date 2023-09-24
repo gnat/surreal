@@ -206,7 +206,7 @@ Looking for stuff [we recommend doing in vanilla JS](#no-surreal)?
   * ▶️ `any('button').remove()`
 * 🔗 `classAdd` 🔁 `class_add` 🔁 `addClass` 🔁 `add_class`
   * ▶️ `me().classAdd('active')`
-  * Leading `.` is optional for all class functions, to prevent typical syntax errors with `me()` and `any()`.
+  * Leading `.` is **optional** for all class functions, and is removed automatically.
     * These are the same: `me().classAdd('active')` 🔁 `me().classAdd('.active')`
 * 🔗 `classRemove` 🔁 `class_remove` 🔁 `removeClass` 🔁 `remove_class`
   * ▶️ `me().classRemove('active')`
