@@ -16,11 +16,11 @@ var $ = { // You can use a different name than "$", but you must change the refe
 
 		// Classes and CSS.
 		e.classAdd      = (name) => { return $.classAdd(e, name) }
-		e.class_add     = e.classAdd
+		e.class_add     = e.add_class    = e.addClass    = e.classAdd // Aliases
 		e.classRemove   = (name) => { return $.classRemove(e, name) }
-		e.class_remove  = e.classRemove
+		e.class_remove  = e.remove_class = e.removeClass = e.classRemove // Aliases
 		e.classToggle   = (name) => { return $.classToggle(e, name) }
-		e.class_toggle  = e.classToggle
+		e.class_toggle  = e.toggle_class = e.toggleClass = e.classToggle // Aliases
 		e.styles        = (value) => { return $.styles(e, value) }
 
 		// Events.
@@ -292,13 +292,17 @@ const createElement = document.createElement.bind(document)
 const create_element = createElement
 const rAF = typeof requestAnimationFrame !== 'undefined' && requestAnimationFrame
 const rIC = typeof requestIdleCallback !== 'undefined' && requestIdleCallback
+// Sleep without async!
 function sleep(ms, e) {
 	return new Promise(resolve => setTimeout(() => { resolve(e) }, ms))
 }
+// Wait for next animation frame.
 async function tick() {
 	await new Promise(resolve => { requestAnimationFrame(resolve) })
 }
 // Loading helper. Why? So you don't overwrite window.onload. And predictable sequential loading!
+// <script>onloadAdd(() => { console.log("Page was loaded!") })</script>
+// <script>onloadAdd(() => { console.log("Lets do another thing!") })</script>
 function onloadAdd(f) {
 	// window.onload was not set yet.
 	if (typeof window.onload != 'function') {
@@ -312,4 +316,4 @@ function onloadAdd(f) {
 		f()
 	}
 }
-const onload_add = onloadAdd
+const onload_add = add_onload = addOnload = onloadAdd // Aliases
