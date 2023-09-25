@@ -36,13 +36,13 @@ var $ = { // You can use a different name than "$", but you must change the refe
 		e.attributes    = e.attribute
 		e.attr          = e.attribute
 
-        // Tree Traversal.
-        e.el = (selector, start = e, warning = true) => $.el(selector, start, warning)
-        e.any = (selector, start = e, warning = true) => $.any(selector, start, warning)
-        Object.defineProperty(e, 'parent', {
-            get: () => $.sugar(e.parentElement),
-            configurable: true
-        })
+		// Tree Traversal.
+		e.el = (selector, start = e, warning = true) => $.el(selector, start, warning)
+		e.any = (selector, start = e, warning = true) => $.any(selector, start, warning)
+		Object.defineProperty(e, 'parent', {
+			get: () => $.sugar(e.parentElement),
+			configurable: true
+		})
 
 
 		// Add all plugin sugar.
@@ -54,27 +54,27 @@ var $ = { // You can use a different name than "$", but you must change the refe
 		return e
 	},
 
-    // Return current element. Works inside <script> or event handlers created with surreal 🔥
-    // Example
-    //	<div>
-    //		Hello World!
-    //		<script>me.style.color = 'red'</script>
-    //	</div>
+	// Return current element. Works inside <script> or event handlers created with surreal 🔥
+	// Example
+	//	<div>
+	//		Hello World!
+	//		<script>me.style.color = 'red'</script>
+	//	</div>
 	get me() {
 		if (document.currentScript) return $.sugar(document.currentScript.parentElement) // Just local me in <script>
 		else return $._evtEl // If we are in an event handler this will be the element declaring the handler
 	},
 
-    // Return single element.
-    // If your query returns a collection, it will return the first element.
+	// Return single element.
+	// If your query returns a collection, it will return the first element.
 	el(selector, start=document, warning=true) {
-        if ($.isNodeList(start)) {
-            for (const node of start) {
-                const res = $.el(selector, node, warning)
-                if (res) return res
-            }
-            return null
-        }
+		if ($.isNodeList(start)) {
+			for (const node of start) {
+				const res = $.el(selector, node, warning)
+				if (res) return res
+			}
+			return null
+		}
 		if (selector instanceof Event) return $.el(selector.currentTarget) // Events return event.currentTarget
 		if (typeof selector == 'string' && isSelector(selector, start, warning)) return $.sugar(start.querySelector(selector)) // String selector.
 		if ($.isNodeList(selector)) return $.el(selector[0]) // If we got a list, just take the first element.
@@ -86,14 +86,14 @@ var $ = { // You can use a different name than "$", but you must change the refe
 	// Returns an Array of elements (so you can use methods like forEach/filter/map/reduce if you want).
 	// Example: any('button')
 	any(selector, start=document, warning=true) {
-        if ($.isNodeList(start)) {
-            let res = []
-            for (const node of start) {
-                const matches = $.any(selector, node, false)
-                if (matches) res = res.concat(matches)
-            }
-            return [...new Set(res)] // Remove duplicate matches
-        }
+		if ($.isNodeList(start)) {
+			let res = []
+			for (const node of start) {
+				const matches = $.any(selector, node, false)
+				if (matches) res = res.concat(matches)
+			}
+			return [...new Set(res)] // Remove duplicate matches
+		}
 		if (selector instanceof Event) return $.any(selector.currentTarget) // Events return event.currentTarget
 		if (typeof selector == 'string' && isSelector(selector, start, true, warning)) return $.sugar(Array.from(start.querySelectorAll(selector))) // String selector.
 		if ($.isNode(selector)) return $.sugar([selector]) // Single element. Convert to Array.
@@ -166,12 +166,12 @@ var $ = { // You can use a different name than "$", but you must change the refe
 	//	✂️ Vanilla: document.querySelector(".thing").addEventListener("click", (e) => { alert("clicked") }
 	on(e, name, fn) {
 		if (typeof name !== 'string') return null
-        // Store the current element for use by 'me' in the event handler
-        function listener(evt) {
-            $._evtEl = e
-            try { fn(evt) }
-            finally { delete $._evtEl }
-        }
+		// Store the current element for use by 'me' in the event handler
+		function listener(evt) {
+			$._evtEl = e
+			try { fn(evt) }
+			finally { delete $._evtEl }
+		}
 		if ($.isNodeList(e)) e.forEach(_ => { on(_, name, listener) })
 		if ($.isNode(e)) e.addEventListener(name, listener)
 		return e
@@ -278,13 +278,13 @@ var $ = { // You can use a different name than "$", but you must change the refe
 }
 
 function mergePlugin(dollarsign, plugin) {
-    // Merges properties of plugin into dollarsign, keeping descriptors intact
-    const props = Object.keys(plugin)
-    for (const prop of props) {
-        const descriptor = Object.getOwnPropertyDescriptor(plugin, prop)
-        Object.defineProperty(dollarsign, prop, descriptor)
-    }
-    return dollarsign
+	// Merges properties of plugin into dollarsign, keeping descriptors intact
+	const props = Object.keys(plugin)
+	for (const prop of props) {
+		const descriptor = Object.getOwnPropertyDescriptor(plugin, prop)
+		Object.defineProperty(dollarsign, prop, descriptor)
+	}
+	return dollarsign
 }
 
 // 📦 Plugin: Effects
