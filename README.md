@@ -61,7 +61,7 @@ Do surreal things with [Locality of Behavior](https://htmx.org/essays/locality-o
 </label>
 ```
 
-See the [Live Example](https://gnat.github.io/surreal/showcase.html)! Then [view source](https://github.com/gnat/surreal/blob/main/showcase.html).
+See the [Live Example](https://gnat.github.io/surreal/example.html)! Then [view source](https://github.com/gnat/surreal/blob/main/example.html).
 
 ## 🎁 Install
 
@@ -356,7 +356,7 @@ Make an [issue](https://github.com/gnat/surreal/issues) or [pull request](https:
 * Shout out to [Umbrella](https://umbrellajs.com/), [Cash](https://github.com/fabiospampinato/cash), [Zepto](https://zeptojs.com/)- Not quite as ergonomic. Requires build step to extend.
 
 ## 🌘 Future
-* Always more `showcase.html` goodies!
+* Always more `example.html` goodies!
 * Automated browser testing perhaps with:
   * [Fava](https://github.com/fabiospampinato/fava). See: https://github.com/avajs/ava/issues/24#issuecomment-885949036
   * [Ava](https://github.com/avajs/ava/blob/main/docs/recipes/browser-testing.md)
