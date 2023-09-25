@@ -67,7 +67,7 @@ var $ = { // You can use a different name than "$", but you must change the refe
 
     // Return single element.
     // If your query returns a collection, it will return the first element.
-	el(selector=null, start=document, warning=true) {
+	el(selector, start=document, warning=true) {
         if ($.isNodeList(start)) {
             for (const node of start) {
                 const res = $.el(selector, node, warning)
