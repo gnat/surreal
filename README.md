@@ -38,7 +38,7 @@ For devs who love ergonomics! You may appreciate Surreal if:
   * `me()` or `any()` can chain with any Surreal function.
     * `me()` can be used directly as a single element (like `querySelector()` or `$()`)
     * `any()` can use: `for` / `forEach` / `filter` / `map` (like `querySelectorAll()` or `$()`)
-* 🌗 No forced style. Use: `class_add` or `classAdd` or `add_class` or `addClass`
+* 🌗 No forced style. Use: `classAdd` or `class_add` or `addClass` or `add_class`
   * Use `camelCase` (Javascript) or `snake_case` (Python, Rust, PHP, Ruby, SQL, *CSS*).
 
 ### 🤔 Why use `me()` / `any()` instead of `$()`
