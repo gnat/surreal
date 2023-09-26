@@ -95,14 +95,13 @@ Or, 🌐 use the CDN: `<script src="https://cdn.jsdelivr.net/gh/gnat/surreal/sur
 
 * ♻️ All functions work on single elements or arrays of elements.
 * 🔗 Start a chain using `me()` and `any()`
-  * 🟢 Style A - 🔗 Chain style
-    * `me().classAdd('red')` (⭐ *RECOMMENDED*)
-      * Alternative, no conveniences: `$.me().classAdd('red')`
-  * 🟠 Style B
-    * `classAdd(me(), 'red')`
-      * Alternative, no conveniences: `$.classAdd($.me(), 'red')`
+  * 🟢 Style A `me().classAdd('red')` ⭐ Chain style, recommended!
+  * 🟠 Style B: `classAdd(me(), 'red')`
 * 🌐 Global conveniences help you write less code.
-  * `globalsAdd()` will automatically warn about any clobbering issues. If you prefer no conveniences, just delete `globalsAdd()`
+  * `globalsAdd()` will automatically warn about any clobbering issues.
+    * If you prefer no conveniences, just delete `globalsAdd()`
+      * `me().classAdd('red')` with `globalsAdd()` removed: `$.me().classAdd('red')`
+      * `classAdd(me(), 'red')` with `globalsAdd()` removed: `$.classAdd($.me(), 'red')`
 
 See: [Quick Start](#quick-start) and [Reference](#reference) and [No Surreal Needed](#no-surreal)
 
@@ -112,7 +111,7 @@ See: [Quick Start](#quick-start) and [Reference](#reference) and [No Surreal Nee
   * `me().classAdd('red')`
   * `any("button").classAdd('red')`
 * Events
-  * `me().on("click", ev => me(ev).fade_out() )`
+  * `me().on("click", ev => me(ev).fadeOut() )`
   * `on(any('button'), 'click', ev => { me(ev).styles('color: red') })`
 * Run functions over elements.
   * `any('button').run(_ => { alert(_) })`
