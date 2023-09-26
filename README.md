@@ -36,7 +36,7 @@ For devs who love ergonomics! You may appreciate Surreal if:
   * Get 1 element: `me()`
   * ..or many elements: `any()`
   * `me()` or `any()` can chain with any Surreal function.
-    * `me()` can be used directly as a single element (like `querySelector()`)
+    * `me()` can be used directly as a single element (like `querySelector()` or `$()`)
     * `any()` can use: `for` / `forEach` / `filter` / `map` (like `querySelectorAll()` or `$()`)
 * 🌗 No forced style. Use: `class_add` or `classAdd` or `add_class` or `addClass`
   * Use `camelCase` (Javascript) or `snake_case` (Python, Rust, PHP, Ruby, SQL, *CSS*).
@@ -211,8 +211,6 @@ Looking for stuff [we recommend doing in vanilla JS](#no-surreal)?
   * ▶️ `me().styles('color: red')` Add style.
   * ▶️ `me().styles({ 'color':'red', 'background':'blue' })` Add multiple styles.
   * ▶️ `me().styles({ 'background':null })` Remove style.
-  * Animations are done with `me().styles(...)` using CSS transitions (or animated `@keyframes`).
-    * Advanced timeline animations can be done with `await sleep(...)`. See [examples](#-quick-start)
 * 🔗 `attribute` 🔁 `attributes` 🔁 `attr`
   * Get: ▶️ `me().attribute('data-x')`
     * Get is only for single elements. For many, wrap the call in `any(...).run(...)` or `any(...).forEach(...)`.
@@ -313,8 +311,6 @@ Append / Prepend elements.
 * `e`, `el`, `elt` = element
 * `e`, `ev`, `evt` = event
 * `f`, `fn` = function
-* Animations can be done with `me().styles(...)` with CSS transitions, or animated `@keyframes`.
-  * Use `await sleep(...)` for timeline animations that can run anything. See [examples](#-quick-start)
 * Many things can be done in vanilla HTML / CSS (ex: dropdowns).
 * Find where your change touches the least code.
 * Simplicity and ergonomics tend to have exponential payoff.
