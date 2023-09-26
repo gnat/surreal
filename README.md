@@ -126,7 +126,7 @@ See: [Quick Start](#quick-start) and [Reference](#reference) and [No Surreal Nee
 ```html
 <div>I change color every second.
   <script>
-    // Every second do something new, without blocking javascript.
+    // Every second do something new.
     me().on("click", async ev => {
       me(ev).styles({ "transition": "background 1s" })
       await sleep(1000)
