@@ -125,10 +125,9 @@ See: [Quick Start](#quick-start) and [Reference](#reference) and [No Surreal Nee
 <a name="timelines"></a>
 #### Timeline animations without any libraries.
 ```html
-
 <div>I change color every second.
   <script>
-    // Locality of Behavior
+    // Every second do something new, without blocking javascript.
     me().on("click", async ev => {
       me(ev).styles({ "transition": "background 1s" })
       await sleep(1000)
@@ -147,36 +146,33 @@ See: [Quick Start](#quick-start) and [Reference](#reference) and [No Surreal Nee
 ```
 ```html
 <div>I fade out and remove myself.
-  <script>
-    // Keepin it simple! Locality of Behavior.
-    me().on("click", ev => { me(ev).fadeOut() })
-  </script>
+  <script>me().on("click", ev => { me(ev).fadeOut() })</script>
 </div>
 ```
 ```html
 <div>I change color every second.
-<script>
-  // Run on load.
-  (async (el = me())=>{
-    me(el).styles({ "transition": "background 1s" })
-    await sleep(1000)
-    me(el).styles({ "background": "red" })
-    await sleep(1000)
-    me(el).styles({ "background": "green" })
-    await sleep(1000)
-    me(el).styles({ "background": "blue" })
-    await sleep(1000)
-    me(el).styles({ "background": "none" })
-    await sleep(1000)
-    me(el).remove()
-  })()
-</script>
+  <script>
+    // Run immediately.
+    (async (e = me()) => {
+      me(e).styles({ "transition": "background 1s" })
+      await sleep(1000)
+      me(e).styles({ "background": "red" })
+      await sleep(1000)
+      me(e).styles({ "background": "green" })
+      await sleep(1000)
+      me(e).styles({ "background": "blue" })
+      await sleep(1000)
+      me(e).styles({ "background": "none" })
+      await sleep(1000)
+      me(e).remove()
+    })()
+  </script>
 </div>
 ```
 ```html
 <script>
-  // Keepin it simple! Globally!
-  (async ()=>{
+  // Run immediately, for every <button> globally!
+  (async () => {
     any("button").fadeOut()
   })()
 </script>
@@ -199,8 +195,8 @@ Looking for stuff [we recommend doing in vanilla JS](#no-surreal)?
 
 * 🔗 `run`
   * It's `forEach` but less wordy and works on single elements, too!
-  * ▶️ `me().run(el => { alert(el) })`
-  * ▶️ `any('button').run(el => { alert(el) })`
+  * ▶️ `me().run(e => { alert(e) })`
+  * ▶️ `any('button').run(e => { alert(e) })`
 * 🔗 `remove`
   * ▶️ `me().remove()`
   * ▶️ `any('button').remove()`
@@ -216,6 +212,8 @@ Looking for stuff [we recommend doing in vanilla JS](#no-surreal)?
   * ▶️ `me().styles('color: red')` Add style.
   * ▶️ `me().styles({ 'color':'red', 'background':'blue' })` Add multiple styles.
   * ▶️ `me().styles({ 'background':null })` Remove style.
+  * Animations are done with `me().styles(...)` using CSS transitions (or animated `@keyframes`).
+    * Advanced timeline animations can be done with `await sleep(...)`. See [examples](#-quick-start)
 * 🔗 `attribute` 🔁 `attributes` 🔁 `attr`
   * Get: ▶️ `me().attribute('data-x')`
     * Get is only for single elements. For many, wrap the call in `any(...).run(...)` or `any(...).forEach(...)`.
@@ -255,7 +253,7 @@ Looking for stuff [we recommend doing in vanilla JS](#no-surreal)?
   * Great to prevent default browser behavior: such as displaying an image vs letting JS handle it.
   * Wrapper for [preventDefault](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault)
 * 🌐 `createElement` 🔁 `create_element`
-  * ▶️ `el_new = createElement("div"); me().prepend(el_new)`
+  * ▶️ `e_new = createElement("div"); me().prepend(e_new)`
   * Alias of vanilla `document.createElement`
 * 🌐 `onloadAdd` 🔁 `onload_add` 🔁 `addOnload` 🔁 `add_onload`
   * ▶️ `onloadAdd(_ => { alert("loaded!"); })`
@@ -305,10 +303,10 @@ Children
 * ▶️ `me().children.hidden = true`
 
 Append / Prepend elements.
-* ▶️ `me().prepend(el_new)`
-* ▶️ `me().appendChild(el_new)`
-* ▶️ `me().insertBefore(el_new, el.firstChild)`
-* ▶️ `me().insertAdjacentHTML("beforebegin", el_new)`
+* ▶️ `me().prepend(new_element)`
+* ▶️ `me().appendChild(new_element)`
+* ▶️ `me().insertBefore(element, other_element.firstChild)`
+* ▶️ `me().insertAdjacentHTML("beforebegin", new_element)`
 
  ## 💎 Conventions & Tips
 
@@ -316,10 +314,11 @@ Append / Prepend elements.
 * `e`, `el`, `elt` = element
 * `e`, `ev`, `evt` = event
 * `f`, `fn` = function
-* Developer ergonomics and simplicity wins.
-* Find the layer where the change needs to touch the least places.
-* Animations are done with `me().styles(...)` with CSS transitions. Use `await sleep(...)` for timelining.
-* Dropdowns can be done in pure HTML / CSS.
+* Animations can be done with `me().styles(...)` with CSS transitions, or animated `@keyframes`.
+  * Use `await sleep(...)` for timeline animations that can run anything. See [examples](#-quick-start)
+* Many things can be done in vanilla HTML / CSS (ex: dropdowns).
+* Find where your change touches the least code.
+* Simplicity and ergonomics tend to have exponential payoff.
 
 ## <a name="plugins"></a>🔌 Adding a function
 
