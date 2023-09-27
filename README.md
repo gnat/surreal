@@ -29,9 +29,9 @@ For devs who love ergonomics! You may appreciate Surreal if:
 * ⚡️ [Locality of Behavior (LoB)](https://htmx.org/essays/locality-of-behaviour/) Use `me()` inside `<script>`
   * Get an element without creating a unique name: No **.class** or **#id** needed!
   * `this` but better!
-  * Want to use it in your CSS `<style>` tags, too? See our [companion script](https://github.com/gnat/css-scope-inline)
+  * Want to use `me` in your CSS `<style>` tags, too? See our [companion script](https://github.com/gnat/css-scope-inline)
 * 🔗 Call chaining, jQuery style.
-* ♻️ Functions work seamlessly on one element or arrays of elements!
+* ♻️ Functions work seamlessly on 1 element or arrays of elements!
   * All functions can use: `me()`, `any()`, `NodeList`, `HTMLElement` (..or arrays of these!)
   * Get 1 element: `me()`
   * ..or many elements: `any()`
@@ -45,7 +45,7 @@ For devs who love ergonomics! You may appreciate Surreal if:
 * 💡 We solve the classic jQuery code bloat problem: Am I getting 1 element or an array of elements?
   * `me()` is guaranteed to return 1 element (or first found, or null).
   * `any()` is guaranteed to return an array (or empty array).
-  * No more checks! Write less code! Bonus: Code reads more like self-documenting english.
+  * No more checks = you write less code. Bonus: Code reads more like self-documenting english.
 
 ## 👁️ How does it look?
 
@@ -78,17 +78,17 @@ Or, 🌐 use the CDN: `<script src="https://cdn.jsdelivr.net/gh/gnat/surreal/sur
 * Select **one** element: `me(...)`
   * Can be any of:
     * CSS selector: `".button"`, `"#header"`, `"h1"`, `"body > .block"`
-    * Variables: `body`, `elt`, `some_element`
-    * Events: the `event.target` will be used.
+    * Variables: `body`, `e`, `some_element`
+    * Events: `event.target` will be used.
     * Surreal selectors: `me()`,`any()`
-    * Adding the `, start=` parameter provides a starting point to select from, default is `document`.
-      * Example: `any('button', start='header').classAdd('red')`
+    * Adding a `start=` parameter provides a starting DOM location to select from. Default is `document`
+      * ▶️ `any('button', start='header').classAdd('red')`
   * `me()` Get current element for [Locality of Behavior](https://htmx.org/essays/locality-of-behaviour/) in `<script>` without an explicit **.class** or **#id**
   * `me("body")` Gets `<body>`
   * `me(".button")` Gets the first `<div class="button">...</div>`. To get all of them use `any()`
 * Select **one or more** elements as an array: `any(...)`
   * Similar to `me()` but guaranteed to return an array (or empty array). 
-  * `any(".button")` Gets all matching elements, example: `<div class="button">...</div>`
+  * `any(".foo")` Gets all matching elements, such as: `<div class="foo">...</div>`
   * Feel free to convert between arrays of elements and single elements: `any(me())`, `me(any(".something"))`
  
 ### 🔥 DOM Functions
