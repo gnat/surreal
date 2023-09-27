@@ -29,7 +29,7 @@ For devs who love ergonomics! You may appreciate Surreal if:
 * ⚡️ [Locality of Behavior (LoB)](https://htmx.org/essays/locality-of-behaviour/) Use `me()` inside `<script>`
   * Get an element without creating a unique name: No **.class** or **#id** needed!
   * `this` but better!
-  * Want to use `me` in your CSS `<style>` tags, too? See our [companion script](https://github.com/gnat/css-scope-inline)
+  * Want `me` in your CSS `<style>` tags, too? See our [companion script](https://github.com/gnat/css-scope-inline)
 * 🔗 Call chaining, jQuery style.
 * ♻️ Functions work seamlessly on 1 element or arrays of elements!
   * All functions can use: `me()`, `any()`, `NodeList`, `HTMLElement` (..or arrays of these!)
