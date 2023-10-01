@@ -24,7 +24,7 @@ For devs who love ergonomics! You may appreciate Surreal if:
 * Pairs well with [htmx](https://htmx.org)
 * Want fewer layers, less complexity. Are aware of the cargo cult. ✈️
 
-## ✨ What will this add to my vanilla javascript?
+## ✨ What does it add to Javascript?
 
 * ⚡️ [Locality of Behavior (LoB)](https://htmx.org/essays/locality-of-behaviour/) Use `me()` inside `<script>`
   * Get an element without creating a unique name: No **.class** or **#id** needed!
