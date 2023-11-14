@@ -313,7 +313,14 @@ Append / Prepend elements.
 * `f`, `fn` = function
 * Many things can be done in vanilla HTML / CSS (ex: dropdowns).
 * Find where your change touches the least code.
-* Simplicity and ergonomics tend to have exponential payoff.
+* Simplicity and ergonomics tend to have exponential payoff
+
+## 🔎 Technical FAQ
+* Can I locally scope functions to `<script>` ?
+  * The recommended way to scope a function is to place it in an event, ex: `me().on('click', ev => { ... })`
+  * The 2nd recommended way is to avoid scoping functions and keep a `common.js` file for global functions.
+  * The 3rd way is using `<script type="module">` but `me()` will no longer see `parentElement` so, an explicit selector is required, ex: `me(".mybutton")`
+    * This is a tradeoff solution, but may be most appropriate in some circumstances.
 
 ## <a name="plugins"></a>🔌 Adding a function
 
