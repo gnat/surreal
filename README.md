@@ -1,4 +1,5 @@
-# 🗿 Surreal - tiny jQuery alternative for vanilla JS + inline Locality of Behavior
+# 🗿 Surreal
+### Tiny jQuery alternative for plain Javascript featuring inline [Locality of Behavior](https://htmx.org/essays/locality-of-behaviour/)!
 
 ![cover](https://user-images.githubusercontent.com/24665/171092805-b41286b2-be4a-4aab-9ee6-d604699cc507.png)
 (Art by [shahabalizadeh](https://www.deviantart.com/shahabalizadeh))
