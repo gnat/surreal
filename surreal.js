@@ -36,37 +36,65 @@ var $ = { // You can use a different name than "$", but you must change the refe
 		e.attributes    = e.attribute
 		e.attr          = e.attribute
 
+		// Tree Traversal.
+		e.el = (selector, start = e, warning = true) => $.el(selector, start, warning)
+		e.any = (selector, start = e, warning = true) => $.any(selector, start, warning)
+		Object.defineProperty(e, 'parent', {
+			get: () => $.sugar(e.parentElement),
+			configurable: true
+		})
+
+
 		// Add all plugin sugar.
 		$._e = e // Plugin access to "e" for chaining.
-		for (const [key, value] of Object.entries(sugars)) {
+		for (const [key, value] of Object.entries($.sugars)) {
 			e[key] = value.bind($) //e[key] = value
 		}
 
 		return e
 	},
 
-	// Return single element. Selector not needed if used with inline <script> 🔥
-	// If your query returns a collection, it will return the first element.
+	// Return current element. Works inside <script> or event handlers created with surreal 🔥
 	// Example
 	//	<div>
 	//		Hello World!
-	//		<script>me().style.color = 'red'</script>
+	//		<script>me.style.color = 'red'</script>
 	//	</div>
-	me(selector=null, start=document, warning=true) {
-		if (selector == null) return $.sugar(start.currentScript.parentElement) // Just local me() in <script>
-		if (selector instanceof Event) return $.me(selector.target) // Events return event.target
+	get me() {
+		if (document.currentScript) return $.sugar(document.currentScript.parentElement) // Just local me in <script>
+		else return $._evtEl // If we are in an event handler this will be the element declaring the handler
+	},
+
+	// Return single element.
+	// If your query returns a collection, it will return the first element.
+	el(selector, start=document, warning=true) {
+		if ($.isNodeList(start)) {
+			for (const node of start) {
+				const res = $.el(selector, node, warning)
+				if (res) return res
+			}
+			return null
+		}
+		if (selector instanceof Event) return $.el(selector.currentTarget) // Events return event.currentTarget
 		if (typeof selector == 'string' && isSelector(selector, start, warning)) return $.sugar(start.querySelector(selector)) // String selector.
-		if ($.isNodeList(selector)) return $.me(selector[0]) // If we got a list, just take the first element.
+		if ($.isNodeList(selector)) return $.el(selector[0]) // If we got a list, just take the first element.
 		if ($.isNode(selector)) return $.sugar(selector) // Valid element.
 		return null // Invalid.
 	},
 
-	// any() is me() but always returns array of elements. Requires selector.
+	// any() is el() but always returns array of elements. Requires selector.
 	// Returns an Array of elements (so you can use methods like forEach/filter/map/reduce if you want).
 	// Example: any('button')
 	any(selector, start=document, warning=true) {
-		if (selector == null) return $.sugar([start.currentScript.parentElement]) // Just local me() in <script>
-		if (selector instanceof Event) return $.any(selector.target) // Events return event.target
+		if ($.isNodeList(start)) {
+			let res = []
+			for (const node of start) {
+				const matches = $.any(selector, node, false)
+				if (matches) res = res.concat(matches)
+			}
+			return [...new Set(res)] // Remove duplicate matches
+		}
+		if (selector instanceof Event) return $.any(selector.currentTarget) // Events return event.currentTarget
 		if (typeof selector == 'string' && isSelector(selector, start, true, warning)) return $.sugar(Array.from(start.querySelectorAll(selector))) // String selector.
 		if ($.isNode(selector)) return $.sugar([selector]) // Single element. Convert to Array.
 		if ($.isNodeList(selector)) return $.sugar(Array.from(selector)) // Valid NodeList or Array.
@@ -138,8 +166,14 @@ var $ = { // You can use a different name than "$", but you must change the refe
 	//	✂️ Vanilla: document.querySelector(".thing").addEventListener("click", (e) => { alert("clicked") }
 	on(e, name, fn) {
 		if (typeof name !== 'string') return null
-		if ($.isNodeList(e)) e.forEach(_ => { on(_, name, fn) })
-		if ($.isNode(e)) e.addEventListener(name, fn)
+		// Store the current element for use by 'me' in the event handler
+		function listener(evt) {
+			$._evtEl = e
+			try { fn(evt) }
+			finally { delete $._evtEl }
+		}
+		if ($.isNodeList(e)) e.forEach(_ => { on(_, name, listener) })
+		if ($.isNode(e)) e.addEventListener(name, listener)
 		return e
 	},
 
@@ -211,10 +245,11 @@ var $ = { // You can use a different name than "$", but you must change the refe
 	// Puts Surreal functions except for "restricted" in global scope.
 	globalsAdd() {
 		console.log(`Surreal: adding convenience globals to window`)
-		restricted = ['$', 'sugar']
-		for (const [key, value] of Object.entries(this)) {
-			if (!restricted.includes(key)) window[key] != 'undefined' ? window[key] = value : console.warn(`Surreal: "${key}()" already exists on window. Skipping to prevent overwrite.`)
-			window.document[key] = value
+		restricted = ['sugar']
+		for (const key of Object.keys(this)) {
+			const descriptor = Object.getOwnPropertyDescriptor(this, key)
+			if (!restricted.includes(key) && !key.startsWith('$')) window[key] != 'undefined' ? Object.defineProperty(window, key, descriptor) : console.warn(`Surreal: "${key}()" already exists on window. Skipping to prevent overwrite.`)
+			Object.defineProperty(window.document, key, descriptor)
 		}
 	},
 
@@ -240,6 +275,16 @@ var $ = { // You can use a different name than "$", but you must change the refe
 		}
 		return true // Valid.
 	},
+}
+
+function mergePlugin(dollarsign, plugin) {
+	// Merges properties of plugin into dollarsign, keeping descriptors intact
+	const props = Object.keys(plugin)
+	for (const prop of props) {
+		const descriptor = Object.getOwnPropertyDescriptor(plugin, prop)
+		Object.defineProperty(dollarsign, prop, descriptor)
+	}
+	return dollarsign
 }
 
 // 📦 Plugin: Effects
@@ -278,7 +323,7 @@ var $effects = {
 	},
 	$effects
 }
-$ = {...$, ...$effects}
+mergePlugin($, $effects)
 $.sugars['fadeOut']  = (fn, ms) => { return $.fadeOut($._e, fn=false, ms=1000) }
 $.sugars['fadeIn']  = (fn, ms) => { return $.fadeIn($._e, fn=false, ms=1000) }
 $.sugars['fade_out', 'fade_in'] = $.sugars['fadeOut', 'fadeIn']
