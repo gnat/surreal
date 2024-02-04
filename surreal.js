@@ -54,7 +54,7 @@ var $ = { // You can use a different name than "$", but you must change the refe
 	//	</div>
 	me(selector=null, start=document, warning=true) {
 		if (selector == null) return $.sugar(start.currentScript.parentElement) // Just local me() in <script>
-		if (selector instanceof Event) return $.me(selector.target) // Events return event.target
+		if (selector instanceof Event) return $.me(selector.currentTarget) // Events return event.currentTarget
 		if (typeof selector == 'string' && isSelector(selector, start, warning)) return $.sugar(start.querySelector(selector)) // String selector.
 		if ($.isNodeList(selector)) return $.me(selector[0]) // If we got a list, just take the first element.
 		if ($.isNode(selector)) return $.sugar(selector) // Valid element.
@@ -66,7 +66,7 @@ var $ = { // You can use a different name than "$", but you must change the refe
 	// Example: any('button')
 	any(selector, start=document, warning=true) {
 		if (selector == null) return $.sugar([start.currentScript.parentElement]) // Just local me() in <script>
-		if (selector instanceof Event) return $.any(selector.target) // Events return event.target
+		if (selector instanceof Event) return $.any(selector.currentTarget) // Events return event.currentTarget
 		if (typeof selector == 'string' && isSelector(selector, start, true, warning)) return $.sugar(Array.from(start.querySelectorAll(selector))) // String selector.
 		if ($.isNode(selector)) return $.sugar([selector]) // Single element. Convert to Array.
 		if ($.isNodeList(selector)) return $.sugar(Array.from(selector)) // Valid NodeList or Array.
@@ -133,7 +133,7 @@ var $ = { // You can use a different name than "$", but you must change the refe
 	},
 
 	// Add event listener to element(s).
-	// Match with: if(!event.target.matches(".selector")) return;
+	// Match a sender: if(!event.target.matches(".selector")) return;
 	//	📚️ https://developer.mozilla.org/en-US/docs/Web/API/Event
 	//	✂️ Vanilla: document.querySelector(".thing").addEventListener("click", (e) => { alert("clicked") }
 	on(e, name, fn) {
