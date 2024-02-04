@@ -1,4 +1,4 @@
-// Welcome to Surreal
+// Welcome to Surreal 1.0.1
 // Documentation: https://github.com/gnat/surreal
 // Locality of Behavior (LoB): https://htmx.org/essays/locality-of-behaviour/
 var $ = { // You can use a different name than "$", but you must change the reference in any plugins you use!
