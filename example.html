@@ -16,7 +16,10 @@
 		</button>
 		<button class="invisible">👻 Click me to fade in.
 			<script>
-				me().on("click", ev => { me(ev).fadeIn() })
+				me().on("click", ev => {
+					// Simple way to limit number of actions.
+					if(me(ev)?.fadeInLimit <= 1) return; else { me(ev).fadeInLimit = 1; me(ev).fadeIn() }
+				})
 			</script>
 		</button>
 		<button class="blue">😺 Visit the source code for this page.
@@ -125,12 +128,13 @@
 					me().on("close", async (ev) => {
 						ev.stopPropagation() // Event stops here.
 						let el = me(ev) // Save because event currentTarget will be lost after await
-						me(el).styles({"transition":"all 1s", "background":"green"})
-						await sleep(1000)
-						me(el).styles({"background":"orange"})
-						await sleep(1000)
-						me(el).styles({"opacity":"0"})
-						await sleep(1000)
+						me(el).styles({"transition":"all 0.5s", "background":"red"})
+						await sleep(500)
+						me(el).styles({"background":"white"})
+						await sleep(500)
+						me(el).styles({"background":"red"})
+						await sleep(500)
+						me(el).styles({"background":"white"})
 						me(el).fadeOut()
 					})
 				</script>

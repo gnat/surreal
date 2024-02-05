@@ -1,4 +1,4 @@
-// Welcome to Surreal 1.0.2
+// Welcome to Surreal 1.0.3
 // Documentation: https://github.com/gnat/surreal
 // Locality of Behavior (LoB): https://htmx.org/essays/locality-of-behaviour/
 var $ = { // You can use a different name than "$", but you must change the reference in any plugins you use!
@@ -263,32 +263,33 @@ var $effects = {
 	// Fade out and remove element.
 	// Equivalent to jQuery fadeOut(), but actually removes the element!
 	fadeOut(e, fn=false, ms=1000, remove=true) {
-		thing = e
-			
+		let thing = e
 		if ($.isNodeList(e)) e.forEach(_ => { fadeOut(_, fn, ms) })
 		if ($.isNode(e)) {
 			(async() => {
-				$.styles(e, 'max-height: 100%; overflow: hidden')
-				$.styles(e, `transition: all ${ms}ms ease-out`)
+				$.styles(e, {transform: 'scale(1)', transition: `all ${ms}ms ease-out`, overflow: 'hidden'})
 				await tick()
-				$.styles(e, 'max-height: 0%; padding: 0; opacity: 0')
+				$.styles(e, {transform: 'scale(0.9)', opacity: '0'})
 				await sleep(ms, e)
-				if (fn === 'function') fn()
+				if (fn === 'function') fn(thing) // Run custom callback?
 				if (remove) $.remove(thing) // Remove element after animation is completed?
 			})()
 		}
 	},
+	// Fade in an element that has opacity under 1
 	fadeIn(e, fn=false, ms=1000) {
-		thing = e		
+		let thing = e
 		if($.isNodeList(e)) e.forEach(_ => { fadeIn(_, fn, ms) })
 		if($.isNode(e)) {
 			(async() => {
-				$.styles(e, 'max-height: 100%; overflow: hidden')
-				$.styles(e, `transition: all ${ms}ms ease-in`)
+				let save = e.style // Store original style.
+				$.styles(e, {transition: `all ${ms}ms ease-in`, overflow: 'hidden'})
 				await tick()
-				$.styles(e, 'max-height: 100%; opacity: 1')
+				$.styles(e, {opacity: '1'})
 				await sleep(ms, e)
-				if (fn === 'function') fn()
+				e.style = save // Revert back to original style.
+				$.styles(e, {opacity: '1'}) // Ensure we're visible after reverting to original style.
+				if (fn === 'function') fn(thing) // Run custom callback?
 			})()
 		}
 	},
