@@ -106,9 +106,9 @@
 			</script>
 		</div>
 		<!-- Event examples -->
-		<div thick>📬 I close instantly from a child button event.
+		<div thick>📬 I close from a child button event.
 			<script>
-				me().on("close", (ev) => { me(ev).remove() }) // Recieve "close" event.
+				me().on("close", (ev) => { me(ev).fadeOut() }) // Recieve "close" event.
 			</script>
 			<button  class="close">✉️ Send "close"
 				<script>
@@ -118,7 +118,7 @@
 		</div>
 		<div thick>📭 I stay open because of <strong>stopPropagation()</strong>
 			<script>
-				me().on("close", (ev) => { me(ev).remove() }) // I will never recieve "close" event because of stopPropagation()
+				me().on("close", (ev) => { me(ev).fadeOut() }) // I will never recieve "close" event because of stopPropagation()
 			</script>
 			<div thick>📬 I close dramatically from a child button <strong>async</strong> event
 				<script>
@@ -131,7 +131,7 @@
 						await sleep(1000)
 						me(el).styles({"opacity":"0"})
 						await sleep(1000)
-						me(el).remove()
+						me(el).fadeOut()
 					})
 				</script>
 				<button class="close">✉️ Send "close"
