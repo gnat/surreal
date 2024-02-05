@@ -21,7 +21,7 @@ For devs who love ergonomics! You may appreciate Surreal if:
 * Really wish `this` would work in any inline `<script>` tag
 * Enjoyed using jQuery selector syntax.
 * [Animations, timelines, tweens](#-quick-start) with no extra libraries.
-* Only 320 lines. No build step. No dependencies.
+* Only 340 lines. No build step. No dependencies.
 * Pairs well with [htmx](https://htmx.org)
 * Want fewer layers, less complexity. Are aware of the cargo cult. ✈️
 
