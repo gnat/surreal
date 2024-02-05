@@ -4,10 +4,11 @@
 		<title>Quick and Dirty Testing for Surreal</title>
 		<!-- ... or add as inline <script> ! -->
 		<script src="https://cdn.jsdelivr.net/gh/gnat/surreal/surreal.js"></script>
-		<link rel="stylesheet" href="tests/reset.css?11" /> <!-- NOTE: You can remove "?11" it is only for cache-busting on github. -->
+		<link rel="stylesheet" href="tests/reset.css?12" /> <!-- NOTE: You can remove "?11" it is only for cache-busting on github. -->
 		<meta http-equiv="cache-control" content="no-cache" />
 	</head>
 	<body>
+		<!-- Basic examples -->
 		<button>👁️ Click me to fade out and remove.
 			<script>
 				me().on("click", ev => { me(ev).fadeOut() })
@@ -28,8 +29,10 @@
 				any(".yeet.noot").classAdd('.active')
 			</script>
 		</div>
+		<!-- Basic async examples -->
 		<div id="random">I should turn grey after 2 seconds.
 			<script>
+				// Basic usage with id. Runs immediately.
 				(async ()=>{
 					me("#random").classAdd('active')
 					await sleep(2000)
@@ -41,21 +44,23 @@
 			<script>
 				// Now you're thinking with events!
 				me().on("ping", async ev => {
-					me(ev).styles({"background":"hotpink", "color":"purple"})
-					await sleep(2000)
-					me(ev).trigger("pong")
+					let el = me(ev)
+					me(el).styles({"background":"hotpink", "color":"purple"})
+					await sleep(1000)
+					me(el).trigger("pong")
 				})
 				me().on("pong", async ev => {
-					me(ev).styles({"background":"blue", "color":"#002200"})
-					await sleep(2000)
-					me(ev).trigger("ping")
+					let el = me(ev)
+					me(el).styles({"background":"blue", "color":"#002200"})
+					await sleep(1000)
+					me(el).trigger("ping")
 				})
 				me().styles({"transition":"all 2s"}).trigger("pong")
 			</script>
 		</div>
 		<div>I should be animated using timeline / async until finished!
 			<script>
-				// Now you're thinking with async!
+				// Now you're thinking with async! Runs immediately.
 				(async (el = me()) => {
 					me(el).styles({"transition": "all 2s"})
 					me(el).styles({"background":"#0030F7", "color":"#002200"})
@@ -67,6 +72,7 @@
 					me(el).styles({"background":"#00C08C", "color":"#660033"})
 					await sleep(2000)
 
+					// New element!
 					var el_new = createElement("div")
 					me(el_new).styles({"transition":"all 2s", "opacity":"0", "height":"0%"})
 					el_new.innerText = "🔥🔥🔥🔥🔥🔥"
@@ -78,9 +84,9 @@
 		</div>
 		<div>I should be surrounded by diamonds after a few seconds.
 			<script>
-				// Now you're thinking with async!
+				// Now you're thinking with async! Runs immediately.
 				(async (el = me()) => {
-					me(el).styles({"transition":"all 2s", "color":"#ccc"})
+					me(el).styles({"transition":"all 2s", "color":"#fff"})
 
 					var el_new = createElement("div")
 					el_new.innerText = "💎💎💎"
@@ -98,6 +104,42 @@
 					me(el_new).styles({"opacity":"1"})
 				})()
 			</script>
+		</div>
+		<!-- Event examples -->
+		<div thick>📬 I close instantly from a child button event.
+			<script>
+				me().on("close", (ev) => { me(ev).remove() }) // Recieve "close" event.
+			</script>
+			<button  class="close">✉️ Send "close"
+				<script>
+					me().on("click", (ev) => { me(ev).disabled = true; me(ev).trigger("close") })
+				</script>
+			</button>
+		</div>
+		<div thick>📭 I stay open because of <strong>stopPropagation()</strong>
+			<script>
+				me().on("close", (ev) => { me(ev).remove() }) // I will never recieve "close" event because of stopPropagation()
+			</script>
+			<div thick>📬 I close dramatically from a child button <strong>async</strong> event
+				<script>
+					me().on("close", async (ev) => {
+						ev.stopPropagation() // Event stops here.
+						let el = me(ev) // Save because event currentTarget will be lost after await
+						me(el).styles({"transition":"all 1s", "background":"green"})
+						await sleep(1000)
+						me(el).styles({"background":"orange"})
+						await sleep(1000)
+						me(el).styles({"opacity":"0"})
+						await sleep(1000)
+						me(el).remove()
+					})
+				</script>
+				<button class="close">✉️ Send "close"
+					<script>
+						me().on("click", ev => { me(ev).disable(); me(ev).trigger("close"); }) // Use disable() to stop clicking more than once.
+					</script>
+				</button>
+			</div>
 		</div>
 	</body>
 </html>
