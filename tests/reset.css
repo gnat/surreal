@@ -20,8 +20,8 @@ html {
 body {
 	font-size: 2rem;
 	padding: 1rem;
-	background: #222;
-	color: #CCC;
+	background: #adadad;
+	color: #ccc;
 }
 .active {
 	background: hsl(345deg 100% 47%);
@@ -37,14 +37,24 @@ body > div {
 	padding: 1rem;
 	border-radius: 1rem;
 }
+body div[thick] {
+	color: #222;
+	margin: 2rem;
+	padding: 3rem;
+	border-radius: 1rem;
+	background: #eee;
+}
+body div[thick] div[thick] {
+	background: #ccc;
+}
 button {
 	cursor: pointer;
 	color: #fff;
 	padding: 2rem 3rem;
 	margin: 2rem;
 	border: none;
-	background: hsl(345deg 100% 47%);
-	border-bottom: 0.5rem solid hsl(345deg 100% 28%);
+	background: hsl(262deg 86% 47%);
+	border-bottom: 0.5rem solid hsl(262deg 86% 28%);
 	border-radius: 12px;
 	text-shadow: 0 2px #222222AA;
 }
@@ -56,9 +66,14 @@ button.blue {
 	border: none;
 	border-bottom: 0.5rem solid hsl(200deg 100% 28%);
 }
-
 button.invisible {
 	opacity: 0.2;	
 	background: hsl(147, 60%, 50%);
 	border-bottom: 0.5rem solid hsl(147 80% 28%);
 }
+button.close {
+	background: hsl(345deg 90% 40%);
+	border-bottom: 0.5rem solid hsl(345deg 100% 28%);
+	border-radius: 12px;
+}
+

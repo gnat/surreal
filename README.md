@@ -80,7 +80,7 @@ Or, 🌐 use the CDN: `<script src="https://cdn.jsdelivr.net/gh/gnat/surreal/sur
   * Can be any of:
     * CSS selector: `".button"`, `"#header"`, `"h1"`, `"body > .block"`
     * Variables: `body`, `e`, `some_element`
-    * Events: `event.target` will be used.
+    * Events: `event.currentTarget` will be used.
     * Surreal selectors: `me()`,`any()`
     * Adding a `start=` parameter provides a starting DOM location to select from. Default is `document`
       * ▶️ `any('button', start='header').classAdd('red')`
@@ -129,17 +129,18 @@ See: [Quick Start](#quick-start) and [Reference](#reference) and [No Surreal Nee
   <script>
     // Every second animate something new.
     me().on("click", async ev => {
-      me(ev).styles({ "transition": "background 1s" })
+      let el = me(ev) // Save target because async will lose it.
+      me(el).styles({ "transition": "background 1s" })
       await sleep(1000)
-      me(ev).styles({ "background": "red" })
+      me(el).styles({ "background": "red" })
       await sleep(1000)
-      me(ev).styles({ "background": "green" })
+      me(el).styles({ "background": "green" })
       await sleep(1000)
-      me(ev).styles({ "background": "blue" })
+      me(el).styles({ "background": "blue" })
       await sleep(1000)
-      me(ev).styles({ "background": "none" })
+      me(el).styles({ "background": "none" })
       await sleep(1000)
-      me(ev).remove()
+      me(el).remove()
     })
   </script>
 </div>
@@ -230,6 +231,12 @@ Looking for stuff [we recommend doing in vanilla JS](#no-surreal)?
   * Wraps `removeEventListener`
 * 🔗 `offAll`
   * ▶️ `me().offAll()`
+* 🔗 `disable`
+  * ▶️ `me().disable()`
+  * Easy alternative to `off()`. Disables click, key, submit events.
+* 🔗 `enable`
+  * ▶️ `me().enable()`
+  * Opposite of `disable()`
 * 🌐 `sleep`
   * ▶️ `await sleep(1000, ev => { alert(ev) })`
   * `async` version of `setTimeout`
@@ -318,7 +325,7 @@ Append / Prepend elements.
 
 ## 🔎 Technical FAQ
 * Can I locally scope functions to `<script>` ?
-  * Recommended: Scope inside an event.
+  * Recommended: Scope inside an event. ⭐
     * `me().on('click', ev => { /* add and call function here */ })`
   * Alternative: Use `<script type="module">`
     * Tradeoff: `me()` will no longer see `parentElement` so, an explicit selector is required: `me(".mybutton")`

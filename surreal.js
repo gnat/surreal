@@ -1,4 +1,4 @@
-// Welcome to Surreal 1.0.1
+// Welcome to Surreal 1.0.2
 // Documentation: https://github.com/gnat/surreal
 // Locality of Behavior (LoB): https://htmx.org/essays/locality-of-behaviour/
 var $ = { // You can use a different name than "$", but you must change the reference in any plugins you use!
@@ -8,7 +8,7 @@ var $ = { // You can use a different name than "$", but you must change the refe
 	// Table of contents and convenient call chaining sugar. For a familiar "jQuery like" syntax. 🙂
 	// Check before adding new: https://youmightnotneedjquery.com/
 	sugar(e) {
-		if (e == null) { console.warn(`Cannot use "${e}". Missing a character?`) }
+		if (e == null) { console.warn(`Surreal: Cannot use "${e}". Missing a character?`) }
 
 		// General
 		e.run           = (value) => { return $.run(e, value) }
@@ -28,6 +28,8 @@ var $ = { // You can use a different name than "$", but you must change the refe
 		e.off           = (name, fn) => { return $.off(e, name, fn) }
 		e.offAll        = (name) => { return $.offAll(e, name) }
 		e.off_all       = e.offAll
+		e.disable       = (name) => { return $.disable(e) }
+		e.enable        = (name) => { return $.enable(e) }
 		e.trigger       = (name) => { return $.trigger(e, name) }
 		e.halt          = () => { return $.halt(e) }
 
@@ -54,7 +56,7 @@ var $ = { // You can use a different name than "$", but you must change the refe
 	//	</div>
 	me(selector=null, start=document, warning=true) {
 		if (selector == null) return $.sugar(start.currentScript.parentElement) // Just local me() in <script>
-		if (selector instanceof Event) return $.me(selector.currentTarget) // Events return event.currentTarget
+		if (selector instanceof Event) return selector.currentTarget ? $.me(selector.currentTarget) : (console.warn(`Surreal: Event currentTarget is null. Please save your element because async will lose it`), null) // Events try currentTarget
 		if (typeof selector == 'string' && isSelector(selector, start, warning)) return $.sugar(start.querySelector(selector)) // String selector.
 		if ($.isNodeList(selector)) return $.me(selector[0]) // If we got a list, just take the first element.
 		if ($.isNode(selector)) return $.sugar(selector) // Valid element.
@@ -66,7 +68,7 @@ var $ = { // You can use a different name than "$", but you must change the refe
 	// Example: any('button')
 	any(selector, start=document, warning=true) {
 		if (selector == null) return $.sugar([start.currentScript.parentElement]) // Just local me() in <script>
-		if (selector instanceof Event) return $.any(selector.currentTarget) // Events return event.currentTarget
+		if (selector instanceof Event) return selector.currentTarget ? $.any(selector.currentTarget) : (console.warn(`Surreal: Event currentTarget is null. Please save your element because async will lose it`), null) // Events try currentTarget
 		if (typeof selector == 'string' && isSelector(selector, start, true, warning)) return $.sugar(Array.from(start.querySelectorAll(selector))) // String selector.
 		if ($.isNode(selector)) return $.sugar([selector]) // Single element. Convert to Array.
 		if ($.isNodeList(selector)) return $.sugar(Array.from(selector)) // Valid NodeList or Array.
@@ -152,7 +154,21 @@ var $ = { // You can use a different name than "$", but you must change the refe
 
 	offAll(e) {
 		if ($.isNodeList(e)) e.forEach(_ => { offAll(_) })
-		if ($.isNode(e)) e = e.cloneNode(true)
+		if ($.isNode(e)) e.parentNode.replaceChild(e.cloneNode(true), e)
+		return e
+	},
+
+	// Easy alternative to off(). Disables click, key, submit events.
+	disable(e) {
+		if ($.isNodeList(e)) e.forEach(_ => { disable(_) })
+		if ($.isNode(e)) e.disabled = true
+		return e
+	},
+
+	// For reversing disable()
+	enable(e) {
+		if ($.isNodeList(e)) e.forEach(_ => { enable(_) })
+		if ($.isNode(e)) e.disabled = false
 		return e
 	},
 
@@ -210,7 +226,7 @@ var $ = { // You can use a different name than "$", but you must change the refe
 
 	// Puts Surreal functions except for "restricted" in global scope.
 	globalsAdd() {
-		console.log(`Surreal: adding convenience globals to window`)
+		console.log(`Surreal: Adding convenience globals to window.`)
 		restricted = ['$', 'sugar']
 		for (const [key, value] of Object.entries(this)) {
 			if (!restricted.includes(key)) window[key] != 'undefined' ? window[key] = value : console.warn(`Surreal: "${key}()" already exists on window. Skipping to prevent overwrite.`)
@@ -231,11 +247,11 @@ var $ = { // You can use a different name than "$", but you must change the refe
 	// ⚙️ Used internally by DOM functions. Warning when selector is invalid. Likely missing a "#" or "."
 	isSelector(selector="", start=document, all=false, warning=true) {
 		if (all && start.querySelectorAll(selector) == null) {
-			if (warning) console.warn(`"${selector}" was not found. Missing a character? (. #)`)
+			if (warning) console.warn(`Surreal: "${selector}" was not found. Missing a character? (. #)`)
 			return false
 		}
 		if (start.querySelector(selector) == null) {
-			if (warning) console.warn(`"${selector}" was not found. Missing a character? (. #)`)
+			if (warning) console.warn(`Surreal: "${selector}" was not found. Missing a character? (. #)`)
 			return false
 		}
 		return true // Valid.
@@ -285,7 +301,7 @@ $.sugars['fade_out', 'fade_in'] = $.sugars['fadeOut', 'fadeIn']
 
 $.globalsAdd() // Full convenience.
 
-console.log("Loaded Surreal.")
+console.log("Surreal: Loaded.")
 
 // 🌐 Optional global helpers.
 const createElement = document.createElement.bind(document)
