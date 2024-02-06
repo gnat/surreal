@@ -320,11 +320,11 @@ Append / Prepend elements.
 * `e`, `el`, `elt` = element
 * `e`, `ev`, `evt` = event
 * `f`, `fn` = function
-* Scope functions and variables inside `<script>` when needed.
-  * ⭐ Use an event listener: `me().on('click', ev => { /* add and call function here */ })`
-  * Or, use an inline module `<script type="module">`
-    * Caution: `me()` will no longer see `parentElement` so an explicit selector is required: `me(".mybutton")`
-  * Or, use backend code to generate unique names.
+* Scoping functions inside `<script>` (..or anything not scoped by `me()`)
+  * ⭐ Inside a `me()` event: `me().on('click', ev => { /* add and call function here */ })`
+  * Or, use an inline module: `<script type="module">`
+    * Note: `me()` will no longer see `parentElement` so explicit selectors are required: `me(".mybutton")`
+  * Or, use backend code to generate unique names for anything not scoped by `me()`
 
 ## <a name="plugins"></a>🔌 Adding a function
 
