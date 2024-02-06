@@ -315,22 +315,16 @@ Append / Prepend elements.
 
  ## 💎 Conventions & Tips
 
+* Many ideas can be plain HTML / CSS (ex: dropdowns).
 * `_` = for temporary or unused variables. Keep it short and sweet!
 * `e`, `el`, `elt` = element
 * `e`, `ev`, `evt` = event
 * `f`, `fn` = function
-* Many things can be done in vanilla HTML / CSS (ex: dropdowns).
-* Find where your change touches the least code.
-* Simplicity and ergonomics tend to have exponential payoff
-
-## 🔎 Technical FAQ
-* Can I locally scope functions to `<script>` ?
-  * Recommended: Scope inside an event. ⭐
-    * `me().on('click', ev => { /* add and call function here */ })`
-  * Alternative: Use `<script type="module">`
-    * Tradeoff: `me()` will no longer see `parentElement` so, an explicit selector is required: `me(".mybutton")`
-  * Alternative: Keep a `common.js` file for global functions.
-  * Alternative: Uniquely name your function.
+* Scope functions and variables inside `<script>` when needed.
+  * ⭐ Use an event listener: `me().on('click', ev => { /* add and call function here */ })`
+  * Or, use an inline module `<script type="module">`
+    * Caution: `me()` will no longer see `parentElement` so an explicit selector is required: `me(".mybutton")`
+  * Or, use backend code to generate unique names.
 
 ## <a name="plugins"></a>🔌 Adding a function
 
