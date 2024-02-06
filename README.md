@@ -326,27 +326,28 @@ Append / Prepend elements.
     * Note: `me()` will no longer see `parentElement` so explicit selectors are required: `me(".mybutton")`
   * Or, use backend code to generate unique names for anything not scoped by `me()`
 
-## <a name="plugins"></a>🔌 Adding a function
+## <a name="plugins"></a>🔌 Your own plugin
 
-Feel free to modify Surreal for a particular project any way you like- but you can use this system to effortlessly merge functions with new versions.
+Feel free to modify Surreal for a project any way you like- but you can use plugins to effortlessly merge functions with new versions.
 
-1. Add your function
- ```javascript
- var $thing = {
-   test(e, name) {
-     console.log(`Hello ${name} from ${e}`)
-     return e
-   }
- }
- $ = {...$, ...$thing}
- ```
-2. Is your function chainable? Add to `sugar()`
- ```javascript
- $.sugars['test'] = (name) => { return $.test($._e, name) }
- ```
-3. Your function will be added globally by `globalsAdd()` If you do not want this (ex: name clash), add it to the restricted list.
+```javascript
+function pluginHello(e) {
+  function hello(e, name="World") {
+    console.log(`Hello ${name} from ${e}`)
+    return e // Make chainable.
+  }
+  // Add sugar
+  e.hello = (name) => { return hello(e, name) }
+}
 
-Refer to an existing function to see how to make your function work with 1 or many elements.
+$.plugins.push(pluginHello)
+```
+
+You can now use it like: `me().hello("Internet")`
+
+* See the included `pluginEffects` for a more comprehensive example.
+* Your functions will be added globally by `globalsAdd()` If you do not want this, add it to the restricted list.
+* Refer to an existing function to see how to make yours work with 1 or many elements.
 
 Make an [issue](https://github.com/gnat/surreal/issues) or [pull request](https://github.com/gnat/surreal/pulls) if you think people would like to use it! If it's useful enough we'll want it in core.
 
