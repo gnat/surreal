@@ -1,14 +1,15 @@
-// Welcome to Surreal 1.0.3
+// Welcome to Surreal 1.1.0
 // Documentation: https://github.com/gnat/surreal
 // Locality of Behavior (LoB): https://htmx.org/essays/locality-of-behaviour/
 var $ = { // You can use a different name than "$", but you must change the reference in any plugins you use!
 	$: this, // Convenience for core internals.
-	sugars: {}, // Extra syntax sugar for plugins.
+	plugins: [],
 
 	// Table of contents and convenient call chaining sugar. For a familiar "jQuery like" syntax. 🙂
 	// Check before adding new: https://youmightnotneedjquery.com/
 	sugar(e) {
 		if (e == null) { console.warn(`Surreal: Cannot use "${e}". Missing a character?`) }
+		if (e.hasOwnProperty('hasSurreal')) return e // Surreal already applied
 
 		// General
 		e.run           = (value) => { return $.run(e, value) }
@@ -28,22 +29,20 @@ var $ = { // You can use a different name than "$", but you must change the refe
 		e.off           = (name, fn) => { return $.off(e, name, fn) }
 		e.offAll        = (name) => { return $.offAll(e, name) }
 		e.off_all       = e.offAll
-		e.disable       = (name) => { return $.disable(e) }
-		e.enable        = (name) => { return $.enable(e) }
+		e.disable       = () => { return $.disable(e) }
+		e.enable        = () => { return $.enable(e) }
 		e.trigger       = (name) => { return $.trigger(e, name) }
-		e.halt          = () => { return $.halt(e) }
+		e.halt          = (ev, keepBubbling, keepDefault) => { return $.halt(ev, keepBubbling, keepDefault) }
 
 		// Attributes.
 		e.attribute 	= (name, value) => { return $.attribute(e, name, value) }
 		e.attributes    = e.attribute
 		e.attr          = e.attribute
 
-		// Add all plugin sugar.
-		$._e = e // Plugin access to "e" for chaining.
-		for (const [key, value] of Object.entries(sugars)) {
-			e[key] = value.bind($) //e[key] = value
-		}
+		// Add all plugins.
+		$.plugins.forEach(function(func) { func(e) })
 
+		e.hasSurreal = 1
 		return e
 	},
 
@@ -183,16 +182,13 @@ var $ = { // You can use a different name than "$", but you must change the refe
 		return e
 	},
 
-	// Halt event / prevent default.
-	halt(e) {
-		if (e instanceof Event) {
-			if (!e.preventDefault) {
-				e.returnValue = false
-			} else {
-				e.preventDefault()
-			}
+	// Halt event. Default: Stops normal event actions and event propagation.
+	halt(ev, keepBubbling=false, keepDefault=false) {
+		if (ev instanceof Event) {
+			if(!keepDefault) ev.preventDefault()
+			if(!keepBubbling) ev.stopPropagation()
 		}
-		return e
+		return ev
 	},
 
 	// Add or remove attributes from element(s)
@@ -259,10 +255,10 @@ var $ = { // You can use a different name than "$", but you must change the refe
 }
 
 // 📦 Plugin: Effects
-var $effects = {
+function pluginEffects(e) {
 	// Fade out and remove element.
 	// Equivalent to jQuery fadeOut(), but actually removes the element!
-	fadeOut(e, fn=false, ms=1000, remove=true) {
+	function fadeOut(e, fn=false, ms=1000, remove=true) {
 		let thing = e
 		if ($.isNodeList(e)) e.forEach(_ => { fadeOut(_, fn, ms) })
 		if ($.isNode(e)) {
@@ -275,9 +271,9 @@ var $effects = {
 				if (remove) $.remove(thing) // Remove element after animation is completed?
 			})()
 		}
-	},
+	}
 	// Fade in an element that has opacity under 1
-	fadeIn(e, fn=false, ms=1000) {
+	function fadeIn(e, fn=false, ms=1000) {
 		let thing = e
 		if($.isNodeList(e)) e.forEach(_ => { fadeIn(_, fn, ms) })
 		if($.isNode(e)) {
@@ -292,14 +288,16 @@ var $effects = {
 				if (fn === 'function') fn(thing) // Run custom callback?
 			})()
 		}
-	},
-	$effects
+	}
+	// Add sugar
+	e.fadeOut  = (fn, ms, remove) => { return fadeOut(e, fn, ms, remove) }
+	e.fade_out = e.fadeOut
+	e.fadeIn   = (fn, ms) => { return fadeIn(e, fn, ms) }
+	e.fade_in  = e.fadeIn
 }
-$ = {...$, ...$effects}
-$.sugars['fadeOut']  = (fn, ms) => { return $.fadeOut($._e, fn=false, ms=1000) }
-$.sugars['fadeIn']  = (fn, ms) => { return $.fadeIn($._e, fn=false, ms=1000) }
-$.sugars['fade_out', 'fade_in'] = $.sugars['fadeOut', 'fadeIn']
 
+// Add plugins...
+$.plugins.push(pluginEffects)
 $.globalsAdd() // Full convenience.
 
 console.log("Surreal: Loaded.")
