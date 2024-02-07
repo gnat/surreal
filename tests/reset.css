@@ -14,6 +14,7 @@ html {
 	text-size-adjust: none; /* Fixes chrome on mobile. */
 	-webkit-text-size-adjust: none; /* Fixes safari on mobile. */
 	-moz-text-size-adjust: none; /* Firefox works fine, but for consistency. */
+	background: #adadad;
 }
 
 /* Custom for showcase. */
