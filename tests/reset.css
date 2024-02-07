@@ -76,4 +76,9 @@ button.close {
 	border-bottom: 0.5rem solid hsl(345deg 100% 28%);
 	border-radius: 12px;
 }
-
+button.close:disabled {
+	color: #aaa;
+	background: hsl(345deg 0% 30%);
+	border-bottom: 0.5rem solid hsl(345deg 0% 18%);
+	transform: translateY(0.2rem);
+}
