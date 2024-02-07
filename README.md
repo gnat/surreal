@@ -189,7 +189,7 @@ Looking for [DOM Selectors](#selectors)?
 Looking for stuff [we recommend doing in vanilla JS](#no-surreal)?
 ### 🧭 Legend
 * 🔗 Chainable off `me()` and `any()`
-* 🌐 Global convenience helper.
+* 🌐 Global helper.
 * ▶️ Runnable example.
 * 🔌 Built-in Plugin
 ### 👁️ At a glance
@@ -265,6 +265,10 @@ Looking for stuff [we recommend doing in vanilla JS](#no-surreal)?
   * Execute after the DOM is ready. Similar to jquery `ready()`
   * Queues functions onto `window.onload`
   * Why? So you don't overwrite `window.onload`, also predictable sequential loading!
+* 🔌 `fadeOut`
+  * See below
+* 🔌 `fadeIn`
+  * See below
 
 ### <a name="plugin-included"></a>🔌 Built-in Plugins
 
@@ -340,7 +344,7 @@ function pluginHello(e) {
   e.hello = (name) => { return hello(e, name) }
 }
 
-$.plugins.push(pluginHello)
+surreal.plugins.push(pluginHello)
 ```
 
 You can now use it like: `me().hello("Internet")`
