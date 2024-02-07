@@ -3,15 +3,15 @@
 	<head>
 		<title>Quick and Dirty Testing for Surreal</title>
 		<!-- <script src="https://cdn.jsdelivr.net/gh/gnat/surreal/surreal.js"></script> -->
-		<script src="surreal.js"></script> <!-- jsdeliver is taking too long to update -->
-		<link rel="stylesheet" href="tests/reset.css?13" /> <!-- NOTE: You can remove "?13" it is only for cache-busting on github. -->
+		<script src="surreal.js"></script>
+		<link rel="stylesheet" href="tests/reset.css?14" /> <!-- NOTE: You can remove "?13" it is only for cache-busting on github. -->
 		<meta http-equiv="cache-control" content="no-cache" />
 	</head>
 	<body>
 		<!-- Basic examples -->
 		<button>👁️ Click me to fade out and remove.
 			<script>
-				me().on("click", ev => { me(ev).fadeOut() })
+				me().on("click", ev => { me(ev).disable(); me(ev).fadeOut() })
 			</script>
 		</button>
 		<button class="invisible">👻 Click me to fade in.
@@ -47,100 +47,103 @@
 			<script>
 				// Now you're thinking with events!
 				me().on("ping", async ev => {
-					let el = me(ev)
-					me(el).styles({"background":"hotpink", "color":"purple"})
+					let e = me(ev)
+					e.styles({"background":"hotpink", "color":"purple"})
 					await sleep(1000)
-					me(el).trigger("pong")
+					e.trigger("pong")
 				})
 				me().on("pong", async ev => {
-					let el = me(ev)
-					me(el).styles({"background":"blue", "color":"#002200"})
+					let e = me(ev)
+					e.styles({"background":"blue", "color":"#002200"})
 					await sleep(1000)
-					me(el).trigger("ping")
+					e.trigger("ping")
 				})
 				me().styles({"transition":"all 2s"}).trigger("pong")
 			</script>
 		</div>
 		<div>I should be animated using timeline / async until finished!
 			<script>
-				// Now you're thinking with async! Runs immediately.
-				(async (el = me()) => {
-					me(el).styles({"transition": "all 2s"})
-					me(el).styles({"background":"#0030F7", "color":"#002200"})
+				// Now you're thinking with async! Runs immediately. No event.
+				(async (e = me()) => { // Special case where we can save element right away.
+					e.styles({"transition": "all 2s"})
+					e.styles({"background":"#0030F7", "color":"#002200"})
 					await sleep(2000)
-					me(el).styles({"background":"#006BFF", "color":"#000033"})
+					e.styles({"background":"#006BFF", "color":"#000033"})
 					await sleep(2000)
-					me(el).styles({"background":"#00A1FF", "color":"#005500"})
+					e.styles({"background":"#00A1FF", "color":"#005500"})
 					await sleep(2000)
-					me(el).styles({"background":"#00C08C", "color":"#660033"})
+					e.styles({"background":"#00C08C", "color":"#660033"})
 					await sleep(2000)
 
 					// New element!
-					var el_new = createElement("div")
-					me(el_new).styles({"transition":"all 2s", "opacity":"0", "height":"0%"})
-					el_new.innerText = "🔥🔥🔥🔥🔥🔥"
-					me(el).appendChild(el_new)
+					var e2 = me(createElement("div"))
+					e2.styles({"transition":"all 2s", "opacity":"0", "height":"0%"})
+					e2.innerText = "🔥🔥🔥🔥🔥🔥"
+					e.appendChild(e2)
 					await sleep(1000)
-					me(el_new).styles({"opacity":"1", "height":"fit-content"})
+					e2.styles({"opacity":"1", "height":"fit-content"})
 				})()
 			</script>
 		</div>
 		<div>I should be surrounded by diamonds after a few seconds.
 			<script>
-				// Now you're thinking with async! Runs immediately.
-				(async (el = me()) => {
-					me(el).styles({"transition":"all 2s", "color":"#fff"})
+				// Now you're thinking with async! Runs immediately. No event.
+				(async (e = me()) => { // Special case where we can save element right away.
+					e.styles({"transition":"all 2s", "color":"#fff"})
 
-					var el_new = createElement("div")
-					el_new.innerText = "💎💎💎"
-					me(el).prepend(el_new)
-					me(el_new).styles({"transition":"all 2s", "opacity":"0"})
+					// New element!
+					var e2 = me(createElement("div"))
+					e2.innerText = "💎💎💎"
+					e.prepend(e2)
+					e2.styles({"transition":"all 2s", "opacity":"0"})
 					await sleep(1000)
-					me(el_new).styles({"opacity":"1"})
+					e2.styles({"opacity":"1"})
 					await sleep(2000)
 
-					var el_new = createElement("div")
-					me(el_new).styles({"transition":"all 2s", "opacity":"0"})
-					el_new.innerText = "💎💎💎"
-					me(el).appendChild(el_new)
+					// New element!
+					var e2 = me(createElement("div"))
+					e2.styles({"transition":"all 2s", "opacity":"0"})
+					e2.innerText = "💎💎💎"
+					e.appendChild(e2)
 					await sleep(1000)
-					me(el_new).styles({"opacity":"1"})
+					e2.styles({"opacity":"1"})
 				})()
 			</script>
 		</div>
 		<!-- Event examples -->
 		<div thick>📬 I close from a child button event.
 			<script>
-				me().on("close", (ev) => { me(ev).fadeOut() }) // Recieve "close" event.
+				me().on("close", async event => { me(event).fadeOut() }) // Recieve "close" event.
 			</script>
 			<button  class="close">✉️ Send "close"
 				<script>
-					me().on("click", (ev) => { me(ev).disabled = true; me(ev).trigger("close") })
+					me().on("click", event => { me(event).disable(); me(event).trigger("close") })
 				</script>
 			</button>
 		</div>
-		<div thick>📭 I stay open because of <strong>stopPropagation()</strong>
+		<div thick>📭 I stay open because of <strong>halt()</strong>
 			<script>
-				me().on("close", (ev) => { me(ev).fadeOut() }) // I will never recieve "close" event because of stopPropagation()
+				me().on("close", event => {  me(event).fadeOut() }) // I will never recieve "close" event because of halt()
 			</script>
 			<div thick>📬 I close dramatically from a child button <strong>async</strong> event
 				<script>
-					me().on("close", async (ev) => {
-						ev.stopPropagation() // Event stops here.
-						let el = me(ev) // Save because event currentTarget will be lost after await
-						me(el).styles({"transition":"all 0.5s", "background":"red"})
+					me().on("close", async event => {
+						let e = me(event) // Save element because event.currentTarget will be lost after await.
+						e.halt(event) // Event stops here.
+						e.disable() // Prevent user from clicking button many times.
+						e.styles({"transition":"all 0.5s", "background":"red"})
 						await sleep(500)
-						me(el).styles({"background":"white"})
+						e.styles({"background":"white"})
 						await sleep(500)
-						me(el).styles({"background":"red"})
+						e.styles({"background":"red"})
 						await sleep(500)
-						me(el).styles({"background":"white"})
-						me(el).fadeOut()
+						e.styles({"background":"white"})
+						e.fadeOut()
 					})
 				</script>
 				<button class="close">✉️ Send "close"
 					<script>
-						me().on("click", ev => { me(ev).disable(); me(ev).trigger("close"); }) // Use disable() to stop clicking more than once.
+						me().on("click", event => { me(event).disable(); me(event).trigger("close") }) // Use disable() to stop clicking more than once.
 					</script>
 				</button>
 			</div>
