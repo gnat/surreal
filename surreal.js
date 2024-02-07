@@ -1,8 +1,9 @@
-// Welcome to Surreal 1.1.0
+// Welcome to Surreal 1.1.2
 // Documentation: https://github.com/gnat/surreal
 // Locality of Behavior (LoB): https://htmx.org/essays/locality-of-behaviour/
-var $ = { // You can use a different name than "$", but you must change the reference in any plugins you use!
-	$: this, // Convenience for core internals.
+let surreal = (function () {
+let $ = { // Convenience for internals.
+	$: this, // Convenience for internals.
 	plugins: [],
 
 	// Table of contents and convenient call chaining sugar. For a familiar "jQuery like" syntax. 🙂
@@ -73,21 +74,18 @@ var $ = { // You can use a different name than "$", but you must change the refe
 		if ($.isNodeList(selector)) return $.sugar(Array.from(selector)) // Valid NodeList or Array.
 		return null // Invalid.
 	},
-
 	// Run any function on element(s)
 	run(e, f) {
 		if ($.isNodeList(e)) e.forEach(_ => { run(_, f) })
 		if ($.isNode(e)) { f(e); }
 		return e
 	},
-
 	// Remove element(s)
 	remove(e) {
 		if ($.isNodeList(e)) e.forEach(_ => { remove(_) })
 		if ($.isNode(e)) e.parentNode.removeChild(e)
 		return // Special, end of chain.
 	},
-
 	// Add class to element(s).
 	classAdd(e, name) {
 		if (e === null || e === []) return null
@@ -97,7 +95,6 @@ var $ = { // You can use a different name than "$", but you must change the refe
 		if ($.isNode(e)) e.classList.add(name)
 		return e
 	},
-
 	// Remove class from element(s).
 	classRemove(e, name) {
 		if (typeof name !== 'string') return null
@@ -106,7 +103,6 @@ var $ = { // You can use a different name than "$", but you must change the refe
 		if ($.isNode(e)) e.classList.remove(name)
 		return e
 	},
-
 	// Toggle class in element(s).
 	classToggle(e, name) {
 		if (typeof name !== 'string') return null
@@ -115,7 +111,6 @@ var $ = { // You can use a different name than "$", but you must change the refe
 		if ($.isNode(e)) e.classList.toggle(name)
 		return e
 	},
-
 	// Add inline style to element(s).
 	// Can use string or object formats.
 	// 	String format: "font-family: 'sans-serif'"
@@ -132,7 +127,6 @@ var $ = { // You can use a different name than "$", but you must change the refe
 			return e
 		}
 	},
-
 	// Add event listener to element(s).
 	// Match a sender: if(!event.target.matches(".selector")) return;
 	//	📚️ https://developer.mozilla.org/en-US/docs/Web/API/Event
@@ -143,34 +137,29 @@ var $ = { // You can use a different name than "$", but you must change the refe
 		if ($.isNode(e)) e.addEventListener(name, fn)
 		return e
 	},
-
 	off(e, name, fn) {
 		if (typeof name !== 'string') return null
 		if ($.isNodeList(e)) e.forEach(_ => { off(_, name, fn) })
 		if ($.isNode(e)) e.removeEventListener(name, fn)
 		return e
 	},
-
 	offAll(e) {
 		if ($.isNodeList(e)) e.forEach(_ => { offAll(_) })
 		if ($.isNode(e)) e.parentNode.replaceChild(e.cloneNode(true), e)
 		return e
 	},
-
 	// Easy alternative to off(). Disables click, key, submit events.
 	disable(e) {
 		if ($.isNodeList(e)) e.forEach(_ => { disable(_) })
 		if ($.isNode(e)) e.disabled = true
 		return e
 	},
-
 	// For reversing disable()
 	enable(e) {
 		if ($.isNodeList(e)) e.forEach(_ => { enable(_) })
 		if ($.isNode(e)) e.disabled = false
 		return e
 	},
-
 	// Trigger event / dispatch event.
 	// ✂️ Vanilla: Events Dispatch: document.querySelector(".thing").dispatchEvent(new Event('click'))
 	trigger(e, name) {
@@ -181,7 +170,6 @@ var $ = { // You can use a different name than "$", but you must change the refe
 		}
 		return e
 	},
-
 	// Halt event. Default: Stops normal event actions and event propagation.
 	halt(ev, keepBubbling=false, keepDefault=false) {
 		if (ev instanceof Event) {
@@ -190,7 +178,6 @@ var $ = { // You can use a different name than "$", but you must change the refe
 		}
 		return ev
 	},
-
 	// Add or remove attributes from element(s)
 	attribute(e, name, value=undefined) {
 		// Get. This one is special. Format: "name", "value"
@@ -219,7 +206,6 @@ var $ = { // You can use a different name than "$", but you must change the refe
 		}
 		return e
 	},
-
 	// Puts Surreal functions except for "restricted" in global scope.
 	globalsAdd() {
 		console.log(`Surreal: Adding convenience globals to window.`)
@@ -229,17 +215,14 @@ var $ = { // You can use a different name than "$", but you must change the refe
 			window.document[key] = value
 		}
 	},
-
 	// ⚙️ Used internally. Is this an element / node?
 	isNode(e) {
 		return (e instanceof HTMLElement || e instanceof SVGElement) ? true : false
 	},
-
 	// ⚙️ Used internally by DOM functions. Is this a list of elements / nodes?
 	isNodeList(e) {
 		return (e instanceof NodeList || Array.isArray(e)) ? true : false
 	},
-
 	// ⚙️ Used internally by DOM functions. Warning when selector is invalid. Likely missing a "#" or "."
 	isSelector(selector="", start=document, all=false, warning=true) {
 		if (all && start.querySelectorAll(selector) == null) {
@@ -253,6 +236,11 @@ var $ = { // You can use a different name than "$", but you must change the refe
 		return true // Valid.
 	},
 }
+// Finish up...
+$.globalsAdd() // Full convenience.
+console.log("Surreal: Loaded.")
+return $
+})() // End of Surreal 🏁
 
 // 📦 Plugin: Effects
 function pluginEffects(e) {
@@ -260,31 +248,31 @@ function pluginEffects(e) {
 	// Equivalent to jQuery fadeOut(), but actually removes the element!
 	function fadeOut(e, fn=false, ms=1000, remove=true) {
 		let thing = e
-		if ($.isNodeList(e)) e.forEach(_ => { fadeOut(_, fn, ms) })
-		if ($.isNode(e)) {
+		if (surreal.isNodeList(e)) e.forEach(_ => { fadeOut(_, fn, ms) })
+		if (surreal.isNode(e)) {
 			(async() => {
-				$.styles(e, {transform: 'scale(1)', transition: `all ${ms}ms ease-out`, overflow: 'hidden'})
+				surreal.styles(e, {transform: 'scale(1)', transition: `all ${ms}ms ease-out`, overflow: 'hidden'})
 				await tick()
-				$.styles(e, {transform: 'scale(0.9)', opacity: '0'})
+				surreal.styles(e, {transform: 'scale(0.9)', opacity: '0'})
 				await sleep(ms, e)
 				if (fn === 'function') fn(thing) // Run custom callback?
-				if (remove) $.remove(thing) // Remove element after animation is completed?
+				if (remove) surreal.remove(thing) // Remove element after animation is completed?
 			})()
 		}
 	}
 	// Fade in an element that has opacity under 1
 	function fadeIn(e, fn=false, ms=1000) {
 		let thing = e
-		if($.isNodeList(e)) e.forEach(_ => { fadeIn(_, fn, ms) })
-		if($.isNode(e)) {
+		if(surreal.isNodeList(e)) e.forEach(_ => { fadeIn(_, fn, ms) })
+		if(surreal.isNode(e)) {
 			(async() => {
 				let save = e.style // Store original style.
-				$.styles(e, {transition: `all ${ms}ms ease-in`, overflow: 'hidden'})
+				surreal.styles(e, {transition: `all ${ms}ms ease-in`, overflow: 'hidden'})
 				await tick()
-				$.styles(e, {opacity: '1'})
+				surreal.styles(e, {opacity: '1'})
 				await sleep(ms, e)
 				e.style = save // Revert back to original style.
-				$.styles(e, {opacity: '1'}) // Ensure we're visible after reverting to original style.
+				surreal.styles(e, {opacity: '1'}) // Ensure we're visible after reverting to original style.
 				if (fn === 'function') fn(thing) // Run custom callback?
 			})()
 		}
@@ -296,26 +284,26 @@ function pluginEffects(e) {
 	e.fade_in  = e.fadeIn
 }
 
-// Add plugins...
-$.plugins.push(pluginEffects)
-$.globalsAdd() // Full convenience.
+// Add plugins here!
+surreal.plugins.push(pluginEffects)
+console.log("Surreal: Loaded plugins.")
 
-console.log("Surreal: Loaded.")
-
-// 🌐 Optional global helpers.
+// DOM helpers.
 const createElement = document.createElement.bind(document)
 const create_element = createElement
+// Animation helpers.
 const rAF = typeof requestAnimationFrame !== 'undefined' && requestAnimationFrame
 const rIC = typeof requestIdleCallback !== 'undefined' && requestIdleCallback
-// Sleep without async!
-function sleep(ms, e) {
-	return new Promise(resolve => setTimeout(() => { resolve(e) }, ms))
-}
 // Wait for next animation frame.
 async function tick() {
 	await new Promise(resolve => { requestAnimationFrame(resolve) })
 }
-// Loading helper. Why? So you don't overwrite window.onload. And predictable sequential loading!
+// Sleep without async.
+function sleep(ms, e) {
+	return new Promise(resolve => setTimeout(() => { resolve(e) }, ms))
+}
+// Loading helpers.
+// Why? So you don't overwrite window.onload. And predictable sequential loading!
 // <script>onloadAdd(() => { console.log("Page was loaded!") })</script>
 // <script>onloadAdd(() => { console.log("Lets do another thing!") })</script>
 function onloadAdd(f) {
