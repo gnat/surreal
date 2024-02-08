@@ -100,9 +100,9 @@ Or, 🌐 use the CDN: `<script src="https://cdn.jsdelivr.net/gh/gnat/surreal/sur
   * 🟠 Style B: `classAdd(me(), 'red')`
 * 🌐 Global conveniences help you write less code.
   * `globalsAdd()` will automatically warn about any clobbering issues.
-    * If you prefer no conveniences, just delete `globalsAdd()`
-      * `me().classAdd('red')` with `globalsAdd()` removed: `$.me().classAdd('red')`
-      * `classAdd(me(), 'red')` with `globalsAdd()` removed: `$.classAdd($.me(), 'red')`
+    * If you prefer no conveniences, or are a masochist, delete `globalsAdd()`
+      * `me().classAdd('red')` becomes: `surreal.me().classAdd('red')`
+      * `classAdd(me(), 'red')` becomes: `surreal.classAdd(surreal.me(), 'red')`
 
 See: [Quick Start](#quick-start) and [Reference](#reference) and [No Surreal Needed](#no-surreal)
 
