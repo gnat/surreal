@@ -55,7 +55,7 @@ let $ = { // Convenience for internals.
 	//		<script>me().style.color = 'red'</script>
 	//	</div>
 	me(selector=null, start=document, warning=true) {
-		if (selector == null) return $.sugar(start.currentScript.parentElement) // Just local me() in <script>
+		if (!selector) return $.sugar(start.currentScript.previousElementSibling || start.currentScript.parentElement) // Just local me() in <script>
 		if (selector instanceof Event) return selector.currentTarget ? $.me(selector.currentTarget) : (console.warn(`Surreal: Event currentTarget is null. Please save your element because async will lose it`), null) // Events try currentTarget
 		if (typeof selector == 'string' && isSelector(selector, start, warning)) return $.sugar(start.querySelector(selector)) // String selector.
 		if ($.isNodeList(selector)) return $.me(selector[0]) // If we got a list, just take the first element.
@@ -67,7 +67,7 @@ let $ = { // Convenience for internals.
 	// Returns an Array of elements (so you can use methods like forEach/filter/map/reduce if you want).
 	// Example: any('button')
 	any(selector, start=document, warning=true) {
-		if (selector == null) return $.sugar([start.currentScript.parentElement]) // Just local me() in <script>
+		if (!selector) return $.sugar([start.currentScript.previousElementSibling || start.currentScript.parentElement]) // Just local me() in <script>
 		if (selector instanceof Event) return selector.currentTarget ? $.any(selector.currentTarget) : (console.warn(`Surreal: Event currentTarget is null. Please save your element because async will lose it`), null) // Events try currentTarget
 		if (typeof selector == 'string' && isSelector(selector, start, true, warning)) return $.sugar(Array.from(start.querySelectorAll(selector))) // String selector.
 		if ($.isNode(selector)) return $.sugar([selector]) // Single element. Convert to Array.
