@@ -57,7 +57,7 @@ let $ = { // Convenience for internals.
 	me(selector=null, start=document, warning=true) {
 		if (selector == null) return $.sugar(start.currentScript.parentElement) // Just local me() in <script>
 		if (selector instanceof Event) return selector.currentTarget ? $.me(selector.currentTarget) : (console.warn(`Surreal: Event currentTarget is null. Please save your element because async will lose it`), null) // Events try currentTarget
-		if (typeof selector == 'string' && isSelector(selector, start, warning)) return $.sugar(start.querySelector(selector)) // String selector.
+		if (typeof selector == 'string' && $.isSelector(selector, start, warning)) return $.sugar(start.querySelector(selector)) // String selector.
 		if ($.isNodeList(selector)) return $.me(selector[0]) // If we got a list, just take the first element.
 		if ($.isNode(selector)) return $.sugar(selector) // Valid element.
 		return null // Invalid.
@@ -69,20 +69,20 @@ let $ = { // Convenience for internals.
 	any(selector, start=document, warning=true) {
 		if (selector == null) return $.sugar([start.currentScript.parentElement]) // Just local me() in <script>
 		if (selector instanceof Event) return selector.currentTarget ? $.any(selector.currentTarget) : (console.warn(`Surreal: Event currentTarget is null. Please save your element because async will lose it`), null) // Events try currentTarget
-		if (typeof selector == 'string' && isSelector(selector, start, true, warning)) return $.sugar(Array.from(start.querySelectorAll(selector))) // String selector.
+		if (typeof selector == 'string' && $.isSelector(selector, start, true, warning)) return $.sugar(Array.from(start.querySelectorAll(selector))) // String selector.
 		if ($.isNode(selector)) return $.sugar([selector]) // Single element. Convert to Array.
 		if ($.isNodeList(selector)) return $.sugar(Array.from(selector)) // Valid NodeList or Array.
 		return null // Invalid.
 	},
 	// Run any function on element(s)
 	run(e, f) {
-		if ($.isNodeList(e)) e.forEach(_ => { run(_, f) })
+		if ($.isNodeList(e)) e.forEach(_ => { $.run(_, f) })
 		if ($.isNode(e)) { f(e); }
 		return e
 	},
 	// Remove element(s)
 	remove(e) {
-		if ($.isNodeList(e)) e.forEach(_ => { remove(_) })
+		if ($.isNodeList(e)) e.forEach(_ => { $.remove(_) })
 		if ($.isNode(e)) e.parentNode.removeChild(e)
 		return // Special, end of chain.
 	},
@@ -117,12 +117,12 @@ let $ = { // Convenience for internals.
 	// 	Object format; { fontFamily: 'sans-serif', backgroundColor: '#000' }
 	styles(e, value) {
 		if (typeof value === 'string') { // Format: "font-family: 'sans-serif'"
-			if ($.isNodeList(e)) e.forEach(_ => { styles(_, value) })
-			if ($.isNode(e)) { attribute(e, 'style', (attribute(e, 'style') == null ? '' : attribute(e, 'style') + '; ') + value)  }
+			if ($.isNodeList(e)) e.forEach(_ => { $.styles(_, value) })
+			if ($.isNode(e)) { $.attribute(e, 'style', ($.attribute(e, 'style') == null ? '' : $.attribute(e, 'style') + '; ') + value)  }
 			return e
 		}
 		if (typeof value === 'object') { // Format: { fontFamily: 'sans-serif', backgroundColor: '#000' }
-			if ($.isNodeList(e)) e.forEach(_ => { styles(_, value) })
+			if ($.isNodeList(e)) e.forEach(_ => { $.styles(_, value) })
 			if ($.isNode(e)) { Object.assign(e.style, value)  }
 			return e
 		}
@@ -133,37 +133,37 @@ let $ = { // Convenience for internals.
 	//	✂️ Vanilla: document.querySelector(".thing").addEventListener("click", (e) => { alert("clicked") }
 	on(e, name, fn) {
 		if (typeof name !== 'string') return null
-		if ($.isNodeList(e)) e.forEach(_ => { on(_, name, fn) })
+		if ($.isNodeList(e)) e.forEach(_ => { $.on(_, name, fn) })
 		if ($.isNode(e)) e.addEventListener(name, fn)
 		return e
 	},
 	off(e, name, fn) {
 		if (typeof name !== 'string') return null
-		if ($.isNodeList(e)) e.forEach(_ => { off(_, name, fn) })
+		if ($.isNodeList(e)) e.forEach(_ => { $.off(_, name, fn) })
 		if ($.isNode(e)) e.removeEventListener(name, fn)
 		return e
 	},
 	offAll(e) {
-		if ($.isNodeList(e)) e.forEach(_ => { offAll(_) })
+		if ($.isNodeList(e)) e.forEach(_ => { $.offAll(_) })
 		if ($.isNode(e)) e.parentNode.replaceChild(e.cloneNode(true), e)
 		return e
 	},
 	// Easy alternative to off(). Disables click, key, submit events.
 	disable(e) {
-		if ($.isNodeList(e)) e.forEach(_ => { disable(_) })
+		if ($.isNodeList(e)) e.forEach(_ => { $.disable(_) })
 		if ($.isNode(e)) e.disabled = true
 		return e
 	},
 	// For reversing disable()
 	enable(e) {
-		if ($.isNodeList(e)) e.forEach(_ => { enable(_) })
+		if ($.isNodeList(e)) e.forEach(_ => { $.enable(_) })
 		if ($.isNode(e)) e.disabled = false
 		return e
 	},
 	// Trigger event / dispatch event.
 	// ✂️ Vanilla: Events Dispatch: document.querySelector(".thing").dispatchEvent(new Event('click'))
 	trigger(e, name) {
-		if ($.isNodeList(e)) e.forEach(_ => { trigger(_, name) })
+		if ($.isNodeList(e)) e.forEach(_ => { $.trigger(_, name) })
 		if ($.isNode(e)) {
 			const event = new CustomEvent(name, {bubbles: true})
 			e.dispatchEvent(event)
@@ -200,8 +200,8 @@ let $ = { // Convenience for internals.
 		}
 		// Format: { "name": "value", "blah": true }
 		if (typeof name === 'object') {
-			if ($.isNodeList(e)) e.forEach(_ => { Object.entries(name).forEach(([key, val]) => { attribute(_, key, val) }) })
-			if ($.isNode(e)) Object.entries(name).forEach(([key, val]) => { attribute(e, key, val) })
+			if ($.isNodeList(e)) e.forEach(_ => { Object.entries(name).forEach(([key, val]) => { $.attribute(_, key, val) }) })
+			if ($.isNode(e)) Object.entries(name).forEach(([key, val]) => { $.attribute(e, key, val) })
 			return e
 		}
 		return e
