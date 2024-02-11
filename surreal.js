@@ -1,4 +1,4 @@
-// Welcome to Surreal 1.1.2
+// Welcome to Surreal 1.1.3
 // Documentation: https://github.com/gnat/surreal
 // Locality of Behavior (LoB): https://htmx.org/essays/locality-of-behaviour/
 let surreal = (function () {
@@ -240,9 +240,9 @@ let $ = { // Convenience for internals.
 $.globalsAdd() // Full convenience.
 console.log("Surreal: Loaded.")
 return $
-})() // End of Surreal 🏁
+})() // End of Surreal 👏
 
-// 📦 Plugin: Effects
+// 🔌 Plugin: Effects
 function pluginEffects(e) {
 	// Fade out and remove element.
 	// Equivalent to jQuery fadeOut(), but actually removes the element!
@@ -284,7 +284,7 @@ function pluginEffects(e) {
 	e.fade_in  = e.fadeIn
 }
 
-// Add plugins here!
+// 🔌 Add plugins here!
 surreal.plugins.push(pluginEffects)
 console.log("Surreal: Loaded plugins.")
 
