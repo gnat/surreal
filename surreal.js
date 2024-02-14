@@ -1,4 +1,4 @@
-// Welcome to Surreal 1.1.3
+// Welcome to Surreal 1.1.4
 // Documentation: https://github.com/gnat/surreal
 // Locality of Behavior (LoB): https://htmx.org/essays/locality-of-behaviour/
 let surreal = (function () {
@@ -286,37 +286,34 @@ function pluginEffects(e) {
 
 // 🔌 Add plugins here!
 surreal.plugins.push(pluginEffects)
-console.log("Surreal: Loaded plugins.")
+console.log("Surreal: Added plugins.")
 
-// DOM helpers.
-const createElement = document.createElement.bind(document)
-const create_element = createElement
-// Animation helpers.
+// 🌐 Add global shortcuts here!
+// DOM.
+const createElement = create_element = document.createElement.bind(document)
+// Animation.
 const rAF = typeof requestAnimationFrame !== 'undefined' && requestAnimationFrame
 const rIC = typeof requestIdleCallback !== 'undefined' && requestIdleCallback
-// Wait for next animation frame.
+// Animation: Wait for next animation frame, non-blocking.
 async function tick() {
-	await new Promise(resolve => { requestAnimationFrame(resolve) })
+	return await new Promise(resolve => { requestAnimationFrame(resolve) })
 }
-// Sleep without async.
-function sleep(ms, e) {
-	return new Promise(resolve => setTimeout(() => { resolve(e) }, ms))
+// Animation: Sleep, non-blocking.
+async function sleep(ms, e) {
+	return await new Promise(resolve => setTimeout(() => { resolve(e) }, ms))
 }
-// Loading helpers.
-// Why? So you don't overwrite window.onload. And predictable sequential loading!
-// <script>onloadAdd(() => { console.log("Page was loaded!") })</script>
-// <script>onloadAdd(() => { console.log("Lets do another thing!") })</script>
-function onloadAdd(f) {
-	// window.onload was not set yet.
-	if (typeof window.onload != 'function') {
-		window.onload = f
+// Loading: Why? So you don't clobber window.onload (predictable sequential loading)
+// Example: <script>onloadAdd(() => { console.log("Page was loaded!") })</script>
+// Example: <script>onloadAdd(() => { console.log("Lets do another thing without clobbering window.onload!") })</script>
+const onloadAdd = addOnload = onload_add = add_onload = (f) => {
+	if (typeof window.onload === 'function') { // window.onload already is set, queue functions together (creates a call chain).
+		let onload_old = window.onload
+		window.onload = () => {
+			onload_old()
+			f()
+		}
 		return
 	}
-	// If onload already is set, queue them together. This creates a sequential call chain as we add more functions.
-	let onload_old = window.onload
-	window.onload = () => {
-		onload_old()
-		f()
-	}
+	window.onload = f // window.onload was not set yet.
 }
-const onload_add = add_onload = addOnload = onloadAdd // Aliases
+console.log("Surreal: Added shortcuts.")
