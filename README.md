@@ -189,7 +189,7 @@ Looking for [DOM Selectors](#selectors)?
 Looking for stuff [we recommend doing in vanilla JS](#no-surreal)?
 ### 🧭 Legend
 * 🔗 Chainable off `me()` and `any()`
-* 🌐 Global helper.
+* 🌐 Global shortcut.
 * ▶️ Runnable example.
 * 🔌 Built-in Plugin
 ### 👁️ At a glance
