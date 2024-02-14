@@ -148,5 +148,8 @@
 				me().on("click", ev => { window.location.href ="https://github.com/gnat/surreal/blob/main/example.html" })
 			</script>
 		</button>
+		<!-- Try out window.onload predictable call chain -->
+		<script>onloadAdd(()=>{ console.log("Hello from Surreal onloadAdd()") })</script>
+		<script>onloadAdd(()=>{ console.log("I added to onload without clobbering the previous function") })</script>
 	</body>
 </html>
