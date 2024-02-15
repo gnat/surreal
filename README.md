@@ -317,6 +317,41 @@ Append / Prepend elements.
 * ▶️ `me().insertBefore(element, other_element.firstChild)`
 * ▶️ `me().insertAdjacentHTML("beforebegin", new_element)`
 
+Ajax (alternatives to jquery `ajax()`)
+* First, check out [htmx](https://htmx.org/) ..and if you need more control:
+* Using [fetch()](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) ▶️
+```js
+me().on("click", async event => {
+  let e = me(event)
+  // Example 1: Hit an endpoint.
+  if((await fetch("/webhook")).ok) console.log("Did the thing.")
+  // Example 2: Get content and replace me()
+  try {
+    let response = await fetch('/endpoint')
+    if (response.ok) e.innerHTML = await response.text()
+    else console.warn('fetch(): Bad response')
+  }
+  catch (error) { console.warn(`fetch(): ${error}`) }
+})
+```
+* Using [XMLHttpRequest()](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) ▶️
+```js
+me().on("click", async event => {
+  let e = me(event)
+  // Example 1: Hit an endpoint.
+  var xhr = new XMLHttpRequest()
+  xhr.open("GET", "/webhook")
+  xhr.send()
+  // Example 2: Get content and replace me()
+  var xhr = new XMLHttpRequest()
+  xhr.open("GET", "/endpoint")
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState == 4 && xhr.status >= 200 && xhr.status < 300) e.innerHTML = xhr.responseText
+  }
+  xhr.send()
+})
+```
+
  ## 💎 Conventions & Tips
 
 * Many ideas can be plain HTML / CSS (ex: dropdowns).
