@@ -55,7 +55,7 @@ let $ = { // Convenience for internals.
 	//		<script>me().style.color = 'red'</script>
 	//	</div>
 	me(selector=null, start=document, warning=true) {
-		if (selector == null) return $.sugar(start.currentScript.previousElementSibling) // Just local me() in <script>
+		if (selector == null) return $.sugar(start.currentScript.parentElement) // Just local me() in <script>
 		if (selector instanceof Event) return selector.currentTarget ? $.me(selector.currentTarget) : (console.warn(`Surreal: Event currentTarget is null. Please save your element because async will lose it`), null) // Events try currentTarget
 		if (typeof selector == 'string') {
 			if (selector === 'prev') return $.sugar(start.currentScript.previousElementSibling)
@@ -71,7 +71,7 @@ let $ = { // Convenience for internals.
 	// Returns an Array of elements (so you can use methods like forEach/filter/map/reduce if you want).
 	// Example: any('button')
 	any(selector, start=document, warning=true) {
-		if (selector == null) return $.sugar([start.currentScript.previousElementSibling]) // Just local any() in <script>
+		if (selector == null) return $.sugar([start.currentScript.parentElement]) // Just local any() in <script>
 		if (selector instanceof Event) return selector.currentTarget ? $.any(selector.currentTarget) : (console.warn(`Surreal: Event currentTarget is null. Please save your element because async will lose it`), null) // Events try currentTarget
 		if (typeof selector == 'string') {
 			if (selector === 'prev') return $.sugar([start.currentScript.previousElementSibling])
