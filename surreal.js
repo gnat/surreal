@@ -1,4 +1,4 @@
-// Welcome to Surreal 1.1.4
+// Welcome to Surreal 1.1.5
 // Documentation: https://github.com/gnat/surreal
 // Locality of Behavior (LoB): https://htmx.org/essays/locality-of-behaviour/
 let surreal = (function () {
@@ -46,7 +46,6 @@ let $ = { // Convenience for internals.
 		e.hasSurreal = 1
 		return e
 	},
-
 	// Return single element. Selector not needed if used with inline <script> 🔥
 	// If your query returns a collection, it will return the first element.
 	// Example
@@ -57,19 +56,20 @@ let $ = { // Convenience for internals.
 	me(selector=null, start=document, warning=true) {
 		if (selector == null) return $.sugar(start.currentScript.parentElement) // Just local me() in <script>
 		if (selector instanceof Event) return selector.currentTarget ? $.me(selector.currentTarget) : (console.warn(`Surreal: Event currentTarget is null. Please save your element because async will lose it`), null) // Events try currentTarget
-		if (typeof selector == 'string' && $.isSelector(selector, start, warning)) return $.sugar(start.querySelector(selector)) // String selector.
+		if (selector === '-' || selector === 'prev' || selector === 'previous') return $.sugar(start.currentScript.previousElementSibling) // Element directly before <script>
+		if ($.isSelector(selector, start, warning)) return $.sugar(start.querySelector(selector)) // String selector.
 		if ($.isNodeList(selector)) return $.me(selector[0]) // If we got a list, just take the first element.
 		if ($.isNode(selector)) return $.sugar(selector) // Valid element.
 		return null // Invalid.
 	},
-
 	// any() is me() but always returns array of elements. Requires selector.
 	// Returns an Array of elements (so you can use methods like forEach/filter/map/reduce if you want).
 	// Example: any('button')
 	any(selector, start=document, warning=true) {
 		if (selector == null) return $.sugar([start.currentScript.parentElement]) // Just local me() in <script>
 		if (selector instanceof Event) return selector.currentTarget ? $.any(selector.currentTarget) : (console.warn(`Surreal: Event currentTarget is null. Please save your element because async will lose it`), null) // Events try currentTarget
-		if (typeof selector == 'string' && $.isSelector(selector, start, true, warning)) return $.sugar(Array.from(start.querySelectorAll(selector))) // String selector.
+		if (selector === '-' || selector === 'prev' || selector === 'previous') return $.sugar([start.currentScript.previousElementSibling]) // Element directly before <script>
+		if ($.isSelector(selector, start, true, warning)) return $.sugar(Array.from(start.querySelectorAll(selector))) // String selector.
 		if ($.isNode(selector)) return $.sugar([selector]) // Single element. Convert to Array.
 		if ($.isNodeList(selector)) return $.sugar(Array.from(selector)) // Valid NodeList or Array.
 		return null // Invalid.
@@ -225,6 +225,7 @@ let $ = { // Convenience for internals.
 	},
 	// ⚙️ Used internally by DOM functions. Warning when selector is invalid. Likely missing a "#" or "."
 	isSelector(selector="", start=document, all=false, warning=true) {
+		if(typeof selector !== 'string') return false
 		if (all && start.querySelectorAll(selector) == null) {
 			if (warning) console.warn(`Surreal: "${selector}" was not found. Missing a character? (. #)`)
 			return false
