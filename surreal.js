@@ -60,7 +60,7 @@ let $ = { // Convenience for internals.
 		if (typeof selector == 'string') {
 			if (selector === 'prev') return $.sugar(start.currentScript.previousElementSibling)
 			if (selector === 'next') return $.sugar(start.currentScript.nextElementSibling)
-			if (isSelector(selector, start, warning)) return $.sugar(start.querySelector(selector)) // String selector.
+			if ($.isSelector(selector, start, warning)) return $.sugar(start.querySelector(selector)) // String selector.
 		}
 		if ($.isNodeList(selector)) return $.me(selector[0]) // If we got a list, just take the first element.
 		if ($.isNode(selector)) return $.sugar(selector) // Valid element.
