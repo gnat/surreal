@@ -317,18 +317,61 @@ Append / Prepend elements.
 * ▶️ `me().insertBefore(element, other_element.firstChild)`
 * ▶️ `me().insertAdjacentHTML("beforebegin", new_element)`
 
+Ajax (alternatives to jquery `ajax()`)
+* First, check out [htmx](https://htmx.org/) ..and if you need more control:
+* Using [fetch()](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) ▶️
+```js
+me().on("click", async event => {
+  let e = me(event)
+  // Example 1: Hit an endpoint.
+  if((await fetch("/webhook")).ok) console.log("Did the thing.")
+  // Example 2: Get content and replace me()
+  try {
+    let response = await fetch('/endpoint')
+    if (response.ok) e.innerHTML = await response.text()
+    else console.warn('fetch(): Bad response')
+  }
+  catch (error) { console.warn(`fetch(): ${error}`) }
+})
+```
+* Using [XMLHttpRequest()](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) ▶️
+```js
+me().on("click", async event => {
+  let e = me(event)
+  // Example 1: Hit an endpoint.
+  var xhr = new XMLHttpRequest()
+  xhr.open("GET", "/webhook")
+  xhr.send()
+  // Example 2: Get content and replace me()
+  var xhr = new XMLHttpRequest()
+  xhr.open("GET", "/endpoint")
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState == 4 && xhr.status >= 200 && xhr.status < 300) e.innerHTML = xhr.responseText
+  }
+  xhr.send()
+})
+```
+
  ## 💎 Conventions & Tips
 
-* Many ideas can be plain HTML / CSS (ex: dropdowns).
+* Many ideas can be done in HTML / CSS (ex: dropdowns)
 * `_` = for temporary or unused variables. Keep it short and sweet!
 * `e`, `el`, `elt` = element
 * `e`, `ev`, `evt` = event
 * `f`, `fn` = function
-* Scoping functions inside `<script>` (..or anything not scoped by `me()`)
-  * ⭐ Inside a `me()` event: `me().on('click', ev => { /* add and call function here */ })`
+
+#### Scope new functions inside `<script>`
+  * ⭐ Inside an event: `me().on('click', ev => { /* add and call function here */ })`
   * Or, use an inline module: `<script type="module">`
     * Note: `me()` will no longer see `parentElement` so explicit selectors are required: `me(".mybutton")`
   * Or, use backend code to generate unique names for anything not scoped by `me()`
+
+#### Select a void element like `<input type="text" />`
+* Use: `me('-')` or `me('prev')` or `me('previous')`
+  * `<input type="text" /> <script>me('-').value = "hello"</script>`
+  * Shortcut for `me(document.currentScript.previousElementSibling)`
+* Or, use a relative start.
+  * `<input type="text" n1 /> <script>me('[n1]', me()).value = "hello"</script>`
 
 ## <a name="plugins"></a>🔌 Your own plugin
 
