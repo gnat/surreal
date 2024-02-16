@@ -76,7 +76,7 @@ let $ = { // Convenience for internals.
 		if (typeof selector == 'string') {
 			if (selector === 'prev') return $.sugar([start.currentScript.previousElementSibling])
 			if (selector === 'next') return $.sugar([start.currentScript.nextElementSibling])
-			if $.isSelector(selector, start, true, warning)) return $.sugar(Array.from(start.querySelectorAll(selector)))
+			if ($.isSelector(selector, start, true, warning)) return $.sugar(Array.from(start.querySelectorAll(selector)))
 		}
 		if ($.isNode(selector)) return $.sugar([selector]) // Single element. Convert to Array.
 		if ($.isNodeList(selector)) return $.sugar(Array.from(selector)) // Valid NodeList or Array.
