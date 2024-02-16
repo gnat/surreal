@@ -354,16 +354,25 @@ me().on("click", async event => {
 
  ## 💎 Conventions & Tips
 
-* Many ideas can be plain HTML / CSS (ex: dropdowns).
+* Many ideas can be done in HTML / CSS (ex: dropdowns)
+* Surreal only exists to help write shorter vanilla JS
 * `_` = for temporary or unused variables. Keep it short and sweet!
 * `e`, `el`, `elt` = element
 * `e`, `ev`, `evt` = event
 * `f`, `fn` = function
-* Scoping functions inside `<script>` (..or anything not scoped by `me()`)
-  * ⭐ Inside a `me()` event: `me().on('click', ev => { /* add and call function here */ })`
+
+#### Scope new functions inside `<script>`
+  * ⭐ Inside an event: `me().on('click', ev => { /* add and call function here */ })`
   * Or, use an inline module: `<script type="module">`
     * Note: `me()` will no longer see `parentElement` so explicit selectors are required: `me(".mybutton")`
   * Or, use backend code to generate unique names for anything not scoped by `me()`
+
+#### Select a void element (`<input type="text" />`)
+* Use: `me('-')` or `me('prev')` or `me('previous')`
+  * Shorthand for `me(document.currentScript.previousElementSibling)`
+* Or, use a relative start.
+  * `<input e1 type="text" /><script>me('[e1]', me()).value = "hello"</script>`
+  * Similar pattern can be seen Surreal's companion project: [css-scope-inline](https://github.com/gnat/css-scope-inline)
 
 ## <a name="plugins"></a>🔌 Your own plugin
 
