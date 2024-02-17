@@ -32,7 +32,7 @@ let $ = { // Convenience for internals.
 		e.off_all       = e.offAll
 		e.disable       = () => { return $.disable(e) }
 		e.enable        = () => { return $.enable(e) }
-		e.trigger       = (name) => { return $.trigger(e, name) }
+		e.trigger       = (name, detail) => { return $.trigger(e, name, detail) }
 		e.halt          = (ev, keepBubbling, keepDefault) => { return $.halt(ev, keepBubbling, keepDefault) }
 
 		// Attributes.
@@ -162,10 +162,10 @@ let $ = { // Convenience for internals.
 	},
 	// Trigger event / dispatch event.
 	// ✂️ Vanilla: Events Dispatch: document.querySelector(".thing").dispatchEvent(new Event('click'))
-	trigger(e, name) {
-		if ($.isNodeList(e)) e.forEach(_ => { $.trigger(_, name) })
+	trigger(e, name, detail) {
+		if ($.isNodeList(e)) e.forEach(_ => { $.trigger(_, name, detail) })
 		if ($.isNode(e)) {
-			const event = new CustomEvent(name, {bubbles: true})
+			const event = new CustomEvent(name, { bubbles: true, detail })
 			e.dispatchEvent(event)
 		}
 		return e
