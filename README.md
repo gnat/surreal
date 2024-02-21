@@ -57,7 +57,7 @@ Do surreal things with [Locality of Behavior](https://htmx.org/essays/locality-o
   <script>
     me().on("dragover", ev => { halt(ev); me(ev).classAdd('.hover'); console.log("Files in drop zone.") })
     me().on("dragleave", ev => { halt(ev); me(ev).classAdd('.hover'); console.log("Files left drop zone.") })
-    me().on("drop", ev => { halt(ev); me(ev).classRemove('.hover').classAdd('.loading'); me('#file-input').attribute('files', ev.dataTransfer.files); me('#form').trigger('change') })
+    me().on("drop", ev => { halt(ev); me(ev).classRemove('.hover').classAdd('.loading'); me('#file-input').attribute('files', ev.dataTransfer.files); me('#form').send('change') })
   </script>
 </label>
 ```
@@ -220,8 +220,9 @@ Looking for stuff [we recommend doing in vanilla JS](#no-surreal)?
   * Set multiple: ▶️ `me().attribute({ 'data-x':'yes', 'data-y':'no' })`
   * Remove: ▶️ `me().attribute('data-x', null)`
   * Remove multiple: ▶️ `me().attribute({ 'data-x': null, 'data-y':null })`
-* 🔗 `trigger`
-  * ▶️ `me().trigger('hello')`
+* 🔗 `send` 🔁 `trigger`
+  * ▶️ `me().send('change')`
+  * ▶️ `me().send('change', {'data':'thing'})`
   * Wraps `dispatchEvent`
 * 🔗 `on`
   * ▶️ `me().on('click', ev => { me(ev).styles('background', 'red') })`
