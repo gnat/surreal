@@ -45,15 +45,15 @@
 					let e = me(ev)
 					e.styles({"background":"hotpink", "color":"purple"})
 					await sleep(1000)
-					e.trigger("pong")
+					e.send("pong")
 				})
 				me().on("pong", async ev => {
 					let e = me(ev)
 					e.styles({"background":"blue", "color":"#002200"})
 					await sleep(1000)
-					e.trigger("ping")
+					e.send("ping")
 				})
-				me().styles({"transition":"all 2s"}).trigger("pong")
+				me().styles({"transition":"all 2s"}).send("pong")
 			</script>
 		</div>
 		<div>I should be animated using timeline / async until finished!
@@ -112,7 +112,7 @@
 			</script>
 			<button  class="close">✉️ Send "close"
 				<script>
-					me().on("click", event => { me(event).disable(); me(event).trigger("close") })
+					me().on("click", event => { me(event).disable(); me(event).send("close") })
 				</script>
 			</button>
 		</div>
@@ -138,7 +138,7 @@
 				</script>
 				<button class="close">✉️ Send "close"
 					<script>
-						me().on("click", event => { me(event).disable(); me(event).trigger("close") }) // Use disable() to stop clicking more than once.
+						me().on("click", event => { me(event).disable(); me(event).send("close") }) // Use disable() to stop clicking more than once.
 					</script>
 				</button>
 			</div>

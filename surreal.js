@@ -1,4 +1,4 @@
-// Welcome to Surreal 1.1.5
+// Welcome to Surreal 1.1.6
 // Documentation: https://github.com/gnat/surreal
 // Locality of Behavior (LoB): https://htmx.org/essays/locality-of-behaviour/
 let surreal = (function () {
@@ -32,7 +32,8 @@ let $ = { // Convenience for internals.
 		e.off_all       = e.offAll
 		e.disable       = () => { return $.disable(e) }
 		e.enable        = () => { return $.enable(e) }
-		e.trigger       = (name) => { return $.trigger(e, name) }
+		e.send          = (name, detail) => { return $.send(e, name, detail) }
+		e.trigger       = send
 		e.halt          = (ev, keepBubbling, keepDefault) => { return $.halt(ev, keepBubbling, keepDefault) }
 
 		// Attributes.
@@ -160,12 +161,12 @@ let $ = { // Convenience for internals.
 		if ($.isNode(e)) e.disabled = false
 		return e
 	},
-	// Trigger event / dispatch event.
+	// Send / trigger event.
 	// ✂️ Vanilla: Events Dispatch: document.querySelector(".thing").dispatchEvent(new Event('click'))
-	trigger(e, name) {
-		if ($.isNodeList(e)) e.forEach(_ => { $.trigger(_, name) })
+	send(e, name, detail=null) {
+		if ($.isNodeList(e)) e.forEach(_ => { $.send(_, name, detail) })
 		if ($.isNode(e)) {
-			const event = new CustomEvent(name, {bubbles: true})
+			const event = new CustomEvent(name, { detail: detail, bubbles: true })
 			e.dispatchEvent(event)
 		}
 		return e
