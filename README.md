@@ -127,7 +127,7 @@ See: [Quick Start](#quick-start) and [Reference](#reference) and [No Surreal Nee
 ```html
 <div>I change color every second.
   <script>
-    // Every second animate something new.
+    // On click, animate something new every second.
     me().on("click", async ev => {
       let el = me(ev) // Save target because async will lose it.
       me(el).styles({ "transition": "background 1s" })
@@ -151,7 +151,7 @@ See: [Quick Start](#quick-start) and [Reference](#reference) and [No Surreal Nee
 </div>
 ```
 ```html
-<div>I change color every second.
+<div>Change color every second.
   <script>
     // Run immediately.
     (async (e = me()) => {
