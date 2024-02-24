@@ -66,7 +66,7 @@ See the [Live Example](https://gnat.github.io/surreal/example.html)! Then [view 
 
 ## 🎁 Install
 
-Surreal is only 320 lines. No build step. No dependencies.
+Surreal is only 340 lines. No build step. No dependencies.
 
 [📥 Download](https://raw.githubusercontent.com/gnat/surreal/main/surreal.js) into your project, and add `<script src="/surreal.js"></script>` in your `<head>`
 
