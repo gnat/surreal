@@ -88,7 +88,7 @@ button.close:disabled {
 	width: 300px;
 	height: 400px;
 	padding: 1em;
-	margin: 2em;
+	margin: 2em auto;
 	font-weight: bold;
 	text-align: right;
 	text-shadow: 0 0 4px #000;
