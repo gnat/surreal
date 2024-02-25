@@ -143,13 +143,57 @@
 				</button>
 			</div>
 		</div>
+
+		<!-- 3D sample and scoped functions -->
+		<div class="card">
+			3D Card
+			<div></div>
+			<style>
+				body { perspective: 1500px; }
+				.card {
+					position: relative; width: 300px; height: 400px; padding: 1em; margin: 2em 0;
+					font-family: system-ui, sans-serif; font-weight: bold; text-align: right; text-shadow: 0 0 4px #000; color: #ddd;
+					box-shadow: 0 1px 5px #00000099; border-radius: 10px; background: url(https://i.postimg.cc/MHKFqnq6/1679116297740936.png) center; background-size: cover;
+					cursor: pointer;
+					transition-duration: 300ms; transition-property: transform, box-shadow; transition-timing-function: ease-out; transform: rotate3d(0);
+				}
+				.card :hover { transition-duration: 150ms; box-shadow: 0 5px 20px 5px #00000044; }
+				.card > div { position: absolute; width: 100%; height: 100%; left: 0; top: 0; border-radius: 10px; background-image: radial-gradient(circle at 90% -20%, #ffffff33, #0000000f); }
+			</style>
+			<script>
+				me().on('mouseenter', (ev) => {
+					let e = me(ev)
+					e.bounds = e.getBoundingClientRect()
+					e.on('mousemove', e.rotateToMouse)
+				})
+				me().on('mouseleave', (ev) => {
+					let e = me(ev)
+					e.off('mousemove', e.rotateToMouse)
+					e.style.transform = ''
+					e.style.background = ''
+				})
+				me().rotateToMouse = (ev) => {
+					let e = me(ev)
+					let mouseX = ev.clientX
+					let mouseY = ev.clientY
+					let leftX = mouseX - e.bounds.x
+					let topY = mouseY - e.bounds.y
+					let center = { x: leftX - e.bounds.width / 2, y: topY - e.bounds.height / 2 }
+					let distance = Math.sqrt(center.x**2 + center.y**2)
+					e.style.transform = `scale3d(1.07, 1.07, 1.0) rotate3d(${center.y / 100}, ${-center.x / 100}, 0, ${Math.log(distance)* 3}0deg)`
+					me('div', e).style.backgroundImage = `radial-gradient(circle at ${center.x * 2 + e.bounds.width/2}px ${center.y * 2 + e.bounds.height/2}px, #ffffff55, #0000000f)`
+				}
+			</script>
+		</div>
+
+		<!-- Try out window.onload predictable call chain -->
+		<script>onloadAdd(()=>{ console.log("Hello from Surreal onloadAdd()") })</script>
+		<script>onloadAdd(()=>{ console.log("I added to onload without clobbering the previous function") })</script>
+
 		<button class="blue">😺 Visit the source code for this page.
 			<script>
 				me().on("click", ev => { window.location.href ="https://github.com/gnat/surreal/blob/main/example.html" })
 			</script>
 		</button>
-		<!-- Try out window.onload predictable call chain -->
-		<script>onloadAdd(()=>{ console.log("Hello from Surreal onloadAdd()") })</script>
-		<script>onloadAdd(()=>{ console.log("I added to onload without clobbering the previous function") })</script>
 	</body>
 </html>
