@@ -95,7 +95,7 @@ button.close:disabled {
 	color: #ddd;
 	box-shadow: 0 1px 5px #00000099;
 	border-radius: 10px;
-	background: url(https://i.postimg.cc/MHKFqnq6/1679116297740936.png) center;
+	background: #222 center;
 	background-size: cover;
 	cursor: pointer;
 	transition-duration: 300ms;
