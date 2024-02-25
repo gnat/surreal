@@ -361,8 +361,11 @@ me().on("click", async event => {
 * `e`, `ev`, `evt` = event
 * `f`, `fn` = function
 
-#### Scope new functions inside `<script>`
-  * ⭐ Inside an event: `me().on('click', ev => { /* add and call function here */ })`
+#### Scope functions inside `<script>`
+  * ⭐ On `me()`
+    *  `me().doIt = (message) => { alert(message) }`
+    *  `me().on('click', (ev) => { me(ev).doIt("hello") })`
+  * ⭐ Or, in an event: `me().on('click', ev => { /* add and call function here */ })`
   * Or, use an inline module: `<script type="module">`
     * Note: `me()` will no longer see `parentElement` so explicit selectors are required: `me(".mybutton")`
   * Or, use backend code to generate unique names for anything not scoped by `me()`
