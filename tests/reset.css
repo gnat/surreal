@@ -22,6 +22,7 @@ body {
 	padding: 1rem;
 	background: #adadad;
 	color: #ccc;
+	perspective: 1500px;
 }
 .active {
 	background: hsl(345deg 100% 47%);
