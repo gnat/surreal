@@ -167,7 +167,7 @@
 					let topY = mouseY - e.bounds.y
 					let center = { x: leftX - e.bounds.width / 2, y: topY - e.bounds.height / 2 }
 					let distance = Math.sqrt(center.x**2 + center.y**2)
-					e.style.transform = `scale3d(1.07, 1.07, 1.0) rotate3d(${center.y / 100}, ${-center.x / 100}, 0, ${Math.log(distance)* 3}0deg)`
+					e.style.transform = `scale3d(1.07, 1.07, 1.0) rotate3d(${center.y / 100}, ${-center.x / 100}, 0, ${Math.log(distance)* 1}0deg)`
 					me('div', e).style.backgroundImage = `radial-gradient(circle at ${center.x * 2 + e.bounds.width/2}px ${center.y * 2 + e.bounds.height/2}px, #ffffff55, #0000000f)`
 				}
 			</script>
