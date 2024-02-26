@@ -1,4 +1,4 @@
-// Welcome to Surreal 1.1.6
+// Welcome to Surreal 1.1.7
 // Documentation: https://github.com/gnat/surreal
 // Locality of Behavior (LoB): https://htmx.org/essays/locality-of-behaviour/
 let surreal = (function () {
@@ -33,7 +33,7 @@ let $ = { // Convenience for internals.
 		e.disable       = () => { return $.disable(e) }
 		e.enable        = () => { return $.enable(e) }
 		e.send          = (name, detail) => { return $.send(e, name, detail) }
-		e.trigger       = send
+		e.trigger       = e.send
 		e.halt          = (ev, keepBubbling, keepDefault) => { return $.halt(ev, keepBubbling, keepDefault) }
 
 		// Attributes.
