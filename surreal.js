@@ -58,7 +58,7 @@ let $ = { // Convenience for internals.
 		if (selector == null) return $.sugar(start.currentScript.parentElement) // Just local me() in <script>
 		if (selector instanceof Event) return selector.currentTarget ? $.me(selector.currentTarget) : (console.warn(`Surreal: Event currentTarget is null. Please save your element because async will lose it`), null) // Events try currentTarget
 		if (selector === '-' || selector === 'prev' || selector === 'previous') return $.sugar(start.currentScript.previousElementSibling) // Element directly before <script>
-		if ($.isSelector(selector, start, warning)) return $.sugar(start.querySelector(selector)) // String selector.
+		if ($.isSelector(selector, start, false, warning)) return $.sugar(start.querySelector(selector)) // String selector.
 		if ($.isNodeList(selector)) return $.me(selector[0]) // If we got a list, just take the first element.
 		if ($.isNode(selector)) return $.sugar(selector) // Valid element.
 		return null // Invalid.
