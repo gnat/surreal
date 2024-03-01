@@ -1,4 +1,4 @@
-// Welcome to Surreal 1.1.7
+// Welcome to Surreal 1.1.8
 // Documentation: https://github.com/gnat/surreal
 // Locality of Behavior (LoB): https://htmx.org/essays/locality-of-behaviour/
 let surreal = (function () {
@@ -70,7 +70,7 @@ let $ = { // Convenience for internals.
 		if (selector == null) return $.sugar([start.currentScript.parentElement]) // Just local me() in <script>
 		if (selector instanceof Event) return selector.currentTarget ? $.any(selector.currentTarget) : (console.warn(`Surreal: Event currentTarget is null. Please save your element because async will lose it`), null) // Events try currentTarget
 		if (selector === '-' || selector === 'prev' || selector === 'previous') return $.sugar([start.currentScript.previousElementSibling]) // Element directly before <script>
-		if ($.isSelector(selector, start, true, warning)) return $.sugar(Array.from(start.querySelectorAll(selector))) // String selector.
+		if ($.isSelector(selector, start, warning)) return $.sugar(Array.from(start.querySelectorAll(selector))) // String selector.
 		if ($.isNode(selector)) return $.sugar([selector]) // Single element. Convert to Array.
 		if ($.isNodeList(selector)) return $.sugar(Array.from(selector)) // Valid NodeList or Array.
 		return null // Invalid.
@@ -225,12 +225,8 @@ let $ = { // Convenience for internals.
 		return (e instanceof NodeList || Array.isArray(e)) ? true : false
 	},
 	// ⚙️ Used internally by DOM functions. Warning when selector is invalid. Likely missing a "#" or "."
-	isSelector(selector="", start=document, all=false, warning=true) {
+	isSelector(selector="", start=document, warning=true) {
 		if(typeof selector !== 'string') return false
-		if (all && start.querySelectorAll(selector) == null) {
-			if (warning) console.warn(`Surreal: "${selector}" was not found. Missing a character? (. #)`)
-			return false
-		}
 		if (start.querySelector(selector) == null) {
 			if (warning) console.warn(`Surreal: "${selector}" was not found. Missing a character? (. #)`)
 			return false
