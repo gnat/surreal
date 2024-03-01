@@ -82,8 +82,9 @@ Or, 🌐 via CDN: `<script src="https://cdn.jsdelivr.net/gh/gnat/surreal@main/su
     * Variables: `body`, `e`, `some_element`
     * Events: `event.currentTarget` will be used.
     * Surreal selectors: `me()`,`any()`
-    * Adding a `start=` parameter provides a starting DOM location to select from. Default is `document`
-      * ▶️ `any('button', start='header').classAdd('red')`
+    * Choose a start location in the DOM with the 2nd argument. Default is `document`
+      * ▶️ `any('button', me('#header')).classAdd('red')`
+        * Add `.red` to any `<button>` inside of `#header`
   * `me()` Get current element for [Locality of Behavior](https://htmx.org/essays/locality-of-behaviour/) in `<script>` without an explicit **.class** or **#id**
   * `me("body")` Gets `<body>`
   * `me(".button")` Gets the first `<div class="button">...</div>`. To get all of them use `any()`
