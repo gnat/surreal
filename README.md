@@ -378,6 +378,10 @@ me().on("click", async event => {
 * Or, use a relative start.
   * ▶️ `<input type="text" n1 /> <script>me('[n1]', me()).value = "hello"</script>`
 
+#### Ignore call chain when element is missing.
+* ▶️ `me("#i_dont_exist")?.classAdd('active')`
+* Silence console warning: ▶️ `me("#i_dont_exist", document, false)?.classAdd('active')`
+
 ## <a name="plugins"></a>🔌 Your own plugin
 
 Feel free to modify Surreal for a project any way you like- but you can use plugins to effortlessly merge functions with new versions.
