@@ -380,7 +380,7 @@ me().on("click", async event => {
 
 #### Ignore call chain when element is missing.
 * ▶️ `me("#i_dont_exist")?.classAdd('active')`
-* Silence console warning: ▶️ `me("#i_dont_exist", document, false)?.classAdd('active')`
+* No warnings: ▶️ `me("#i_dont_exist", document, false)?.classAdd('active')`
 
 ## <a name="plugins"></a>🔌 Your own plugin
 
