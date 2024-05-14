@@ -319,9 +319,9 @@ Append / Prepend elements.
 * ▶️ `me().insertBefore(element, other_element.firstChild)`
 * ▶️ `me().insertAdjacentHTML("beforebegin", new_element)`
 
-AJAX (replacing jquery `ajax()`)
+AJAX (replace jQuery `ajax()`)
 * Use [htmx](https://htmx.org/) or [htmz](https://leanrada.com/htmz/) or [fetch()](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) or [XMLHttpRequest()](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) directly.
-* ▶️ `fetch()` 
+* Using `fetch()`
 ```js
 me().on("click", async event => {
   let e = me(event)
@@ -336,7 +336,7 @@ me().on("click", async event => {
   catch (error) { console.warn(`fetch(): ${error}`) }
 })
 ```
-* ▶️ `XMLHttpRequest()`  
+* Using `XMLHttpRequest()`
 ```js
 me().on("click", async event => {
   let e = me(event)
