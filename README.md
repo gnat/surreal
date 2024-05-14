@@ -319,15 +319,15 @@ Append / Prepend elements.
 * ▶️ `me().insertBefore(element, other_element.firstChild)`
 * ▶️ `me().insertAdjacentHTML("beforebegin", new_element)`
 
-Ajax (alternatives to jquery `ajax()`)
-* First, check out [htmx](https://htmx.org/) ..and if you need more control:
-* Using [fetch()](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) ▶️
+AJAX (replacing jquery `ajax()`)
+* Use [htmx](https://htmx.org/) or [htmz](https://leanrada.com/htmz/) or [fetch()](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) or [XMLHttpRequest()](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) directly.
+* ▶️ `fetch()` 
 ```js
 me().on("click", async event => {
   let e = me(event)
-  // Example 1: Hit an endpoint.
+  // EXAMPLE 1: Hit an endpoint.
   if((await fetch("/webhook")).ok) console.log("Did the thing.")
-  // Example 2: Get content and replace me()
+  // EXAMPLE 2: Get content and replace me()
   try {
     let response = await fetch('/endpoint')
     if (response.ok) e.innerHTML = await response.text()
@@ -336,15 +336,15 @@ me().on("click", async event => {
   catch (error) { console.warn(`fetch(): ${error}`) }
 })
 ```
-* Using [XMLHttpRequest()](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) ▶️
+* ▶️ `XMLHttpRequest()`  
 ```js
 me().on("click", async event => {
   let e = me(event)
-  // Example 1: Hit an endpoint.
+  // EXAMPLE 1: Hit an endpoint.
   var xhr = new XMLHttpRequest()
   xhr.open("GET", "/webhook")
   xhr.send()
-  // Example 2: Get content and replace me()
+  // EXAMPLE 2: Get content and replace me()
   var xhr = new XMLHttpRequest()
   xhr.open("GET", "/endpoint")
   xhr.onreadystatechange = () => {
