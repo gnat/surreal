@@ -21,7 +21,7 @@ For devs who love ergonomics! You may appreciate Surreal if:
 * Really wish `this` would work in any inline `<script>` tag
 * Enjoyed using jQuery selector syntax.
 * [Animations, timelines, tweens](#-quick-start) with no extra libraries.
-* Only 340 lines. No build step. No dependencies.
+* Only 320 lines. No build step. No dependencies.
 * Pairs well with [htmx](https://htmx.org)
 * Want fewer layers, less complexity. Are aware of the cargo cult. ✈️
 
@@ -66,7 +66,7 @@ See the [Live Example](https://gnat.github.io/surreal/example.html)! Then [view 
 
 ## 🎁 Install
 
-Surreal is only 340 lines. No build step. No dependencies.
+Surreal is only 320 lines. No build step. No dependencies.
 
 [📥 Download](https://raw.githubusercontent.com/gnat/surreal/main/surreal.js) into your project, and add `<script src="/surreal.js"></script>` in your `<head>`
 
