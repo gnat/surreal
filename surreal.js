@@ -253,7 +253,7 @@ function pluginEffects(e) {
 				await tick()
 				surreal.styles(e, {transform: 'scale(0.9)', opacity: '0'})
 				await sleep(ms, e)
-				if (fn === 'function') fn(thing) // Run custom callback?
+				if (typeof fn === 'function') fn(thing) // Run custom callback?
 				if (remove) surreal.remove(thing) // Remove element after animation is completed?
 			})()
 		}
@@ -271,7 +271,7 @@ function pluginEffects(e) {
 				await sleep(ms, e)
 				e.style = save // Revert back to original style.
 				surreal.styles(e, {opacity: '1'}) // Ensure we're visible after reverting to original style.
-				if (fn === 'function') fn(thing) // Run custom callback?
+				if (typeof fn === 'function') fn(thing) // Run custom callback?
 			})()
 		}
 	}
