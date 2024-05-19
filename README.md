@@ -369,6 +369,8 @@ me().on("click", async event => {
   * ⭐ Or, in an event: `me().on('click', ev => { /* add and call function here */ })`
   * Or, use an inline module: `<script type="module">`
     * Note: `me()` will no longer see `parentElement` so explicit selectors are required: `me(".mybutton")`
+  * Or, use a block statement:
+    * `{ let parent = me(); parent.on('click', ev => { /* use parent here */ }) } 
   * Or, use backend code to generate unique names for anything not scoped by `me()`
 
 #### Select a void element like `<input type="text" />`
