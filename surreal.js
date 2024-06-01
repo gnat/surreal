@@ -18,28 +18,27 @@ let $ = { // Convenience for internals.
 
 		// Classes and CSS.
 		e.classAdd      = (name) => { return $.classAdd(e, name) }
-		e.class_add     = e.add_class    = e.addClass    = e.classAdd // Aliases
+		e.class_add     = e.add_class    = e.addClass    = e.classAdd // Alias
 		e.classRemove   = (name) => { return $.classRemove(e, name) }
-		e.class_remove  = e.remove_class = e.removeClass = e.classRemove // Aliases
+		e.class_remove  = e.remove_class = e.removeClass = e.classRemove // Alias
 		e.classToggle   = (name) => { return $.classToggle(e, name) }
-		e.class_toggle  = e.toggle_class = e.toggleClass = e.classToggle // Aliases
+		e.class_toggle  = e.toggle_class = e.toggleClass = e.classToggle // Alias
 		e.styles        = (value) => { return $.styles(e, value) }
 
 		// Events.
 		e.on            = (name, fn) => { return $.on(e, name, fn) }
 		e.off           = (name, fn) => { return $.off(e, name, fn) }
 		e.offAll        = (name) => { return $.offAll(e, name) }
-		e.off_all       = e.offAll
+		e.off_all       = e.offAll // Alias
 		e.disable       = () => { return $.disable(e) }
 		e.enable        = () => { return $.enable(e) }
 		e.send          = (name, detail) => { return $.send(e, name, detail) }
-		e.trigger       = e.send
+		e.trigger       = e.send // Alias
 		e.halt          = (ev, keepBubbling, keepDefault) => { return $.halt(ev, keepBubbling, keepDefault) }
 
 		// Attributes.
 		e.attribute 	= (name, value) => { return $.attribute(e, name, value) }
-		e.attributes    = e.attribute
-		e.attr          = e.attribute
+		e.attributes    = e.attr = e.attribute // Alias
 
 		// Add all plugins.
 		$.plugins.forEach(function(func) { func(e) })
@@ -89,7 +88,7 @@ let $ = { // Convenience for internals.
 	},
 	// Add class to element(s).
 	classAdd(e, name) {
-		if (e === null || e === []) return null
+		if (e === null || (Array.isArray(e) && e.length === 0)) return null
 		if (typeof name !== 'string') return null
 		if (name.charAt(0) === '.') name = name.substring(1)
 		if ($.isNodeList(e)) e.forEach(_ => { $.classAdd(_, name) })
@@ -210,7 +209,7 @@ let $ = { // Convenience for internals.
 	// Puts Surreal functions except for "restricted" in global scope.
 	globalsAdd() {
 		console.log(`Surreal: Adding convenience globals to window.`)
-		restricted = ['$', 'sugar']
+		let restricted = ['$', 'sugar']
 		for (const [key, value] of Object.entries(this)) {
 			if (!restricted.includes(key)) window[key] != 'undefined' ? window[key] = value : console.warn(`Surreal: "${key}()" already exists on window. Skipping to prevent overwrite.`)
 			window.document[key] = value
