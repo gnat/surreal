@@ -364,12 +364,12 @@ me().on("click", async event => {
 
 #### Scope functions inside `<script>`
   * ⭐ On `me()`
-    *  `me().doIt = (message) => { alert(message) }`
-    *  `me().on('click', (ev) => { me(ev).doIt("hello") })`
-  * ⭐ Or, in an event: `me().on('click', ev => { /* add and call function here */ })`
-  * Or, use an inline module: `<script type="module">`
+    *  `me().hey = (text) => { alert(text) }`
+    *  `me().on('click', (ev) => { me(ev).hey("hi") })`
+  * ⭐ Use a block: `{ function hey(text) { alert(text) }; me().on('click', ev => { hey("hi") }) }`
+  * ⭐ Use an event: `me().on('click', ev => { /* add and call function here */ })`
+  * Use an inline module: `<script type="module">`
     * Note: `me()` will no longer see `parentElement` so explicit selectors are required: `me(".mybutton")`
-  * Or, use backend code to generate unique names for anything not scoped by `me()`
 
 #### Select a void element like `<input type="text" />`
 * Use: `me('-')` or `me('prev')` or `me('previous')`
