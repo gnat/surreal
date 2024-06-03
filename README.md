@@ -43,7 +43,7 @@ For devs who love ergonomics! You may appreciate Surreal if:
   * Use `camelCase` (Javascript) or `snake_case` (Python, Rust, PHP, Ruby, SQL, *CSS*).
 
 ### 🤔 Why use `me()` / `any()` instead of `$()`
-* 💡 We solve the classic jQuery code bloat problem: Am I getting 1 element or an array of elements?
+* 💡 Solves the classic jQuery bloat problem: Am I getting 1 element or an array of elements?
   * `me()` is guaranteed to return 1 element (or first found, or null).
   * `any()` is guaranteed to return an array (or empty array).
   * No more checks = you write less code. Bonus: Code reads more like self-documenting english.
@@ -204,7 +204,7 @@ Looking for stuff [we recommend doing in vanilla JS](#no-surreal)?
   * ▶️ `any('button').remove()`
 * 🔗 `classAdd` 🔁 `class_add` 🔁 `addClass` 🔁 `add_class`
   * ▶️ `me().classAdd('active')`
-  * Leading `.` is **optional** for all class functions, and is removed automatically.
+  * Leading `.` is **optional**
     * These are the same: `me().classAdd('active')` 🔁 `me().classAdd('.active')`
 * 🔗 `classRemove` 🔁 `class_remove` 🔁 `removeClass` 🔁 `remove_class`
   * ▶️ `me().classRemove('active')`
@@ -229,7 +229,7 @@ Looking for stuff [we recommend doing in vanilla JS](#no-surreal)?
   * ▶️ `me().on('click', ev => { me(ev).styles('background', 'red') })`
   * Wraps `addEventListener`
 * 🔗 `off`
-  * ▶️ `me().remove('click')`
+  * ▶️ `me().off('click', fn)`
   * Wraps `removeEventListener`
 * 🔗 `offAll`
   * ▶️ `me().offAll()`
@@ -257,7 +257,7 @@ Looking for stuff [we recommend doing in vanilla JS](#no-surreal)?
   * Great time to compute. Fires function when JS is idle. Alias of [requestIdleCallback](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestIdleCallback)
 * 🌐 `halt`
   * ▶️ `halt(event)`
-  * Great to prevent default browser behavior: such as displaying an image vs letting JS handle it.
+  * Prevent default browser behaviors.
   * Wrapper for [preventDefault](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault)
 * 🌐 `createElement` 🔁 `create_element`
   * ▶️ `e_new = createElement("div"); me().prepend(e_new)`
