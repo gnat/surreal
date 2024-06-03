@@ -374,10 +374,9 @@ me().on("click", async event => {
 #### Select a void element like `<input type="text" />`
 * Use: `me('-')` or `me('prev')` or `me('previous')`
   * ▶️ `<input type="text" /> <script>me('-').value = "hello"</script>`
-  * Shortcut for `me(document.currentScript.previousElementSibling)`
-  * Inspired by the CSS sibling combinator `+` but in reverse `-`
+  * Inspired by the CSS "next sibling" combinator `+` but in reverse `-`
 * Or, use a relative start.
-  * ▶️ `<input type="text" n1 /> <script>me('[n1]', me()).value = "hello"</script>`
+  * ▶️ `<form> <input type="text" n1 /> <script>me('[n1]', me()).value = "hello"</script> </form>`
 
 #### Ignore call chain when element is missing.
 * ▶️ `me("#i_dont_exist")?.classAdd('active')`
