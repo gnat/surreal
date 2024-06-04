@@ -46,7 +46,7 @@ For devs who love ergonomics! You may appreciate Surreal if:
 * 💡 Solves the classic jQuery bloat problem: Am I getting 1 element or an array of elements?
   * `me()` is guaranteed to return 1 element (or first found, or null).
   * `any()` is guaranteed to return an array (or empty array).
-  * No more checks = you write less code. Bonus: Code reads more like self-documenting english.
+  * No more checks = you write less code. Bonus: Code more like self-documenting english.
 
 ## 👁️ How does it look?
 
