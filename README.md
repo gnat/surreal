@@ -28,8 +28,8 @@ For devs who love ergonomics! You may appreciate Surreal if:
 ## ✨ What does it add to Javascript?
 
 * ⚡️ [Locality of Behavior (LoB)](https://htmx.org/essays/locality-of-behaviour/) Use `me()` inside `<script>`
-  * Get an element without creating a unique name: No **.class** or **#id** needed!
-  * `this` but better!
+  * No **.class** or **#id** needed! Get an element without creating a unique name.
+  * `this` but much more flexible!
   * Want `me` in your CSS `<style>` tags, too? See our [companion script](https://github.com/gnat/css-scope-inline)
 * 🔗 Call chaining, jQuery style.
 * ♻️ Functions work seamlessly on 1 element or arrays of elements!
@@ -46,7 +46,7 @@ For devs who love ergonomics! You may appreciate Surreal if:
 * 💡 Solves the classic jQuery bloat problem: Am I getting 1 element or an array of elements?
   * `me()` is guaranteed to return 1 element (or first found, or null).
   * `any()` is guaranteed to return an array (or empty array).
-  * No more checks = you write less code. Bonus: Code more like self-documenting english.
+  * No more checks = write less code. Bonus: Reads more like self-documenting english.
 
 ## 👁️ How does it look?
 
@@ -90,7 +90,7 @@ Or, 🌐 via CDN: `<script src="https://cdn.jsdelivr.net/gh/gnat/surreal@main/su
   * `me(".button")` Gets the first `<div class="button">...</div>`. To get all of them use `any()`
 * Select **one or more** elements as an array: `any(...)`
   * Like `me()` but guaranteed to return an array (or empty array). 
-  * `any(".foo")` Get all matching elements, such as: `<div class="foo">...</div>`
+  * `any(".foo")` Gets all matching elements.
   * Convert between arrays of elements and single elements: `any(me())`, `me(any(".something"))`
  
 ### 🔥 DOM Functions
