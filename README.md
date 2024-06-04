@@ -40,7 +40,7 @@ For devs who love ergonomics! You may appreciate Surreal if:
     * `me()` can be used directly as a single element (like `querySelector()` or `$()`)
     * `any()` can use: `for` / `forEach` / `filter` / `map` (like `querySelectorAll()` or `$()`)
 * 🌗 No forced style. Use: `classAdd` or `class_add` or `addClass` or `add_class`
-  * Use `camelCase` (Javascript) or `snake_case` (Python, Rust, PHP, Ruby, SQL, *CSS*).
+  * Use `camelCase` (Javascript) or `snake_case` (Python, Rust, PHP, Ruby, SQL, CSS).
 
 ### 🤔 Why use `me()` / `any()` instead of `$()`
 * 💡 Solves the classic jQuery bloat problem: Am I getting 1 element or an array of elements?
@@ -89,9 +89,9 @@ Or, 🌐 via CDN: `<script src="https://cdn.jsdelivr.net/gh/gnat/surreal@main/su
   * `me("body")` Gets `<body>`
   * `me(".button")` Gets the first `<div class="button">...</div>`. To get all of them use `any()`
 * Select **one or more** elements as an array: `any(...)`
-  * Similar to `me()` but guaranteed to return an array (or empty array). 
-  * `any(".foo")` Gets all matching elements, such as: `<div class="foo">...</div>`
-  * Feel free to convert between arrays of elements and single elements: `any(me())`, `me(any(".something"))`
+  * Like `me()` but guaranteed to return an array (or empty array). 
+  * `any(".foo")` Get all matching elements, such as: `<div class="foo">...</div>`
+  * Convert between arrays of elements and single elements: `any(me())`, `me(any(".something"))`
  
 ### 🔥 DOM Functions
 
@@ -202,26 +202,27 @@ Looking for stuff [we recommend doing in vanilla JS](#no-surreal)?
 * 🔗 `remove`
   * ▶️ `me().remove()`
   * ▶️ `any('button').remove()`
-* 🔗 `classAdd` 🔁 `class_add` 🔁 `addClass` 🔁 `add_class`
+* 🔗 `classAdd` 🌗 `class_add` 🌗 `addClass` 🌗 `add_class`
   * ▶️ `me().classAdd('active')`
   * Leading `.` is **optional**
-    * These are the same: `me().classAdd('active')` 🔁 `me().classAdd('.active')`
-* 🔗 `classRemove` 🔁 `class_remove` 🔁 `removeClass` 🔁 `remove_class`
+    * Same thing: `me().classAdd('active')` 🌗 `me().classAdd('.active')`
+* 🔗 `classRemove` 🌗 `class_remove` 🌗 `removeClass` 🌗 `remove_class`
   * ▶️ `me().classRemove('active')`
-* 🔗 `classToggle` 🔁 `class_toggle` 🔁 `toggleClass` 🔁 `toggle_class`
+* 🔗 `classToggle` 🌗 `class_toggle` 🌗 `toggleClass` 🌗 `toggle_class`
   * ▶️ `me().classToggle('active')`
 * 🔗 `styles`
   * ▶️ `me().styles('color: red')` Add style.
   * ▶️ `me().styles({ 'color':'red', 'background':'blue' })` Add multiple styles.
   * ▶️ `me().styles({ 'background':null })` Remove style.
-* 🔗 `attribute` 🔁 `attributes` 🔁 `attr`
+* 🔗 `attribute` 🌗 `attributes` 🌗 `attr`
   * Get: ▶️ `me().attribute('data-x')`
-    * Get is only for single elements. For many, wrap the call in `any(...).run(...)` or `any(...).forEach(...)`.
+    * For single elements.
+    * For many elements, wrap it in: `any(...).run(...)` or `any(...).forEach(...)`
   * Set: ▶️`me().attribute('data-x', true)`
   * Set multiple: ▶️ `me().attribute({ 'data-x':'yes', 'data-y':'no' })`
   * Remove: ▶️ `me().attribute('data-x', null)`
   * Remove multiple: ▶️ `me().attribute({ 'data-x': null, 'data-y':null })`
-* 🔗 `send` 🔁 `trigger`
+* 🔗 `send` 🌗 `trigger`
   * ▶️ `me().send('change')`
   * ▶️ `me().send('change', {'data':'thing'})`
   * Wraps `dispatchEvent`
@@ -259,10 +260,10 @@ Looking for stuff [we recommend doing in vanilla JS](#no-surreal)?
   * ▶️ `halt(event)`
   * Prevent default browser behaviors.
   * Wrapper for [preventDefault](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault)
-* 🌐 `createElement` 🔁 `create_element`
+* 🌐 `createElement` 🌗 `create_element`
   * ▶️ `e_new = createElement("div"); me().prepend(e_new)`
   * Alias of vanilla `document.createElement`
-* 🌐 `onloadAdd` 🔁 `onload_add` 🔁 `addOnload` 🔁 `add_onload`
+* 🌐 `onloadAdd` 🌗 `onload_add` 🌗 `addOnload` 🌗 `add_onload`
   * ▶️ `onloadAdd(_ => { alert("loaded!"); })`
   * Execute after the DOM is ready. Similar to jquery `ready()`
   * Queues functions onto `window.onload`
@@ -279,13 +280,13 @@ Build effects with `me().styles({...})` with timelines using [CSS transitioned `
 
 Common effects included:
 
-* 🔗 `fadeOut` 🔁 `fade_out`
+* 🔗 `fadeOut` 🌗 `fade_out`
   * Fade out and remove element.
   * Keep element with `remove=false`.
   * ▶️ `me().fadeOut()`
   * ▶️ `me().fadeOut(ev => { alert("Faded out!") }, 3000)` Over 3 seconds then call function.
 
-* 🔗 `fadeIn` 🔁 `fade_in`
+* 🔗 `fadeIn` 🌗 `fade_in`
   * Fade in existing element which has `opacity: 0`
   * ▶️ `me().fadeIn()`
   * ▶️ `me().fadeIn(ev => { alert("Faded in!") }, 3000)` Over 3 seconds then call function.
@@ -384,7 +385,7 @@ me().on("click", async event => {
 
 ## <a name="plugins"></a>🔌 Your own plugin
 
-Feel free to modify Surreal for a project any way you like- but you can use plugins to effortlessly merge functions with new versions.
+Feel free to edit Surreal directly- but if you prefer, you can use plugins to effortlessly merge with new versions.
 
 ```javascript
 function pluginHello(e) {
@@ -399,10 +400,10 @@ function pluginHello(e) {
 surreal.plugins.push(pluginHello)
 ```
 
-You can now use it like: `me().hello("Internet")`
+Now use your function like: `me().hello("Internet")`
 
 * See the included `pluginEffects` for a more comprehensive example.
-* Your functions will be added globally by `globalsAdd()` If you do not want this, add it to the restricted list.
+* Your functions are added globally by `globalsAdd()` If you do not want this, add it to the `restricted` list.
 * Refer to an existing function to see how to make yours work with 1 or many elements.
 
 Make an [issue](https://github.com/gnat/surreal/issues) or [pull request](https://github.com/gnat/surreal/pulls) if you think people would like to use it! If it's useful enough we'll want it in core.
