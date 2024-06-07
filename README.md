@@ -101,9 +101,9 @@ Or, 🌐 via CDN: `<script src="https://cdn.jsdelivr.net/gh/gnat/surreal@main/su
   * 🟠 Style B: `classAdd(me(), 'red')`
 * 🌐 Global conveniences help you write less code.
   * `globalsAdd()` will automatically warn you of any clobbering issues!
-    * 💀🩸 If you want no conveniences, or are a masochist, delete `globalsAdd()`
-      * 🟢 `me().classAdd('red')` becomes: `surreal.me().classAdd('red')`
-      * 🟠 `classAdd(me(), 'red')` becomes: `surreal.classAdd(surreal.me(), 'red')`
+  * 💀🩸 If you want no conveniences, or are a masochist, delete `globalsAdd()`
+    * 🟢 `me().classAdd('red')` becomes `surreal.me().classAdd('red')`
+    * 🟠 `classAdd(me(), 'red')` becomes `surreal.classAdd(surreal.me(), 'red')`
 
 See: [Quick Start](#quick-start) and [Reference](#reference) and [No Surreal Needed](#no-surreal)
 
@@ -292,12 +292,12 @@ Common effects included:
   * ▶️ `me().fadeIn(ev => { alert("Faded in!") }, 3000)` Over 3 seconds then call function.
 
 
-## <a name="no-surreal"></a>🔮 No Surreal Needed
+## <a name="no-surreal"></a>🫥 No Surreal Needed
 
 More often than not, Vanilla JS is the easiest way!
 
 Logging
-* 🌐 `console.log()` `console.warn()` `console.error()`
+* ▶️ `console.log()` `console.warn()` `console.error()`
 * Event logging: ▶️ `monitorEvents(me())` See: [Chrome Blog](https://developer.chrome.com/blog/quickly-monitor-events-from-the-console-panel-2/)
 
 Benchmarking / Time It!
