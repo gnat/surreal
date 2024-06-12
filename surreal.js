@@ -189,19 +189,19 @@ let $ = { // Convenience for internals.
 		// Remove.
 		if (typeof name === 'string' && value === null) {
 			if ($.isNodeList(e)) e.forEach(_ => { $.attribute(_, name, value) })
-			e.removeAttribute(name)
+			else e.removeAttribute(name)
 			return e
 		}
 		// Add / Set.
 		if (typeof name === 'string') {
 			if ($.isNodeList(e)) e.forEach(_ => { $.attribute(_, name, value) })
-			e.setAttribute(name, value)
+			else e.setAttribute(name, value)
 			return e
 		}
 		// Format: { "name": "value", "blah": true }
 		if (typeof name === 'object') {
 			if ($.isNodeList(e)) e.forEach(_ => { Object.entries(name).forEach(([key, val]) => { $.attribute(_, key, val) }) })
-			if ($.isNode(e)) Object.entries(name).forEach(([key, val]) => { $.attribute(e, key, val) })
+			else if ($.isNode(e)) Object.entries(name).forEach(([key, val]) => { $.attribute(e, key, val) })
 			return e
 		}
 		return e
