@@ -180,28 +180,28 @@ let $ = { // Convenience for internals.
 	},
 	// Add or remove attributes from element(s)
 	attribute(e, name, value=undefined) {
-		// Get. This one is special. Format: "name", "value"
+		// Get. (Format: "name", "value") Special: Ends call chain.
 		if (typeof name === 'string' && value === undefined) {
 			if ($.isNodeList(e)) return [] // Not supported for Get. For many elements, wrap attribute() in any(...).run(...) or any(...).forEach(...)
 			if ($.isNode(e)) return e.getAttribute(name)
-			return null // No value.
+			return null // No value. Ends call chain.
 		}
 		// Remove.
 		if (typeof name === 'string' && value === null) {
 			if ($.isNodeList(e)) e.forEach(_ => { $.attribute(_, name, value) })
-			else e.removeAttribute(name)
+			if ($.isNode(e)) e.removeAttribute(name)
 			return e
 		}
 		// Add / Set.
 		if (typeof name === 'string') {
 			if ($.isNodeList(e)) e.forEach(_ => { $.attribute(_, name, value) })
-			else e.setAttribute(name, value)
+			if ($.isNode(e)) e.setAttribute(name, value)
 			return e
 		}
 		// Format: { "name": "value", "blah": true }
 		if (typeof name === 'object') {
 			if ($.isNodeList(e)) e.forEach(_ => { Object.entries(name).forEach(([key, val]) => { $.attribute(_, key, val) }) })
-			else if ($.isNode(e)) Object.entries(name).forEach(([key, val]) => { $.attribute(e, key, val) })
+			if ($.isNode(e)) Object.entries(name).forEach(([key, val]) => { $.attribute(e, key, val) })
 			return e
 		}
 		return e
