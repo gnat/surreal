@@ -21,7 +21,7 @@ let $ = { // Convenience for internals.
 		e.class_add     = e.add_class    = e.addClass    = e.classAdd // Alias
 		e.classRemove   = (name) => { return $.classRemove(e, name) }
 		e.class_remove  = e.remove_class = e.removeClass = e.classRemove // Alias
-		e.classToggle   = (name) => { return $.classToggle(e, name) }
+		e.classToggle   = (name, force) => { return $.classToggle(e, name, force) }
 		e.class_toggle  = e.toggle_class = e.toggleClass = e.classToggle // Alias
 		e.styles        = (value) => { return $.styles(e, value) }
 
@@ -104,11 +104,11 @@ let $ = { // Convenience for internals.
 		return e
 	},
 	// Toggle class in element(s).
-	classToggle(e, name) {
+	classToggle(e, name, force) {
 		if (typeof name !== 'string') return null
 		if (name.charAt(0) === '.') name = name.substring(1)
-		if ($.isNodeList(e)) e.forEach(_ => { $.classToggle(_, name) })
-		if ($.isNode(e)) e.classList.toggle(name)
+		if ($.isNodeList(e)) e.forEach(_ => { $.classToggle(_, name, force) })
+		if ($.isNode(e)) e.classList.toggle(name, force)
 		return e
 	},
 	// Add inline style to element(s).
