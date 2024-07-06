@@ -265,9 +265,13 @@ Looking for stuff [we recommend doing in vanilla JS](#no-surreal)?
   * Alias of vanilla `document.createElement`
 * 🌐 `onloadAdd` 🌗 `onload_add` 🌗 `addOnload` 🌗 `add_onload`
   * 🔥 `onloadAdd(_ => { alert("loaded!"); })`
+  * 🔥 `<script>let e = me(); onloadAdd(_ => { me(e).on("click", ev => { alert("clicked") }) })</script>`
   * Execute after the DOM is ready. Similar to jquery `ready()`
-  * Queues functions onto `window.onload`
-  * Why? So you don't overwrite `window.onload`, also predictable sequential loading!
+  * Adds function to `window.onload` to prevent overwrites of `window.onload` and predictable sequential loading.
+  * Alternative patterns
+    * Skip missing elements using `.?` example: `me("video")?.requestFullscreen()`
+    * Place `<script>` after the loaded element.
+      * See `me('-')` / `me('prev')`
 * 🔌 `fadeOut`
   * See below
 * 🔌 `fadeIn`
