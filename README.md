@@ -269,7 +269,7 @@ Looking for stuff [we recommend doing in vanilla JS](#no-surreal)?
   * Execute after the DOM is ready. Similar to jquery `ready()`
   * Add to `window.onload` while preventing overwrite of `window.onload` and predictable sequential loading.
   * Alternatives:
-    * Skip missing elements using `.?` example: `me("video")?.requestFullscreen()`
+    * Skip missing elements using `?.` example: `me("video")?.requestFullscreen()`
     * Place `<script>` after the loaded element.
       * See `me('-')` / `me('prev')`
 * 🔌 `fadeOut`
