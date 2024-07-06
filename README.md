@@ -267,7 +267,7 @@ Looking for stuff [we recommend doing in vanilla JS](#no-surreal)?
   * 🔥 `onloadAdd(_ => { alert("loaded!"); })`
   * 🔥 `<script>let e = me(); onloadAdd(_ => { me(e).on("click", ev => { alert("clicked") }) })</script>`
   * Execute after the DOM is ready. Similar to jquery `ready()`
-  * Add to `window.onload` while preventing overwrite of `window.onload` and predictable sequential loading.
+  * Add to `window.onload` while preventing overwrites of `window.onload` and predictable loading!
   * Alternatives:
     * Skip missing elements using `?.` example: `me("video")?.requestFullscreen()`
     * Place `<script>` after the loaded element.
