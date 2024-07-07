@@ -9,16 +9,17 @@ let $ = { // Convenience for internals.
 	// Table of contents and convenient call chaining sugar. For a familiar "jQuery like" syntax. 🙂
 	// Check before adding new: https://youmightnotneedjquery.com/
 	sugar(e) {
-		if (e == null) { console.warn(`Surreal: Cannot use "${e}". Missing a character?`) }
+		if ($.isNodeList(e)) { e.forEach(_ => { $.sugar(_) }) } // Apply Surreal to nodes in array as well as the array.
+		if (!$.isNode(e) && !$.isNodeList(e)) { console.warn(`Surreal: Not a supported element / node / array of nodes "${e}"`); return e }
 		if (e.hasOwnProperty('hasSurreal')) return e // Surreal already applied
 
 		// General
-		e.run           = (value) => { return $.run(e, value) }
+		e.run           = (f) => { return $.run(e, f) }
 		e.remove        = () => { return $.remove(e) }
 
 		// Classes and CSS.
 		e.classAdd      = (name) => { return $.classAdd(e, name) }
-		e.class_add     = e.add_class    = e.addClass    = e.classAdd // Alias
+		e.class_add     = e.add_class = e.addClass = e.classAdd // Alias
 		e.classRemove   = (name) => { return $.classRemove(e, name) }
 		e.class_remove  = e.remove_class = e.removeClass = e.classRemove // Alias
 		e.classToggle   = (name, force) => { return $.classToggle(e, name, force) }
@@ -26,8 +27,8 @@ let $ = { // Convenience for internals.
 		e.styles        = (value) => { return $.styles(e, value) }
 
 		// Events.
-		e.on            = (name, fn) => { return $.on(e, name, fn) }
-		e.off           = (name, fn) => { return $.off(e, name, fn) }
+		e.on            = (name, f) => { return $.on(e, name, f) }
+		e.off           = (name, f) => { return $.off(e, name, f) }
 		e.offAll        = (name) => { return $.offAll(e, name) }
 		e.off_all       = e.offAll // Alias
 		e.disable       = () => { return $.disable(e) }
@@ -66,16 +67,17 @@ let $ = { // Convenience for internals.
 	// Returns an Array of elements (so you can use methods like forEach/filter/map/reduce if you want).
 	// Example: any('button')
 	any(selector, start=document, warning=true) {
-		if (selector == null) return $.sugar([start.currentScript.parentElement]) // Just local me() in <script>
+		if (selector == null) return $.sugar([start.currentScript.parentElement]) // Similar to me()
 		if (selector instanceof Event) return selector.currentTarget ? $.any(selector.currentTarget) : (console.warn(`Surreal: Event currentTarget is null. Please save your element because async will lose it`), null) // Events try currentTarget
 		if (selector === '-' || selector === 'prev' || selector === 'previous') return $.sugar([start.currentScript.previousElementSibling]) // Element directly before <script>
 		if ($.isSelector(selector, start, warning)) return $.sugar(Array.from(start.querySelectorAll(selector))) // String selector.
 		if ($.isNode(selector)) return $.sugar([selector]) // Single element. Convert to Array.
 		if ($.isNodeList(selector)) return $.sugar(Array.from(selector)) // Valid NodeList or Array.
-		return null // Invalid.
+		return $.sugar([]) // Invalid.
 	},
 	// Run any function on element(s)
 	run(e, f) {
+		if (typeof f !== 'function') { console.warn(`Surreal: run(f) f must be a function`); return e }
 		if ($.isNodeList(e)) e.forEach(_ => { $.run(_, f) })
 		if ($.isNode(e)) { f(e); }
 		return e
@@ -88,8 +90,7 @@ let $ = { // Convenience for internals.
 	},
 	// Add class to element(s).
 	classAdd(e, name) {
-		if (e === null || (Array.isArray(e) && e.length === 0)) return null
-		if (typeof name !== 'string') return null
+		if (typeof name !== 'string') return e
 		if (name.charAt(0) === '.') name = name.substring(1)
 		if ($.isNodeList(e)) e.forEach(_ => { $.classAdd(_, name) })
 		if ($.isNode(e)) e.classList.add(name)
@@ -97,7 +98,7 @@ let $ = { // Convenience for internals.
 	},
 	// Remove class from element(s).
 	classRemove(e, name) {
-		if (typeof name !== 'string') return null
+		if (typeof name !== 'string') return e
 		if (name.charAt(0) === '.') name = name.substring(1)
 		if ($.isNodeList(e)) e.forEach(_ => { $.classRemove(_, name) })
 		if ($.isNode(e)) e.classList.remove(name)
@@ -105,7 +106,7 @@ let $ = { // Convenience for internals.
 	},
 	// Toggle class in element(s).
 	classToggle(e, name, force) {
-		if (typeof name !== 'string') return null
+		if (typeof name !== 'string') return e
 		if (name.charAt(0) === '.') name = name.substring(1)
 		if ($.isNodeList(e)) e.forEach(_ => { $.classToggle(_, name, force) })
 		if ($.isNode(e)) e.classList.toggle(name, force)
@@ -126,21 +127,20 @@ let $ = { // Convenience for internals.
 			if ($.isNode(e)) { Object.assign(e.style, value)  }
 			return e
 		}
-	},
-	// Add event listener to element(s).
-	// Match a sender: if(!event.target.matches(".selector")) return;
-	//	📚️ https://developer.mozilla.org/en-US/docs/Web/API/Event
-	//	✂️ Vanilla: document.querySelector(".thing").addEventListener("click", (e) => { alert("clicked") }
-	on(e, name, fn) {
-		if (typeof name !== 'string') return null
-		if ($.isNodeList(e)) e.forEach(_ => { $.on(_, name, fn) })
-		if ($.isNode(e)) e.addEventListener(name, fn)
 		return e
 	},
-	off(e, name, fn) {
-		if (typeof name !== 'string') return null
-		if ($.isNodeList(e)) e.forEach(_ => { $.off(_, name, fn) })
-		if ($.isNode(e)) e.removeEventListener(name, fn)
+	// Add event listener to element(s).
+	// Match a sender: if (!event.target.matches(".selector")) return;
+	//	📚️ https://developer.mozilla.org/en-US/docs/Web/API/Event
+	//	✂️ Vanilla: document.querySelector(".thing").addEventListener("click", (e) => { alert("clicked") }
+	on(e, name, f) {
+		if ($.isNodeList(e)) e.forEach(_ => { $.on(_, name, f) })
+		if ($.isNode(e)) e.addEventListener(name, f)
+		return e
+	},
+	off(e, name, f) {
+		if ($.isNodeList(e)) e.forEach(_ => { $.off(_, name, f) })
+		if ($.isNode(e)) e.removeEventListener(name, f)
 		return e
 	},
 	offAll(e) {
@@ -173,8 +173,8 @@ let $ = { // Convenience for internals.
 	// Halt event. Default: Stops normal event actions and event propagation.
 	halt(ev, keepBubbling=false, keepDefault=false) {
 		if (ev instanceof Event) {
-			if(!keepDefault) ev.preventDefault()
-			if(!keepBubbling) ev.stopPropagation()
+			if (!keepDefault) ev.preventDefault()
+			if (!keepBubbling) ev.stopPropagation()
 		}
 		return ev
 	},
@@ -225,9 +225,9 @@ let $ = { // Convenience for internals.
 	},
 	// ⚙️ Used internally by DOM functions. Warning when selector is invalid. Likely missing a "#" or "."
 	isSelector(selector="", start=document, warning=true) {
-		if(typeof selector !== 'string') return false
+		if (typeof selector !== 'string') return false
 		if (start.querySelector(selector) == null) {
-			if (warning) console.warn(`Surreal: "${selector}" was not found. Missing a character? (. #)`)
+			if (warning) console.log(`Surreal: "${selector}" not found, ignoring.`)
 			return false
 		}
 		return true // Valid.
@@ -243,25 +243,25 @@ return $
 function pluginEffects(e) {
 	// Fade out and remove element.
 	// Equivalent to jQuery fadeOut(), but actually removes the element!
-	function fadeOut(e, fn=false, ms=1000, remove=true) {
+	function fadeOut(e, f=undefined, ms=1000, remove=true) {
 		let thing = e
-		if (surreal.isNodeList(e)) e.forEach(_ => { fadeOut(_, fn, ms) })
+		if (surreal.isNodeList(e)) e.forEach(_ => { fadeOut(_, f, ms) })
 		if (surreal.isNode(e)) {
 			(async() => {
 				surreal.styles(e, {transform: 'scale(1)', transition: `all ${ms}ms ease-out`, overflow: 'hidden'})
 				await tick()
 				surreal.styles(e, {transform: 'scale(0.9)', opacity: '0'})
 				await sleep(ms, e)
-				if (typeof fn === 'function') fn(thing) // Run custom callback?
+				if (typeof f === 'function') f(thing) // Run custom callback?
 				if (remove) surreal.remove(thing) // Remove element after animation is completed?
 			})()
 		}
 	}
 	// Fade in an element that has opacity under 1
-	function fadeIn(e, fn=false, ms=1000) {
+	function fadeIn(e, f=undefined, ms=1000) {
 		let thing = e
-		if(surreal.isNodeList(e)) e.forEach(_ => { fadeIn(_, fn, ms) })
-		if(surreal.isNode(e)) {
+		if (surreal.isNodeList(e)) e.forEach(_ => { fadeIn(_, f, ms) })
+		if (surreal.isNode(e)) {
 			(async() => {
 				let save = e.style // Store original style.
 				surreal.styles(e, {transition: `all ${ms}ms ease-in`, overflow: 'hidden'})
@@ -270,14 +270,14 @@ function pluginEffects(e) {
 				await sleep(ms, e)
 				e.style = save // Revert back to original style.
 				surreal.styles(e, {opacity: '1'}) // Ensure we're visible after reverting to original style.
-				if (typeof fn === 'function') fn(thing) // Run custom callback?
+				if (typeof f === 'function') f(thing) // Run custom callback?
 			})()
 		}
 	}
 	// Add sugar
-	e.fadeOut  = (fn, ms, remove) => { return fadeOut(e, fn, ms, remove) }
+	e.fadeOut  = (f, ms, remove) => { return fadeOut(e, f, ms, remove) }
 	e.fade_out = e.fadeOut
-	e.fadeIn   = (fn, ms) => { return fadeIn(e, fn, ms) }
+	e.fadeIn   = (f, ms) => { return fadeIn(e, f, ms) }
 	e.fade_in  = e.fadeIn
 }
 
