@@ -1,4 +1,4 @@
-// Welcome to Surreal 1.3.0
+// Welcome to Surreal 1.3.1
 // Documentation: https://github.com/gnat/surreal
 // Locality of Behavior (LoB): https://htmx.org/essays/locality-of-behaviour/
 let surreal = (function () {
@@ -9,9 +9,9 @@ let $ = { // Convenience for internals.
 	// Table of contents and convenient call chaining sugar. For a familiar "jQuery like" syntax. 🙂
 	// Check before adding new: https://youmightnotneedjquery.com/
 	sugar(e) {
-		if ($.isNodeList(e)) { e.forEach(_ => { $.sugar(_) }) } // Apply Surreal to nodes in array as well as the array.
-		if (!$.isNode(e) && !$.isNodeList(e)) { console.warn(`Surreal: Not a supported element / node / array of nodes "${e}"`); return e }
-		if (e.hasOwnProperty('hasSurreal')) return e // Surreal already applied
+		if (!$.isNode(e) && !$.isNodeList(e)) { console.warn(`Surreal: Not a supported element / node / node list "${e}"`); return e }
+		if ($.isNodeList(e)) e.forEach(_ => { $.sugar(_) }) // Add Surreal to all nodes from any()
+		if (e.hasOwnProperty('hasSurreal')) return e // Surreal already added.
 
 		// General
 		e.run           = (f) => { return $.run(e, f) }
@@ -47,8 +47,8 @@ let $ = { // Convenience for internals.
 		e.hasSurreal = 1
 		return e
 	},
-	// Return single element. Selector not needed if used with inline <script> 🔥
-	// If your query returns a collection, it will return the first element.
+	// me() will return a single element or null. Selector not needed if used with inline <script>
+	// If you select many elements, me() will return the first.
 	// Example
 	//	<div>
 	//		Hello World!
@@ -59,12 +59,12 @@ let $ = { // Convenience for internals.
 		if (selector instanceof Event) return selector.currentTarget ? $.me(selector.currentTarget) : (console.warn(`Surreal: Event currentTarget is null. Please save your element because async will lose it`), null) // Events try currentTarget
 		if (selector === '-' || selector === 'prev' || selector === 'previous') return $.sugar(start.currentScript.previousElementSibling) // Element directly before <script>
 		if ($.isSelector(selector, start, warning)) return $.sugar(start.querySelector(selector)) // String selector.
-		if ($.isNodeList(selector)) return $.me(selector[0]) // If we got a list, just take the first element.
+		if ($.isNodeList(selector)) return $.me(selector[0]) // If we got a list, return the first element.
 		if ($.isNode(selector)) return $.sugar(selector) // Valid element.
 		return null // Invalid.
 	},
-	// any() is me() but always returns array of elements. Requires selector.
-	// Returns an Array of elements (so you can use methods like forEach/filter/map/reduce if you want).
+	// any() is me() but will return an array of nodes or empty [] if nothing is found.
+	// You may optionally use forEach/map/filter/reduce.
 	// Example: any('button')
 	any(selector, start=document, warning=true) {
 		if (selector == null) return $.sugar([start.currentScript.parentElement]) // Similar to me()
