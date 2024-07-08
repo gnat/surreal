@@ -63,7 +63,7 @@ let $ = { // Convenience for internals.
 		if ($.isNode(selector)) return $.sugar(selector) // Valid element.
 		return null // Invalid.
 	},
-	// any() is me() but will return an array of nodes or empty [] if nothing is found.
+	// any() is me() but will return an array of elements or empty [] if nothing is found.
 	// You may optionally use forEach/map/filter/reduce.
 	// Example: any('button')
 	any(selector, start=document, warning=true) {
