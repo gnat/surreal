@@ -1,4 +1,4 @@
-// Welcome to Surreal 1.3.1
+// Welcome to Surreal 1.3.2
 // Documentation: https://github.com/gnat/surreal
 // Locality of Behavior (LoB): https://htmx.org/essays/locality-of-behaviour/
 let surreal = (function () {
@@ -217,7 +217,7 @@ let $ = { // Convenience for internals.
 	},
 	// ⚙️ Used internally. Is this an element / node?
 	isNode(e) {
-		return (e instanceof HTMLElement || e instanceof SVGElement) ? true : false
+		return (e instanceof HTMLElement || e instanceof SVGElement || e instanceof Document) ? true : false
 	},
 	// ⚙️ Used internally by DOM functions. Is this a list of elements / nodes?
 	isNodeList(e) {
