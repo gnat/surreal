@@ -325,8 +325,8 @@ Append / Prepend elements.
 * 🔥 `me().insertAdjacentHTML("beforebegin", new_element)`
 
 AJAX (replace jQuery `ajax()`)
-* Use [htmx](https://htmx.org/) or [htmz](https://leanrada.com/htmz/) or [fetch()](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) or [XMLHttpRequest()](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) directly.
-* Using `fetch()`
+* Use [htmx](https://htmx.org/) or [htmz](https://leanrada.com/htmz/) or [fetch()](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) or [XMLHttpRequest()](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest)
+* Example using `fetch()`
 ```js
 me().on("click", async event => {
   let e = me(event)
@@ -341,7 +341,7 @@ me().on("click", async event => {
   catch (error) { console.warn(`fetch(): ${error}`) }
 })
 ```
-* Using `XMLHttpRequest()`
+* Example using `XMLHttpRequest()`
 ```js
 me().on("click", async event => {
   let e = me(event)
