@@ -240,29 +240,29 @@ Looking for stuff [we recommend doing in vanilla JS](#no-surreal)?
 * 🔗 `enable`
   * 🔥 `me().enable()`
   * Opposite of `disable()`
+* 🌐 `createElement` 🌗 `create_element`
+  * 🔥 `e_new = createElement("div"); me().prepend(e_new)`
+  * Alias of [document.createElement](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement)
 * 🌐 `sleep`
   * 🔥 `await sleep(1000, ev => { alert(ev) })`
   * `async` version of `setTimeout`
   * Wonderful for animation timelines.
+* 🌐 `halt`
+  * 🔥 `halt(event)`
+  * When recieving an event, stop propagation, and prevent default actions (such as form submit).
+  * Wrapper for [stopPropagation](https://developer.mozilla.org/en-US/docs/Web/API/Event/stopPropagation) and [preventDefault](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault)
 * 🌐 `tick`
   * 🔥 `await tick()`
   * `await` version of `rAF` / `requestAnimationFrame`.
-  * Animation tick. Waits 1 frame.
-  * Great if you need to wait for events to propagate.
+  * Waits for 1 frame (browser paint).
+  * Useful to guarantee CSS properties are applied, and events have propagated.
 * 🌐 `rAF`
   * 🔥 `rAF(e => { return e })`
-  * Animation tick.  Fires when 1 frame has passed. Alias of [requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame)
-  * Great if you need to wait for events to propagate.
+  * Calls after 1 frame (browser paint). Alias of [requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame)
+  * Useful to guarantee CSS properties are applied, and events have propagated.
 * 🌐 `rIC`
   * 🔥 `rIC(e => { return e })`
-  * Great time to compute. Fires function when JS is idle. Alias of [requestIdleCallback](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestIdleCallback)
-* 🌐 `halt`
-  * 🔥 `halt(event)`
-  * Prevent default browser behaviors.
-  * Wrapper for [preventDefault](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault)
-* 🌐 `createElement` 🌗 `create_element`
-  * 🔥 `e_new = createElement("div"); me().prepend(e_new)`
-  * Alias of vanilla `document.createElement`
+  * Calls when Javascript is idle. Alias of [requestIdleCallback](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestIdleCallback)
 * 🌐 `onloadAdd` 🌗 `onload_add` 🌗 `addOnload` 🌗 `add_onload`
   * 🔥 `onloadAdd(_ => { alert("loaded!"); })`
   * 🔥 `<script>let e = me(); onloadAdd(_ => { me(e).on("click", ev => { alert("clicked") }) })</script>`
