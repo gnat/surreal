@@ -1,5 +1,5 @@
 //Surreal 1.3.2 https://github.com/gnat/surreal
-//🗿 Locality of Behavior with "jQuery like" syntax
+//🗿 Locality of Behavior with "jQuery like" syntax!
 let surreal = (_=>{
 let $ = {
 	$: this,
