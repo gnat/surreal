@@ -88,8 +88,7 @@ let $ = {
 		if ($.isNode(e)) e.classList.toggle(name, force)
 		return e
 	},
-	//Add inline style to elements. Can use string or object formats
-	styles(e, value) {
+	styles(e, value) {//Add inline style. Can use string or object formats
 		if (typeof value === 'string') {//Format:"font-family:'sans-serif'"
 			if ($.isNodeList(e)) e.forEach(_=>{$.styles(_, value)})
 			if ($.isNode(e)) {$.attribute(e, 'style', ($.attribute(e, 'style') == null ? '' : $.attribute(e, 'style') + '; ') + value) }
