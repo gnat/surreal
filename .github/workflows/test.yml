@@ -17,6 +17,12 @@ jobs:
       - name: Download surreal.js
         run: curl -o surreal.js https://raw.githubusercontent.com/gnat/surreal/refs/heads/main/surreal.js
 
+      - name: Add global export at bottom of surreal.js for node
+        run: |
+          cat << 'EOF' >> surreal.js
+          if (typeof window !== 'undefined') { window.surreal = surreal; } else if (typeof globalThis !== 'undefined') { globalThis.surreal = surreal; }
+          EOF
+          
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
