@@ -44,7 +44,11 @@ jobs:
           // Load surreal.js (adds Surreal to window)
           import '../surreal.js';
 
-          describe('Surreal.js Basic Tests', () => {
+          describe('Test suite works?', () => {
+            it('1 + 1 equals 2', () => {
+              expect(1 + 1).to.equal(2);
+            });
+            
             it('should have surreal defined globally on window', () => {
               expect(window.surreal).to.exist;
             });
@@ -53,15 +57,11 @@ jobs:
               expect(window.surreal.classRemove).to.be.a('function');
             });
 
-            it('example test: 1 + 1 equals 2', () => {
-              expect(1 + 1).to.equal(2);
-            });
-
-            it('classadd should add class to element', () => {
-              expect(window.surreal.class_add).to.be.a('function');
+            it('classAdd should add class to element', () => {
+              expect(window.surreal.classAdd).to.be.a('function');
 
               const el = document.createElement('div');
-              window.surreal.class_add('test-class', el);
+              window.surreal.classAdd('test-class', el);
 
               expect(el.classList.contains('test-class')).to.be.true;
             });
