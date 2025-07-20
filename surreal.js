@@ -211,8 +211,8 @@ let $ = { // Convenience for internals.
 		console.log(`Surreal: Adding convenience globals to window.`)
 		let restricted = ['$', 'sugar', 'plugins']
 		for (const [key, value] of Object.entries(this)) {
-			if (!restricted.includes(key)) window[key] != 'undefined' ? window[key] = value : console.warn(`Surreal: "${key}()" already exists on window. Skipping to prevent overwrite.`)
-			window.document[key] = value
+			if (!restricted.includes(key)) window[key] === undefined ? window[key] = value : console.warn(`Surreal: "${key}()" already exists on window. Skipping to prevent overwrite.`)
+			if (!restricted.includes(key)) window.document[key] === undefined ? window.document[key] = value : console.warn(`Surreal: "${key}()" already exists on document. Skipping to prevent overwrite.`)
 		}
 	},
 	// ⚙️ Used internally. Is this an element / node?
