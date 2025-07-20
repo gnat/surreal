@@ -1,0 +1,66 @@
+name: Test Surreal.js in Emulated Browser
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Download surreal.js
+        run: curl -o surreal.js https://raw.githubusercontent.com/gnat/surreal/refs/heads/main/surreal.js
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: |
+          npm init -y
+          npm install mocha chai jsdom jsdom-global
+
+      - name: Create test file
+        run: |
+          mkdir -p test
+          cat << 'EOF' > test/surreal.test.js
+          require('jsdom-global/register');
+          const chai = require('chai');
+          const expect = chai.expect;
+
+          // Load surreal.js script into the global scope
+          require('../surreal.js');
+
+          describe('Surreal.js Basic Tests', () => {
+            it('should have Surreal defined globally', () => {
+              expect(global.Surreal).to.exist;
+            });
+
+            it('should have a method surrealExampleFunction if exists', () => {
+              expect(global.Surreal.surrealExampleFunction).to.be.a('function');
+            });
+
+            it('example test: 1 + 1 equals 2', () => {
+              expect(1 + 1).to.equal(2);
+            });
+
+            it('classadd should add class to element', () => {
+              expect(global.Surreal.classadd).to.be.a('function');
+
+              const el = document.createElement('div');
+              global.Surreal.classadd('test-class', el);
+
+              expect(el.classList.contains('test-class')).to.be.true;
+            });
+          });
+          EOF
+
+      - name: Run tests
+        run: npx mocha test/surreal.test.js
