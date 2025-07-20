@@ -287,7 +287,7 @@ console.log("Surreal: Added plugins.")
 
 // 🌐 Add global shortcuts here!
 // DOM.
-const createElement = create_element = document.createElement.bind(document)
+const createElement = document.createElement.bind(document); const create_element = createElement
 // Animation.
 const rAF = typeof requestAnimationFrame !== 'undefined' && requestAnimationFrame
 const rIC = typeof requestIdleCallback !== 'undefined' && requestIdleCallback
