@@ -22,10 +22,9 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Install dependencies and set up ESM
+      - name: Install dependencies and configure ESM
         run: |
           npm init -y
-          # Add "type": "module" using jq
           jq '. + {type: "module"}' package.json > tmp.json && mv tmp.json package.json
           npm install mocha chai jsdom jsdom-global
 
@@ -35,15 +34,17 @@ jobs:
           cat << 'EOF' > test/surreal.test.js
           import 'jsdom-global/register.js';
           import { expect } from 'chai';
+
+          // Load surreal.js (adds Surreal to window)
           import '../surreal.js';
 
           describe('Surreal.js Basic Tests', () => {
-            it('should have Surreal defined globally', () => {
-              expect(global.Surreal).to.exist;
+            it('should have Surreal defined globally on window', () => {
+              expect(window.Surreal).to.exist;
             });
 
             it('should have a method surrealExampleFunction if exists', () => {
-              expect(global.Surreal.surrealExampleFunction).to.be.a('function');
+              expect(window.Surreal.surrealExampleFunction).to.be.a('function');
             });
 
             it('example test: 1 + 1 equals 2', () => {
@@ -51,10 +52,10 @@ jobs:
             });
 
             it('classadd should add class to element', () => {
-              expect(global.Surreal.classadd).to.be.a('function');
+              expect(window.Surreal.classadd).to.be.a('function');
 
               const el = document.createElement('div');
-              global.Surreal.classadd('test-class', el);
+              window.Surreal.classadd('test-class', el);
 
               expect(el.classList.contains('test-class')).to.be.true;
             });
