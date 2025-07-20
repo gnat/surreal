@@ -1,4 +1,4 @@
-// Welcome to Surreal 1.3.3
+// Welcome to Surreal 1.3.4
 // Documentation: https://github.com/gnat/surreal
 // Locality of Behavior (LoB): https://htmx.org/essays/locality-of-behaviour/
 let surreal = (function () {
