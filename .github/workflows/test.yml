@@ -61,7 +61,7 @@ jobs:
               expect(window.surreal.classAdd).to.be.a('function');
 
               const el = document.createElement('div');
-              window.surreal.classAdd('test-class', el);
+              window.surreal.classAdd(el, 'test-class');
 
               expect(el.classList.contains('test-class')).to.be.true;
             });
