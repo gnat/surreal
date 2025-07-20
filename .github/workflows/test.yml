@@ -22,21 +22,20 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Install dependencies
+      - name: Install dependencies and set up ESM
         run: |
           npm init -y
+          # Add "type": "module" using jq
+          jq '. + {type: "module"}' package.json > tmp.json && mv tmp.json package.json
           npm install mocha chai jsdom jsdom-global
 
       - name: Create test file
         run: |
           mkdir -p test
           cat << 'EOF' > test/surreal.test.js
-          require('jsdom-global/register');
-          const chai = require('chai');
-          const expect = chai.expect;
-
-          // Load surreal.js script into the global scope
-          require('../surreal.js');
+          import 'jsdom-global/register.js';
+          import { expect } from 'chai';
+          import '../surreal.js';
 
           describe('Surreal.js Basic Tests', () => {
             it('should have Surreal defined globally', () => {
