@@ -1,0 +1,66 @@
+name: Publish to npm
+
+on:
+  push:
+    tags:
+      - '*'  # Matches all tags, like 1.2.3 or 2.0.0
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org/'
+
+      - name: Extract version from tag
+        id: get_version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> "$GITHUB_OUTPUT"
+
+      - name: Generate package.json
+        run: |
+          cat > package.json <<EOF
+          {
+            "name": "surreal",
+            "version": "${{ steps.get_version.outputs.VERSION }}",
+            "description": "Surreal",
+            "main": "surreal.js",
+            "repository": {
+              "type": "git",
+              "url": "https://github.com/gnat/surreal.git"
+            },
+            "author": "gnat",
+            "license": "MIT",
+            "keywords": [
+              "jquery",
+              "jquery-like",
+              "jquery-alternative",
+              "jquery-replacement",
+              "javascript",
+              "utility",
+              "hyperscript",
+              "dom",
+              "dom-manipulation",
+              "lob",
+              "locality-of-behavior",
+              "htmx",
+              "selector",
+              "queryselectorall",
+              "queryselector"
+            ],
+            "bugs": {
+              "url": "https://github.com/gnat/surreal/issues"
+            }
+          }
+          EOF
+
+      - name: Publish to npm
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
