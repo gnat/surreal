@@ -49,8 +49,8 @@ jobs:
               expect(window.surreal).to.exist;
             });
 
-            it('should have a method surrealExampleFunction if exists', () => {
-              expect(window.surreal.surrealExampleFunction).to.be.a('function');
+            it('should have a method classRemove if exists', () => {
+              expect(window.surreal.classRemove).to.be.a('function');
             });
 
             it('example test: 1 + 1 equals 2', () => {
