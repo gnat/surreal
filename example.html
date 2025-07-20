@@ -4,7 +4,6 @@
 		<title>Quick and Dirty Testing for Surreal</title>
 		<!-- <script src="https://cdn.jsdelivr.net/gh/gnat/surreal@main/surreal.js"></script> -->
 		<script src="surreal.js"></script>
-		<link rel="stylesheet" href="tests/reset.css?17" /> <!-- NOTE: You can remove "?17" it is only for cache-busting on github. -->
 		<meta http-equiv="cache-control" content="no-cache" />
 	</head>
 	<body>
@@ -182,4 +181,125 @@
 			</script>
 		</button>
 	</body>
+	<style>
+		/* stylesheet.css */
+html,body,p,ol,ul,li,dl,dt,dd,blockquote,figure,fieldset,legend,textarea,pre,iframe,hr,h1,h2,h3,h4,h5,h6,label {
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+}
+button,input,select,textarea {
+	margin: 0;
+	font: inherit;
+}
+html {
+	font-size: 10px; /* 1.8 rem = 18px */
+	text-size-adjust: none; /* Fixes chrome on mobile. */
+	-webkit-text-size-adjust: none; /* Fixes safari on mobile. */
+	-moz-text-size-adjust: none; /* Firefox works fine, but for consistency. */
+	background: #adadad;
+}
+/* Custom for showcase. */
+body {
+	font-family: system-ui, sans-serif;
+	font-size: 2rem;
+	padding: 1rem;
+	background: #adadad;
+	color: #ccc;
+	perspective: 1500px;
+}
+.active {
+	background: hsl(345deg 100% 47%);
+	transition: background 3s;
+}
+.inactive {
+	background: grey;
+	transition: background 3s;
+}
+body > div {
+	color: #222;
+	margin: 1rem;
+	padding: 1rem;
+	border-radius: 1rem;
+}
+body div[thick] {
+	color: #222;
+	margin: 2rem;
+	padding: 3rem;
+	border-radius: 1rem;
+	background: #eee;
+}
+body div[thick] div[thick] {
+	background: #ccc;
+}
+button {
+	cursor: pointer;
+	color: #fff;
+	padding: 2rem 3rem;
+	margin: 2rem;
+	border: none;
+	background: hsl(262deg 86% 47%);
+	border-bottom: 0.5rem solid hsl(262deg 86% 28%);
+	border-radius: 12px;
+	text-shadow: 0 2px #222222AA;
+}
+button:active {
+	transform: translateY(0.2rem);
+}
+button.blue {
+	background: hsl(200deg 100% 47%);
+	border: none;
+	border-bottom: 0.5rem solid hsl(200deg 100% 28%);
+}
+button.invisible {
+	opacity: 0.2;	
+	background: hsl(147, 60%, 50%);
+	border-bottom: 0.5rem solid hsl(147 80% 28%);
+}
+button.close {
+	background: hsl(345deg 90% 40%);
+	border-bottom: 0.5rem solid hsl(345deg 100% 28%);
+	border-radius: 12px;
+}
+button.close:disabled {
+	color: #aaa;
+	background: hsl(345deg 0% 30%);
+	border-bottom: 0.5rem solid hsl(345deg 0% 18%);
+	transform: translateY(0.2rem);
+}
+.card {
+	position: relative;
+	width: 300px;
+	height: 400px;
+	padding: 1em;
+	margin: 2em auto;
+	font-weight: bold;
+	text-align: right;
+	text-shadow: 0 0 4px #000;
+	color: #ddd;
+	box-shadow: 0 1px 5px #00000099;
+	border-radius: 10px;
+	background: #999 center;
+	background-size: cover;
+	cursor: pointer;
+	transition-duration: 300ms;
+	transition-property: transform, box-shadow;
+	transition-timing-function: ease-out;
+	transform: rotate3d(0);
+}
+.card :hover {
+	transition-duration: 150ms;
+	box-shadow: 0 5px 20px 5px #00000044;
+}
+.card > div {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	border-radius: 10px;
+	background-image: radial-gradient(circle at 90% -20%, #ffffff33, #0000000f);
+}
+	</style>
 </html>
+
