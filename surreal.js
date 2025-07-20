@@ -209,7 +209,7 @@ let $ = { // Convenience for internals.
 	// Puts Surreal functions except for "restricted" in global scope.
 	globalsAdd() {
 		console.log(`Surreal: Adding convenience globals to window.`)
-		let restricted = ['$', 'sugar']
+		let restricted = ['$', 'sugar', 'plugins']
 		for (const [key, value] of Object.entries(this)) {
 			if (!restricted.includes(key)) window[key] != 'undefined' ? window[key] = value : console.warn(`Surreal: "${key}()" already exists on window. Skipping to prevent overwrite.`)
 			window.document[key] = value
