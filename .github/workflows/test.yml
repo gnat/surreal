@@ -58,10 +58,10 @@ jobs:
             });
 
             it('classadd should add class to element', () => {
-              expect(window.surreal.classadd).to.be.a('function');
+              expect(window.surreal.class_add).to.be.a('function');
 
               const el = document.createElement('div');
-              window.surreal.classadd('test-class', el);
+              window.surreal.class_add('test-class', el);
 
               expect(el.classList.contains('test-class')).to.be.true;
             });
