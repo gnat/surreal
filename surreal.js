@@ -302,7 +302,7 @@ async function sleep(ms, e) {
 // Loading: Why? So you don't clobber window.onload (predictable sequential loading)
 // Example: <script>onloadAdd(() => { console.log("Page was loaded!") })</script>
 // Example: <script>onloadAdd(() => { console.log("Lets do another thing without clobbering window.onload!") })</script>
-const onloadAdd = addOnload = onload_add = add_onload = (f) => {
+const addOnload = (f) => {
 	if (typeof window.onload === 'function') { // window.onload already is set, queue functions together (creates a call chain).
 		let onload_old = window.onload
 		window.onload = () => {
@@ -313,4 +313,5 @@ const onloadAdd = addOnload = onload_add = add_onload = (f) => {
 	}
 	window.onload = f // window.onload was not set yet.
 }
+const onloadAdd = addOnload; const onload_add = addOnload; const add_onload = addOnload
 console.log("Surreal: Added shortcuts.")
