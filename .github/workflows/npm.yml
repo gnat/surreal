@@ -28,7 +28,7 @@ jobs:
         run: |
           cat > package.json <<EOF
           {
-            "name": "surreal-js",
+            "name": "surrealjs",
             "version": "${{ steps.get_version.outputs.VERSION }}",
             "description": "Surreal",
             "main": "surreal.js",
