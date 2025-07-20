@@ -3,7 +3,7 @@ name: Publish to npm
 on:
   push:
     tags:
-      - '*'  # Matches all tags, like 1.2.3 or 2.0.0
+      - '*'  # Matches all tags like 1.2.3
   workflow_dispatch:
 
 jobs:
@@ -28,7 +28,7 @@ jobs:
         run: |
           cat > package.json <<EOF
           {
-            "name": "surrealjs",
+            "name": "@geenat/surreal",
             "version": "${{ steps.get_version.outputs.VERSION }}",
             "description": "Surreal",
             "main": "surreal.js",
