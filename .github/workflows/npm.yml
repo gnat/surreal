@@ -32,6 +32,11 @@ jobs:
             "version": "${{ steps.get_version.outputs.VERSION }}",
             "description": "Surreal",
             "main": "surreal.js",
+            "files": [
+              "surreal.js",
+              "README.md",
+              "LICENSE"
+            ],
             "repository": {
               "type": "git",
               "url": "https://github.com/gnat/surreal.git"
