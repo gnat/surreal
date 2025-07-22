@@ -413,20 +413,20 @@ Now use your function like: `me().hello("Internet")`
 
 Make an [issue](https://github.com/gnat/surreal/issues) or [pull request](https://github.com/gnat/surreal/pulls) if you think people would like to use it! If it's useful enough we'll want it in core.
 
-### ⭐ Awesome Surreal examples, plugins, and resources: [awesome-surreal](https://github.com/gnat/awesome-surreal) !
+## 🌘 Change Log
+
+### 1.3.4
+* New automated official NPM (<https://www.npmjs.com/package/@geenat/surreal>)
+* New automated test system.
+* This repo is actually **smaller** now because the github-only automations generate their own support files for testing and publishing (no more cruft like `package.json`)
+* Fixed warning about `document.plugins` https://github.com/gnat/surreal/issues/52
 
 ## 📚️ Inspired by
 
 * [jQuery](https://jquery.com/) for the chainable syntax we all love.
+* [Hyperscript](https://hyperscript.org) for Locality of Behavior and ergonomics.
 * [BlingBling.js](https://github.com/argyleink/blingblingjs) for modern minimalism.
 * [Bliss.js](https://blissfuljs.com/) for a focus on single elements and extensibility.
-* [Hyperscript](https://hyperscript.org) for Locality of Behavior and awesome ergonomics.
-* Shout out to [Umbrella](https://umbrellajs.com/), [Cash](https://github.com/fabiospampinato/cash), [Zepto](https://zeptojs.com/)- Not quite as ergonomic. Requires build step to extend.
+* Shout out to [Umbrella](https://umbrellajs.com/), [Cash](https://github.com/fabiospampinato/cash), [Zepto](https://zeptojs.com/)
 
-## 🌘 Future
-* Always more `example.html` goodies!
-* Automated browser testing perhaps with:
-  * [Fava](https://github.com/fabiospampinato/fava). See: https://github.com/avajs/ava/issues/24#issuecomment-885949036
-  * [Ava](https://github.com/avajs/ava/blob/main/docs/recipes/browser-testing.md)
-  * [jsdom](https://github.com/jsdom/jsdom)
-    * [jsdom notes](https://github.com/jsdom/jsdom#executing-scripts)
+### ⭐ Check out [awesome-surreal](https://github.com/gnat/awesome-surreal) for extra examples, plugins, and resources !
